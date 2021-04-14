@@ -35,12 +35,12 @@ namespace InternetSaleAds
 					case ConsoleKey.D2:
 						AddAds(adsList);
 						break;
-// 					case ConsoleKey.D3:
-// 						FindAds(adsList);
-// 						break;
-// 					case ConsoleKey.D4:
-// 						DelAds(adsList);
-// 						break;
+					case ConsoleKey.D3:
+						FindAds(adsList);
+						break;
+					case ConsoleKey.D4:
+						DelAds(adsList);
+						break;
 					default: continue;
 				}
 			} while (key != ConsoleKey.D5);
@@ -81,89 +81,74 @@ namespace InternetSaleAds
 		}
 		static public void AddAds(Dictionary<int, Ads> adsList)
 		{
-			try
+			Console.Clear();
+			int adsCode = adsList.Count + 1;
+		Description:
+			Console.WriteLine("Введите описание объявления: ");
+			string adsDescription = Console.ReadLine();
+			if (adsDescription == "")
 			{
-				Console.Clear();
-				Console.WriteLine("Введите код объявления: ");
-				int adsCode = Console.Read();
-				while (adsCode.ToString() == "")
-				{
-					Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
-					adsCode = Console.Read();
-				}
-			Description:
-				Console.WriteLine("Введите описание объявления: ");
-				string adsDescription = Console.ReadLine();
-				if (adsDescription == "")
-				{
-					Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
-					goto Description;
-				}
-				else
-				{
-					adsList.Add(adsCode, new Ads());
-					Console.WriteLine("Объявление добавлено! ");
-					Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-					Console.ReadKey();
-				}
+				Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
+				goto Description;
 			}
-			catch
+			else
 			{
-				Console.WriteLine("Этот код уже используется! ");
+				adsList.Add(adsCode, new Ads());
+				Console.WriteLine("Объявление добавлено! ");
 				Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
 				Console.ReadKey();
 			}
 		}
-// 		static public void FindAds(Dictionary<int, Ads> adsList)
-// 		{
-// 			Console.Clear();
-// 		FindAds:
-// 			Console.WriteLine("Введите код объявления для поиска: ");
-// 			string adsCode = Console.ReadLine();
-// 			if (adsCode != "")
-// 			{
-// 				if (adsList.ContainsKey(adsCode))
-// 				{
-// 					Console.WriteLine(adsList[adsCode]);
-// 				}
-// 				else
-// 				{
-// 					Console.WriteLine("Такой код не найден! ");
-// 				}
-// 			}
-// 			else
-// 			{
-// 				Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
-// 				goto FindAds;
-// 			}
-// 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу...");
-// 			Console.ReadKey();
-// 		}
-// 		static public void DelAds(Dictionary<int, Ads> adsList)
-// 		{
-// 			Console.Clear();
-// 		DelAds:
-// 			Console.WriteLine("Введите код объявления для удаления: ");
-// 			string adsCode = Console.ReadLine();
-// 			if (adsCode != "")
-// 			{
-// 				if (adsList.ContainsKey(adsCode))
-// 				{
-// 					adsList.Remove(adsCode);
-// 					Console.WriteLine("Объявление удалено ");
-// 				}
-// 				else
-// 				{
-// 					Console.WriteLine("Такого объявления не существует! ");
-// 				}
-// 			}
-// 			else
-// 			{
-// 				Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
-// 				goto DelAds;
-// 			}
-// 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-// 			Console.ReadKey();
-// 		}
+		static public void FindAds(Dictionary<int, Ads> adsList)
+		{
+			Console.Clear();
+		FindAds:
+			Console.WriteLine("Введите код объявления для поиска: ");
+			string adsCode = Console.ReadLine();
+			if (adsCode != "")
+			{
+				if (adsList.ContainsKey(adsList.Count))
+				{
+					Console.WriteLine(adsList.Count);
+				}
+				else
+				{
+					Console.WriteLine("Такой код не найден! ");
+				}
+			}
+			else
+			{
+				Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
+				goto FindAds;
+			}
+			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу...");
+			Console.ReadKey();
+		}
+		static public void DelAds(Dictionary<int, Ads> adsList)
+		{
+			Console.Clear();
+		DelAds:
+			Console.WriteLine("Введите код объявления для удаления: ");
+			string adsCode = Console.ReadLine();
+			if (adsCode != "")
+			{
+				if (adsList.ContainsKey(adsList.Count))
+				{
+					adsList.Remove(adsList.Count);
+					Console.WriteLine("Объявление удалено ");
+				}
+				else
+				{
+					Console.WriteLine("Такого объявления не существует! ");
+				}
+			}
+			else
+			{
+				Console.WriteLine("Вы ничего не ввели, попробуйте снова: ");
+				goto DelAds;
+			}
+			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
+			Console.ReadKey();
+		}
 	}
 }
