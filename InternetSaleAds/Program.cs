@@ -22,7 +22,7 @@ namespace InternetSaleAds
 				{ 3, new Ads("Телефон", "iPont 99", 9999, 89000001111, "Вася", DateTime.Now) },
 				{ 4, new Ads("Консоль", "PayStation $", 3000, 89000002222, "Петя", DateTime.Now) },
 				{ 5, new Ads("Телевизор", "Pony", 5000, 89000003333, "Оля", DateTime.Now) },
-				{ 6, new Ads("Платье", "Гусси", 7000, 89000004444, "Катя", DateTime.Now) },
+				{ 6, new Ads("Сумочка", "Гусси", 7000, 89000004444, "Катя", DateTime.Now) },
 				{ 7, new Ads("Кактус", "Колючий", 10, 890000005555, "Женя", DateTime.Now) }
 			};
 

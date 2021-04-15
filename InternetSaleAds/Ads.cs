@@ -31,6 +31,10 @@ namespace InternetSaleAds
 			this.sellerName = sellerName;
 			this.adsDate = adsDate;
 		}
+		public Ads(string adsName, int adsPrice, ulong sellerNumber)
+			: this(adsName, "тест описание", adsPrice, sellerNumber, "тест продавец", DateTime.Now)
+		{
+		}
 		public Ads()
 		{
 			adsName = "ADS_TEST";
@@ -40,10 +44,5 @@ namespace InternetSaleAds
 			sellerName = "NAME_TEST";
 			adsDate = DateTime.Now;
 		}
-		public Ads(string adsName, int adsPrice, ulong sellerNumber)
-			: this (adsName, "тест описание", adsPrice,  sellerNumber, "тест продавец", DateTime.Now)
-		{
-		}
-
 	}
 }
