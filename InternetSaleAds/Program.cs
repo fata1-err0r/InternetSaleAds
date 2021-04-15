@@ -17,7 +17,7 @@ namespace InternetSaleAds
 		{
 			Dictionary<int, Ads> adsList = new Dictionary<int, Ads>();
 			adsList.Add(1, new Ads());
-			adsList.Add(2, new Ads("тест имя", 666, 9999));
+			adsList.Add(2, new Ads("тест имя", 666, 999));
 			adsList.Add(3, new Ads("Телефон", "iPont 99", 9999, 89000001111, "Вася", DateTime.Now));
 			adsList.Add(4, new Ads("Консоль", "PayStation $", 3000, 89000002222, "Петя", DateTime.Now));
 			adsList.Add(5, new Ads("Телевизор", "Pony", 5000, 89000003333, "Оля", DateTime.Now));
