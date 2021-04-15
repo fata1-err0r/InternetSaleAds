@@ -15,14 +15,16 @@ namespace InternetSaleAds
 		};
 		static void Main(string[] args)
 		{
-			Dictionary<int, Ads> adsList = new Dictionary<int, Ads>();
-			adsList.Add(1, new Ads());
-			adsList.Add(2, new Ads("тест имя", 666, 999));
-			adsList.Add(3, new Ads("Телефон", "iPont 99", 9999, 89000001111, "Вася", DateTime.Now));
-			adsList.Add(4, new Ads("Консоль", "PayStation $", 3000, 89000002222, "Петя", DateTime.Now));
-			adsList.Add(5, new Ads("Телевизор", "Pony", 5000, 89000003333, "Оля", DateTime.Now));
-			adsList.Add(6, new Ads("Платье", "Гусси", 7000, 89000004444, "Катя", DateTime.Now));
-			adsList.Add(7, new Ads("Кактус", "Колючий", 10, 890000005555, "Женя", DateTime.Now));
+			Dictionary<int, Ads> adsList = new()
+			{
+				{ 1, new Ads() },
+				{ 2, new Ads("тест имя", 666, 999) },
+				{ 3, new Ads("Телефон", "iPont 99", 9999, 89000001111, "Вася", DateTime.Now) },
+				{ 4, new Ads("Консоль", "PayStation $", 3000, 89000002222, "Петя", DateTime.Now) },
+				{ 5, new Ads("Телевизор", "Pony", 5000, 89000003333, "Оля", DateTime.Now) },
+				{ 6, new Ads("Платье", "Гусси", 7000, 89000004444, "Катя", DateTime.Now) },
+				{ 7, new Ads("Кактус", "Колючий", 10, 890000005555, "Женя", DateTime.Now) }
+			};
 
 			ConsoleKey key = ConsoleKey.Enter;
 			do
