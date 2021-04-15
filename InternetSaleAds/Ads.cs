@@ -9,9 +9,9 @@ namespace InternetSaleAds
 		public string adsName;
 		public string adsDescription;
 		public int adsPrice;
-		public long sellerNumber;
+		public ulong sellerNumber;
 		public string sellerName;
-		public DateTime	adsDate;	// Console.WriteLine(thisDay.ToString("g"));
+		public DateTime adsDate;    // Console.WriteLine(thisDay.ToString("g"));
 
 		public void GetInfo()
 		{
@@ -24,14 +24,14 @@ namespace InternetSaleAds
 		}
 		public Ads()
 		{
-			adsName = "Тестовый товар";
-			adsDescription = "Тестовое описание";
-			adsPrice = 5000;
-			sellerNumber = 89008889988;
-			sellerName = "Тестовое Имя";
+			adsName = "ADS_TEST";
+			adsDescription = "DESCRIPTION_TEST";
+			adsPrice = 7777;
+			sellerNumber = 89009990099;
+			sellerName = "NAME_TEST";
 			adsDate = DateTime.Now;
 		}
-		public Ads(string name, string desc, int price, long number, string nameSel, DateTime date)
+		public Ads(string name, string desc, int price, ulong number, string nameSel, DateTime date)
 		{
 			adsName = name;
 			adsDescription = desc;
