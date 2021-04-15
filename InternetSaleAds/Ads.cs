@@ -22,6 +22,15 @@ namespace InternetSaleAds
 				$"\nПродавец: {sellerName} " +
 				$"\nДата размещения: {adsDate} ");
 		}
+		public Ads(string adsName, string adsDescription, int adsPrice, ulong sellerNumber, string sellerName, DateTime adsDate)
+		{
+			this.adsName = adsName;
+			this.adsDescription = adsDescription;
+			this.adsPrice = adsPrice;
+			this.sellerNumber = sellerNumber;
+			this.sellerName = sellerName;
+			this.adsDate = adsDate;
+		}
 		public Ads()
 		{
 			adsName = "ADS_TEST";
@@ -31,14 +40,9 @@ namespace InternetSaleAds
 			sellerName = "NAME_TEST";
 			adsDate = DateTime.Now;
 		}
-		public Ads(string name, string desc, int price, ulong number, string nameSel, DateTime date)
+		public Ads(string adsName, int adsPrice, ulong sellerNumber)
+			: this (adsName, "тест описание", adsPrice,  sellerNumber, "тест продавец", DateTime.Now)
 		{
-			adsName = name;
-			adsDescription = desc;
-			adsPrice = price;
-			sellerNumber = number;
-			sellerName = nameSel;
-			adsDate = date;
 		}
 
 	}
