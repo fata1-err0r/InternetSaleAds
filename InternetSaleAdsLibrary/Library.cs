@@ -5,7 +5,13 @@ namespace InternetSaleAdsLibrary
 {
 	public abstract class Menu
 	{
-		protected List<Ads> adsList;
+		protected List<Ad> adsList;
+		protected List<Ad> moderAdsList;
+
+		public Menu()
+		{
+			moderAdsList = new List<Ad>();
+		}
 
 		public abstract void HandleMenu();
 
@@ -28,14 +34,11 @@ namespace InternetSaleAdsLibrary
 			else
 			{
 				int i = 0;
-				foreach (Ads elem in adsList)
+				foreach (Ad elem in adsList)
 				{
-					if (elem.adsAproved)
-					{
-						i++;
-						Console.WriteLine($"{i}\n{elem}");
-						Console.WriteLine();
-					}
+					i++;
+					Console.WriteLine($"{i}\n{elem}");
+					Console.WriteLine();
 				}
 			}
 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
@@ -50,25 +53,28 @@ namespace InternetSaleAdsLibrary
 			uint adsPrice = Helpers.AskAdPrice("Укажите цену: ");
 			ulong sellerNumber = Helpers.AskPhoneNumber("Укажите ваш номер телефона: ");
 			string sellerName = Helpers.AskFilledString("Введите ваше имя: ");
-			Console.WriteLine("Объявление добавлено! ");
+
+			Ad ad = new Ad(adsName,
+					adsDescription,
+					adsPrice,
+					sellerNumber,
+					sellerName);
 
 			if (adsPrice >= 10000)
 			{
+				moderAdsList.Add(ad);
 				Console.WriteLine("Ваше обяъявление отправлено на модерацию ");
 			}
-			adsList.Add(new Ads(adsName,
-								adsDescription,
-								adsPrice,
-								sellerNumber,
-								sellerName,
-								DateTime.Now,
-								adsPrice < 10000));
-
+			else
+			{
+				adsList.Add(ad);
+				Console.WriteLine("Объявление добавлено! ");
+			}
 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
 			Console.ReadKey();
 		}
 
-		public void DelAdsMenu()
+		public void FindAdsMenu()
 		{
 			Console.Clear();
 			int printedList = 0;
@@ -78,14 +84,13 @@ namespace InternetSaleAdsLibrary
 			}
 			else
 			{
-				foreach (Ads elem in adsList)
+				foreach (Ad elem in adsList)
 				{
-					if (elem.adsAproved)
-					{
-						printedList++;
-						Console.WriteLine($"{printedList}\n{elem}");
-						Console.WriteLine();
-					}
+
+					printedList++;
+					Console.WriteLine($"{printedList}\n{elem}");
+					Console.WriteLine();
+
 				}
 			}
 
@@ -97,6 +102,39 @@ namespace InternetSaleAdsLibrary
 			else
 			{
 				adsList.RemoveAt(adsCode);
+				Console.WriteLine("Объявление удалено! ");
+			}
+			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
+			Console.ReadKey();
+			Console.WriteLine();
+		}
+
+		public void DelAdsMenu()
+		{
+			Console.Clear();
+			if (adsList.Count == 0)
+			{
+				Console.WriteLine("Список объявлений пуст. ");
+			}
+			else
+			{
+				int i = 0;
+				foreach (Ad elem in adsList)
+				{
+					i++;
+					Console.WriteLine($"{i}\n{elem}");
+					Console.WriteLine();
+				}
+			}
+
+			int adsCode = (int)Helpers.AskPositiveNumber("Введите номер объявления для удаления: ");
+			if (adsCode > adsList.Count || adsCode == 0)
+			{
+				Console.WriteLine("Такого объявления не существует! ");
+			}
+			else
+			{
+				adsList.RemoveAt(adsCode - 1);
 				Console.WriteLine("Объявление удалено! ");
 			}
 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
@@ -115,7 +153,7 @@ namespace InternetSaleAdsLibrary
 			"0 - Выход"
 		};
 
-		public UserMenu(List<Ads> ads)
+		public UserMenu(List<Ad> ads)
 		{
 			this.adsList = ads;
 		}
@@ -137,9 +175,9 @@ namespace InternetSaleAdsLibrary
 					case ConsoleKey.D2:
 						AddAdsMenu();
 						break;
-					// 					case ConsoleKey.D3:
-					// 						FindAdsMenu();
-					// 						break;
+					case ConsoleKey.D3:
+						FindAdsMenu();
+						break;
 					default: continue;
 				}
 			} while (key != ConsoleKey.D0);
@@ -160,7 +198,7 @@ namespace InternetSaleAdsLibrary
 			"0 - Выход"
 		};
 
-		public AdminMenu(List<Ads> ads)
+		public AdminMenu(List<Ad> ads)
 		{
 			this.adsList = ads;
 		}
@@ -181,9 +219,9 @@ namespace InternetSaleAdsLibrary
 					case ConsoleKey.D2:
 						AddAdsMenu();
 						break;
-					// 					case ConsoleKey.D3:
-					// 						FindAdsMenu();
-					// 						break;
+					case ConsoleKey.D3:
+						FindAdsMenu();
+						break;
 					case ConsoleKey.D4:
 						DelAdsMenu();
 						break;
@@ -198,21 +236,18 @@ namespace InternetSaleAdsLibrary
 		private void ModerMenu()
 		{
 			Console.Clear();
-			int moderList = 0;
-			if (adsList.Count == 0)
+			if (moderAdsList.Count == 0)
 			{
-				Console.WriteLine("Список объявлений пуст. ");
+				Console.WriteLine("Список объявлений на модерации пуст. ");
 			}
 			else
 			{
-				foreach (Ads elem in adsList)
+				int i = 0;
+				foreach (Ad elem in moderAdsList)
 				{
-					if (elem.adsAproved == false)
-					{
-						moderList++;
-						Console.WriteLine($"{moderList}\n{elem}");
-						Console.WriteLine();
-					}
+					i++;
+					Console.WriteLine($"{i}\n{elem}");
+					Console.WriteLine();
 				}
 			}
 
@@ -223,34 +258,24 @@ namespace InternetSaleAdsLibrary
 				{
 					return;
 				}
-				else if (adNumber > adsList.Count || adNumber > moderList)
+				else if (adNumber > moderAdsList.Count)
 				{
 					Console.WriteLine("Такого объявления не существует! ");
 				}
 				else
 				{
 					ulong action = Helpers.AskPositiveNumber("1 - разрешить объявление\n2 - удалить объявление\n0 - отмена ");
-					int i = 1, listIndex = 0;
-					foreach (Ads elem in adsList)
-					{
-						if (elem.adsAproved == false)
-						{
-							if (i == adNumber)
-								break;
-							i++;
-						}
-						listIndex++;
-					}
-
 					switch (action)
 					{
 						case 1:
-							Ads ads = adsList[listIndex];
-							ads.adsAproved = true;
+							
+							Ad ads = moderAdsList[adNumber - 1];
+							moderAdsList.RemoveAt(adNumber - 1);
+							adsList.Add(ads);
 							Console.WriteLine("Объявление добавлено! ");
 							break;
 						case 2:
-							adsList.RemoveAt(listIndex);
+							moderAdsList.RemoveAt(adNumber - 1);
 							Console.WriteLine("Объявление удалено! ");
 							break;
 						case 0:
@@ -261,54 +286,45 @@ namespace InternetSaleAdsLibrary
 		}
 	}
 
-	public class Ads
+	public class Ad
 	{
 		/*название товара, описание, цена, номер телефона продавца,
 		 * фио продавца, дата-время создания*/
-		public string adsName;
-		public string adsDescription;
-		public uint adsPrice;
+		public string adName;
+		public string adDescription;
+		public uint adPrice;
 		public ulong sellerNumber;
 		public string sellerName;
-		public DateTime adsDate;
-		public bool adsAproved = true;
+		public DateTime adDate = DateTime.Now;
 
 		override public string ToString()
 		{
 			return
-				$"Наименование: {adsName} " +
-				$"\nОписание: {adsDescription} " +
-				$"\nЦена: {adsPrice} bucks " +
+				$"Наименование: {adName} " +
+				$"\nОписание: {adDescription} " +
+				$"\nЦена: {adPrice} bucks " +
 				$"\nНомер тел.: {sellerNumber} " +
 				$"\nПродавец: {sellerName} " +
-				$"\nДата размещения: {adsDate} ";
+				$"\nДата размещения: {adDate} ";
 		}
 
-		public Ads(string adsName, string adsDescription, uint adsPrice, ulong sellerNumber, string sellerName, DateTime adsDate, bool adsAproved)
+		public Ad(string adName, string adsDescription, uint adsPrice, ulong sellerNumber, string sellerName)
 		{
-			this.adsName = adsName;
-			this.adsDescription = adsDescription;
-			this.adsPrice = adsPrice;
+			this.adName = adName;
+			this.adDescription = adsDescription;
+			this.adPrice = adsPrice;
 			this.sellerNumber = sellerNumber;
 			this.sellerName = sellerName;
-			this.adsDate = adsDate;
-			this.adsAproved = adsAproved;
 		}
 
-		public Ads(string adsName, uint adsPrice, ulong sellerNumber)
-			: this(adsName, "тест описание", adsPrice, sellerNumber, "тест продавец", DateTime.Now, true)
+		public Ad()
 		{
-		}
-
-		public Ads()
-		{
-			adsName = "ADS_TEST";
-			adsDescription = "DESCRIPTION_TEST";
-			adsPrice = 10000;
+			adName = "ADS_TEST";
+			adDescription = "DESCRIPTION_TEST";
+			adPrice = 10000;
 			sellerNumber = 89009990099;
 			sellerName = "NAME_TEST";
-			adsDate = DateTime.Now;
-			adsAproved = false;
+			adDate = DateTime.Now;
 		}
 
 		public static uint CheckPrice(string input)
@@ -355,7 +371,7 @@ namespace InternetSaleAdsLibrary
 			{
 				Console.WriteLine(question);
 				string input = Console.ReadLine();
-				uint check = Ads.CheckPrice(input);
+				uint check = Ad.CheckPrice(input);
 				if (check == 1)
 				{
 					Console.WriteLine("Ошибка! Цена не может быть отрицательной! ");
@@ -378,7 +394,7 @@ namespace InternetSaleAdsLibrary
 			{
 				Console.WriteLine(question);
 				string input = Console.ReadLine();
-				uint check = Ads.CheckPhone(input);
+				uint check = Ad.CheckPhone(input);
 				if (check == 1)
 				{
 					Console.WriteLine("Ошибка! Номер введен не правильно! ");

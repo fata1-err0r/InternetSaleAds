@@ -1,8 +1,6 @@
-﻿using System;
+﻿using InternetSaleAdsLibrary;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using InternetSaleAdsLibrary;
 
 namespace InternetSaleAds
 {
@@ -13,15 +11,14 @@ namespace InternetSaleAds
 			ConsoleKey key;
 			Menu menu;
 
-			List<Ads> adsList = new()
+			List<Ad> adsList = new()
 			{
-				{ new Ads() },
-				{ new Ads("тест имя", 666, 999) },
-				{ new Ads("Телефон", "iPont 99", 9999, 89000001111, "Вася", DateTime.Now, true) },
-				{ new Ads("Консоль", "PayStation $", 3000, 89000002222, "Петя", DateTime.Now, true) },
-				{ new Ads("Телевизор", "Pony", 5000, 89000003333, "Оля", DateTime.Now, true) },
-				{ new Ads("Сумочка", "Гусси", 7000, 89000004444, "Катя", DateTime.Now, true) },
-				{ new Ads("Кактус", "Колючий", 5, 890000005555, "Женя", DateTime.Now, true) }
+				{ new Ad() },
+				{ new Ad("Телефон", "iPont 99", 9999, 89000001111, "Вася") },
+				{ new Ad("Консоль", "PayStation $", 3000, 89000002222, "Петя") },
+				{ new Ad("Телевизор", "Pony", 5000, 89000003333, "Оля") },
+				{ new Ad("Сумочка", "Гусси", 7000, 89000004444, "Катя") },
+				{ new Ad("Кактус", "Колючий", 5, 890000005555, "Женя") }
 			};
 
 			while (true)
