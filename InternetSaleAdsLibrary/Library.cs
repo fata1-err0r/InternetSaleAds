@@ -48,19 +48,19 @@ namespace InternetSaleAdsLibrary
 		public void AddAdsMenu()
 		{
 			Console.Clear();
-			string adsName = Helpers.AskFilledString("Введите название объявления: ");
-			string adsDescription = Helpers.AskFilledString("Введите описание: ");
-			uint adsPrice = Helpers.AskAdPrice("Укажите цену: ");
+			string adName = Helpers.AskFilledString("Введите название объявления: ");
+			string adDescription = Helpers.AskFilledString("Введите описание: ");
+			uint adPrice = Helpers.AskAdPrice("Укажите цену: ");
 			ulong sellerNumber = Helpers.AskPhoneNumber("Укажите ваш номер телефона: ");
 			string sellerName = Helpers.AskFilledString("Введите ваше имя: ");
 
-			Ad ad = new Ad(adsName,
-					adsDescription,
-					adsPrice,
+			Ad ad = new Ad(adName,
+					adDescription,
+					adPrice,
 					sellerNumber,
 					sellerName);
 
-			if (adsPrice >= 10000)
+			if (adPrice >= 10000)
 			{
 				moderAdsList.Add(ad);
 				Console.WriteLine("Ваше обяъявление отправлено на модерацию ");
@@ -94,14 +94,14 @@ namespace InternetSaleAdsLibrary
 				}
 			}
 
-			int adsCode = (int)Helpers.AskPositiveNumber("Введите номер объявления для удаления: ");
-			if (adsCode > printedList || adsCode == 0)
+			int adNumber = (int)Helpers.AskPositiveNumber("Введите номер объявления для удаления: ");
+			if (adNumber > printedList || adNumber == 0)
 			{
 				Console.WriteLine("Такого объявления не существует! ");
 			}
 			else
 			{
-				adsList.RemoveAt(adsCode);
+				adsList.RemoveAt(adNumber);
 				Console.WriteLine("Объявление удалено! ");
 			}
 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
@@ -127,14 +127,14 @@ namespace InternetSaleAdsLibrary
 				}
 			}
 
-			int adsCode = (int)Helpers.AskPositiveNumber("Введите номер объявления для удаления: ");
-			if (adsCode > adsList.Count || adsCode == 0)
+			int adNumber = (int)Helpers.AskPositiveNumber("Введите номер объявления для удаления: ");
+			if (adNumber > adsList.Count || adNumber == 0)
 			{
 				Console.WriteLine("Такого объявления не существует! ");
 			}
 			else
 			{
-				adsList.RemoveAt(adsCode - 1);
+				adsList.RemoveAt(adNumber - 1);
 				Console.WriteLine("Объявление удалено! ");
 			}
 			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
@@ -308,18 +308,18 @@ namespace InternetSaleAdsLibrary
 				$"\nДата размещения: {adDate} ";
 		}
 
-		public Ad(string adName, string adsDescription, uint adsPrice, ulong sellerNumber, string sellerName)
+		public Ad(string adName, string adDescription, uint adPrice, ulong sellerNumber, string sellerName)
 		{
 			this.adName = adName;
-			this.adDescription = adsDescription;
-			this.adPrice = adsPrice;
+			this.adDescription = adDescription;
+			this.adPrice = adPrice;
 			this.sellerNumber = sellerNumber;
 			this.sellerName = sellerName;
 		}
 
 		public Ad()
 		{
-			adName = "ADS_TEST";
+			adName = "AD_TEST";
 			adDescription = "DESCRIPTION_TEST";
 			adPrice = 10000;
 			sellerNumber = 89009990099;
