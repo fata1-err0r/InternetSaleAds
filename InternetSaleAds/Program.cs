@@ -26,10 +26,11 @@ namespace InternetSaleAds
 				while (true)
 				{
 					Console.Clear();
-					Console.WriteLine("Под кем войти? " +
-						"\n1 - Админ " +
-						"\n2 - Юзер " +
-						"\n0 - Выход из программы");
+					Console.WriteLine("Вас приветствует магазин \"Наде Ване\" \n ");
+					Console.WriteLine("Под кем войти?\n" +
+						"1 - Админ\n" +
+						"2 - Юзер\n" +
+						"0 - Выход из программы");
 					key = Console.ReadKey().Key;
 					Console.WriteLine();
 					if (key == ConsoleKey.D1)
