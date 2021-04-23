@@ -11,6 +11,7 @@ namespace InternetSaleAdsLibrary
 
 		public Menu()
 		{
+			moderAdsList = new List<Ad>();
 		}
 
 		public abstract void HandleMenu();
@@ -48,8 +49,7 @@ namespace InternetSaleAdsLibrary
 			// 				Console.WriteLine($"{nums} ");
 			// 			}
 
-			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-			Console.ReadKey();
+			Helpers.BackToMenu();
 		}
 
 		public void AddAdsMenu()
@@ -73,8 +73,7 @@ namespace InternetSaleAdsLibrary
 				adsList.Add(ad);
 				Console.WriteLine("Объявление добавлено! ");
 			}
-			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-			Console.ReadKey();
+			Helpers.BackToMenu();
 		}
 
 		public void FindAdsMenu()
@@ -111,8 +110,7 @@ namespace InternetSaleAdsLibrary
 					}
 				}
 			}
-			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-			Console.ReadKey();
+			Helpers.BackToMenu();
 		}
 
 		public void DelAdsMenu()
@@ -144,8 +142,7 @@ namespace InternetSaleAdsLibrary
 					Console.WriteLine("Объявление удалено! ");
 				}
 			}
-			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-			Console.ReadKey();
+			Helpers.BackToMenu();
 		}
 	}
 
@@ -188,7 +185,6 @@ namespace InternetSaleAdsLibrary
 			} while (key != ConsoleKey.D0);
 			Console.WriteLine("\nУдачи!");
 		}
-
 	}
 
 	public class AdminMenu : Menu
@@ -206,7 +202,6 @@ namespace InternetSaleAdsLibrary
 		public AdminMenu(List<Ad> ads)
 		{
 			this.adsList = ads;
-			moderAdsList = new List<Ad>();
 		}
 
 		override public void HandleMenu()
@@ -288,8 +283,7 @@ namespace InternetSaleAdsLibrary
 					}
 				}
 			}
-			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-			Console.ReadKey();
+			Helpers.BackToMenu();
 		}
 	}
 
@@ -465,6 +459,11 @@ namespace InternetSaleAdsLibrary
 					return (ulong)number;
 				}
 			}
+		}
+		public static void BackToMenu()
+		{
+			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
+			Console.ReadKey();
 		}
 	}
 }
