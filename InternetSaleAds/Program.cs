@@ -20,6 +20,7 @@ namespace InternetSaleAds
 				{ new Ad("Сумочка", "Гусси", 7000, 89000004444, "Катя") },
 				{ new Ad("Кактус", "Колючий", 5, 890000005555, "Женя") }
 			};
+			List<Ad> moderList = new();
 
 			while (true)
 			{
@@ -35,11 +36,11 @@ namespace InternetSaleAds
 					Console.WriteLine();
 					if (key == ConsoleKey.D1)
 					{
-						menu = new AdminMenu(adsList);
+						menu = new AdminMenu(adsList, moderList);
 					}
 					else if (key == ConsoleKey.D2)
 					{
-						menu = new UserMenu(adsList);
+						menu = new UserMenu(adsList, moderList);
 					}
 					else if (key == ConsoleKey.D0)
 					{

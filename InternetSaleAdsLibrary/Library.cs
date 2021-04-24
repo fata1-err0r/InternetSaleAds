@@ -9,9 +9,10 @@ namespace InternetSaleAdsLibrary
 		protected List<Ad> adsList;
 		protected List<Ad> moderAdsList;
 
-		public Menu()
+		public Menu(List<Ad> adsList, List<Ad> moderAdsList)
 		{
-			moderAdsList = new List<Ad>();
+			this.adsList = adsList;
+			this.moderAdsList = moderAdsList;
 		}
 
 		public abstract void HandleMenu();
@@ -49,7 +50,7 @@ namespace InternetSaleAdsLibrary
 			// 				Console.WriteLine($"{nums} ");
 			// 			}
 
-			Helpers.BackToMenu();
+			Helpers.AskForKey("Для возврата в главное меню нажмите любую клавишу... ");
 		}
 
 		public void AddAdsMenu()
@@ -73,7 +74,7 @@ namespace InternetSaleAdsLibrary
 				adsList.Add(ad);
 				Console.WriteLine("Объявление добавлено! ");
 			}
-			Helpers.BackToMenu();
+			Helpers.AskForKey("Для возврата в главное меню нажмите любую клавишу... ");
 		}
 
 		public void FindAdsMenu()
@@ -110,7 +111,7 @@ namespace InternetSaleAdsLibrary
 					}
 				}
 			}
-			Helpers.BackToMenu();
+			Helpers.AskForKey("Для возврата в главное меню нажмите любую клавишу... ");
 		}
 
 		public void DelAdsMenu()
@@ -142,7 +143,7 @@ namespace InternetSaleAdsLibrary
 					Console.WriteLine("Объявление удалено! ");
 				}
 			}
-			Helpers.BackToMenu();
+			Helpers.AskForKey("Для возврата в главное меню нажмите любую клавишу... ");
 		}
 	}
 
@@ -156,9 +157,8 @@ namespace InternetSaleAdsLibrary
 			"0 - Выход"
 		};
 
-		public UserMenu(List<Ad> ads)
+		public UserMenu(List<Ad> adsList, List<Ad> moderAdsList) : base(adsList, moderAdsList)
 		{
-			this.adsList = ads;
 		}
 
 		public override void HandleMenu()
@@ -199,9 +199,8 @@ namespace InternetSaleAdsLibrary
 			"0 - Выход"
 		};
 
-		public AdminMenu(List<Ad> ads)
+		public AdminMenu(List<Ad> adsList, List<Ad> moderAdsList) : base(adsList, moderAdsList)
 		{
-			this.adsList = ads;
 		}
 
 		override public void HandleMenu()
@@ -234,6 +233,7 @@ namespace InternetSaleAdsLibrary
 			} while (key != ConsoleKey.D0);
 			Console.WriteLine("\nУдачи!");
 		}
+
 		private void ModerMenu()
 		{
 			Console.Clear();
@@ -268,9 +268,9 @@ namespace InternetSaleAdsLibrary
 						{
 							case 1:
 
-								Ad ads = moderAdsList[adNumber - 1];
+								Ad tempAd = moderAdsList[adNumber - 1];
 								moderAdsList.RemoveAt(adNumber - 1);
-								adsList.Add(ads);
+								adsList.Add(tempAd);
 								Console.WriteLine("Объявление добавлено! ");
 								break;
 							case 2:
@@ -283,7 +283,7 @@ namespace InternetSaleAdsLibrary
 					}
 				}
 			}
-			Helpers.BackToMenu();
+			Helpers.AskForKey("Для возврата в главное меню нажмите любую клавишу... ");
 		}
 	}
 
@@ -460,10 +460,10 @@ namespace InternetSaleAdsLibrary
 				}
 			}
 		}
-		public static void BackToMenu()
+		public static ConsoleKeyInfo AskForKey(string question)
 		{
-			Console.WriteLine("Для возврата в главное меню нажмите любую клавишу... ");
-			Console.ReadKey();
+			Console.WriteLine(question);
+			return Console.ReadKey();
 		}
 	}
 }
