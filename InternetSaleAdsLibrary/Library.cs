@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace InternetSaleAdsLibrary
@@ -39,17 +40,41 @@ namespace InternetSaleAdsLibrary
 				foreach (Ad elem in adsList)
 				{
 					i++;
-					Console.WriteLine($"{i}\n{elem}");
-					Console.WriteLine();
+					Console.WriteLine($"{i}\n{elem}\n");
+				}
+				while (true)
+				{
+					ulong action = Helpers.AskPositiveNumber("Отсортировать:\n" +
+															 "1 - по цене\n" +
+															 "2 - по имени\n" +
+															 "3 - по дате\n" +
+															 "0 - выход\n");
+					Console.Clear();
+					switch (action)
+					{
+						case 1:
+							foreach (Ad elem in adsList.OrderBy(x => x.adPrice))
+							{
+								Console.WriteLine($"{elem}\n");
+							}
+							break;
+						case 2:
+							foreach (Ad elem in adsList.OrderBy(x => x.adName))
+							{
+								Console.WriteLine($"{elem}\n");
+							}
+							break;
+						case 3:
+							foreach (Ad elem in adsList.OrderBy(x => x.adDate))
+							{
+								Console.WriteLine($"{elem}\n");
+							}
+							break;
+						case 0:
+							return;
+					}
 				}
 			}
-
-			// 			var ordered = list.OrderBy(x => x);
-			// 			foreach (int nums in ordered)
-			// 			{
-			// 				Console.WriteLine($"{nums} ");
-			// 			}
-
 			Helpers.AskForKey("Для возврата в главное меню нажмите любую клавишу... ");
 		}
 
@@ -106,8 +131,7 @@ namespace InternetSaleAdsLibrary
 					foreach (Ad elem in soughtForAds)
 					{
 						i++;
-						Console.WriteLine($"{i}\n{elem}");
-						Console.WriteLine();
+						Console.WriteLine($"{i}\n{elem}\n");
 					}
 				}
 			}
@@ -127,9 +151,7 @@ namespace InternetSaleAdsLibrary
 				foreach (Ad elem in adsList)
 				{
 					i++;
-					Console.WriteLine($"{i}\n{elem}");
-					Console.WriteLine();
-
+					Console.WriteLine($"{i}\n{elem}\n");
 				}
 
 				int adNumber = (int)Helpers.AskPositiveNumber("Введите номер объявления для удаления: ");
@@ -267,11 +289,10 @@ namespace InternetSaleAdsLibrary
 						switch (action)
 						{
 							case 1:
-
 								Ad tempAd = moderAdsList[adNumber - 1];
 								moderAdsList.RemoveAt(adNumber - 1);
 								adsList.Add(tempAd);
-								Console.WriteLine("Объявление добавлено! ");
+								Console.WriteLine("Объявление опубликовано! ");
 								break;
 							case 2:
 								moderAdsList.RemoveAt(adNumber - 1);
@@ -298,7 +319,7 @@ namespace InternetSaleAdsLibrary
 		public string sellerName;
 		public DateTime adDate = DateTime.Now;
 
-		override public string ToString()
+		public override string ToString()
 		{
 			return
 				$"Наименование: {adName} " +
@@ -361,6 +382,72 @@ namespace InternetSaleAdsLibrary
 			{
 				return 2;
 			}
+		}
+	}
+
+	public class AdsDataBase
+	{
+		protected string fileName;
+		public AdsDataBase(string fileName)
+		{
+			this.fileName = fileName;
+		}
+		public bool Save(List<Ad> adsList)
+		{
+			StreamWriter fileIn;
+			try
+			{
+				fileIn = new StreamWriter(fileName);
+				foreach (Ad elem in adsList)
+				{
+					fileIn.WriteLine(elem.adName);
+					fileIn.WriteLine(elem.adDescription);
+					fileIn.WriteLine(elem.adPrice);
+					fileIn.WriteLine(elem.sellerNumber);
+					fileIn.WriteLine(elem.sellerName);
+					fileIn.WriteLine(elem.adDate);
+				}
+				fileIn.Close();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Ошибка! {ex.Message}");
+				return false;
+			}
+			return true;
+		}
+
+		public List<Ad> Load()
+		{
+			List<Ad> ads = new();
+			StreamReader fileOut;
+			try
+			{
+				if (File.Exists(fileName))
+				{
+					fileOut = new StreamReader(fileName);
+					while (!fileOut.EndOfStream)
+					{
+						Ad ad = new();		
+						
+						ad.adName = fileOut.ReadLine();
+						ad.adDescription = fileOut.ReadLine();
+						ad.adPrice = uint.Parse(fileOut.ReadLine());
+						ad.sellerNumber = ulong.Parse(fileOut.ReadLine());
+						ad.sellerName = fileOut.ReadLine();
+						ad.adDate = DateTime.Parse(fileOut.ReadLine());
+
+						ads.Add(ad);
+					}
+					fileOut.Close();
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Ошибка! {ex.Message}");
+				return null;
+			}
+			return ads;
 		}
 	}
 

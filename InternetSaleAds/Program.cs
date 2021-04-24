@@ -11,18 +11,23 @@ namespace InternetSaleAds
 			ConsoleKey key;
 			Menu menu;
 
-			List<Ad> adsList = new()
-			{
-				{ new Ad() },
-				{ new Ad("Телефон", "iPont 99", 9999, 89000001111, "Вася") },
-				{ new Ad("Консоль", "PayStation $", 3000, 89000002222, "Петя") },
-				{ new Ad("Телевизор", "Pony", 5000, 89000003333, "Оля") },
-				{ new Ad("Сумочка", "Гусси", 7000, 89000004444, "Катя") },
-				{ new Ad("Кактус", "Колючий", 5, 890000005555, "Женя") }
-			};
-			List<Ad> moderList = new();
+			AdsDataBase adsDataBase = new("AdsListDataBase.txt");
+			AdsDataBase moderAdsDataBase = new("ModerAdsListDataBase.txt");
 
-			while (true)
+			List<Ad> adsList = adsDataBase.Load();
+			List<Ad> moderList = moderAdsDataBase.Load();
+
+			// 			List<Ad> adsList = new()
+			// 			{
+			// 				{ new Ad() },
+			// 				{ new Ad("Телефон", "iPont 99", 9999, 89000001111, "Вася") },
+			// 				{ new Ad("Консоль", "PayStation $", 3000, 89000002222, "Петя") },
+			// 				{ new Ad("Телевизор", "Pony", 5000, 89000003333, "Оля") },
+			// 				{ new Ad("Сумочка", "Гусси", 7000, 89000004444, "Катя") },
+			// 				{ new Ad("Кактус", "Колючий", 5, 890000005555, "Женя") }
+			// 			};
+
+			while (true)			
 			{
 				while (true)
 				{
@@ -44,7 +49,9 @@ namespace InternetSaleAds
 					}
 					else if (key == ConsoleKey.D0)
 					{
-						Console.WriteLine("Пока! ");
+						adsDataBase.Save(adsList);
+						moderAdsDataBase.Save(moderList);
+						Console.WriteLine("Данные пока сохранены =) ");
 						return;
 					}
 					else
