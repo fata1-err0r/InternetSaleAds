@@ -48,6 +48,7 @@ namespace InternetSaleAdsLibrary
 															 "1 - по цене\n" +
 															 "2 - по имени\n" +
 															 "3 - по дате\n" +
+															 "4 - фильтровать по номеру\n" +
 															 "0 - выход\n");
 					Console.Clear();
 					switch (action)
@@ -68,6 +69,31 @@ namespace InternetSaleAdsLibrary
 							foreach (Ad elem in adsList.OrderBy(x => x.adDate))
 							{
 								Console.WriteLine($"{elem}\n");
+							}
+							break;
+						case 4:
+							ulong filterAdsByPhone = Helpers.AskPhoneNumber("Введите номер телефона: ");
+							var filteredAdsByPhone = from query in adsList
+											   where query.sellerNumber.Equals(filterAdsByPhone)
+											   select query;
+
+							if (filteredAdsByPhone.Count() == 0)
+							{
+								Console.WriteLine("Объявлений не найдено ");
+							}
+							else
+							{
+								List<Ad> foundAdsByPhoneList = new();
+								foreach (Ad elem in filteredAdsByPhone)
+								{
+									foundAdsByPhoneList.Add(new Ad());
+								}
+								int j = 0;
+								foreach (Ad elem in filteredAdsByPhone)
+								{
+									j++;
+									Console.WriteLine($"{j}\n{elem}\n");
+								}
 							}
 							break;
 						case 0:
@@ -112,23 +138,23 @@ namespace InternetSaleAdsLibrary
 			else
 			{
 				string serachAdsByName = Helpers.AskFilledString("Введите название объявления для поиска: ");
-				var soughtForAds = from query in adsList
+				var foundAdsByName = from query in adsList
 								   where query.adName.Contains(serachAdsByName)
 								   select query;
 
-				if (soughtForAds.Count() == 0)
+				if (foundAdsByName.Count() == 0)
 				{
 					Console.WriteLine("Объявлений не найдено ");
 				}
 				else
 				{
-					List<Ad> foundAdsList = new();
-					foreach (Ad elem in soughtForAds)
+					List<Ad> foundAdsByNameList = new();
+					foreach (Ad elem in foundAdsByName)
 					{
-						foundAdsList.Add(new Ad());
+						foundAdsByNameList.Add(new Ad());
 					}
 					int i = 0;
-					foreach (Ad elem in soughtForAds)
+					foreach (Ad elem in foundAdsByName)
 					{
 						i++;
 						Console.WriteLine($"{i}\n{elem}\n");
@@ -428,8 +454,8 @@ namespace InternetSaleAdsLibrary
 					fileOut = new StreamReader(fileName);
 					while (!fileOut.EndOfStream)
 					{
-						Ad ad = new();		
-						
+						Ad ad = new();
+
 						ad.adName = fileOut.ReadLine();
 						ad.adDescription = fileOut.ReadLine();
 						ad.adPrice = uint.Parse(fileOut.ReadLine());
