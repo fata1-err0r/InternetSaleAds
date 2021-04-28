@@ -74,8 +74,8 @@ namespace InternetSaleAdsLibrary
 						case 4:
 							ulong filterAdsByPhone = Helpers.AskPhoneNumber("Введите номер телефона: ");
 							var filteredAdsByPhone = from query in adsList
-											   where query.sellerNumber.Equals(filterAdsByPhone)
-											   select query;
+													 where query.sellerNumber.Equals(filterAdsByPhone)
+													 select query;
 
 							if (filteredAdsByPhone.Count() == 0)
 							{
@@ -139,8 +139,8 @@ namespace InternetSaleAdsLibrary
 			{
 				string serachAdsByName = Helpers.AskFilledString("Введите название объявления для поиска: ");
 				var foundAdsByName = from query in adsList
-								   where query.adName.Contains(serachAdsByName)
-								   select query;
+									 where query.adName.Contains(serachAdsByName)
+									 select query;
 
 				if (foundAdsByName.Count() == 0)
 				{
@@ -251,7 +251,7 @@ namespace InternetSaleAdsLibrary
 		{
 		}
 
-		override public void HandleMenu()
+		public override void HandleMenu()
 		{
 			ConsoleKey key;
 			do
@@ -369,7 +369,7 @@ namespace InternetSaleAdsLibrary
 		{
 			adName = "AD_TEST";
 			adDescription = "DESCRIPTION_TEST";
-			adPrice = 10000;
+			adPrice = 0;
 			sellerNumber = 89009990099;
 			sellerName = "NAME_TEST";
 			adDate = DateTime.Now;
@@ -573,6 +573,7 @@ namespace InternetSaleAdsLibrary
 				}
 			}
 		}
+
 		public static ConsoleKeyInfo AskForKey(string question)
 		{
 			Console.WriteLine(question);
