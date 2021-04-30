@@ -45,38 +45,44 @@ namespace InternetSaleAdsLibrary
 			adDate = DateTime.Now;
 		}
 
+		enum CheckEnum
+		{
+			Ok = 0,
+			Error1 = 1,
+			Error2 = 2,
+		}
+
 		public static uint CheckPrice(string input)
 		{
-			int price;
-			bool check = int.TryParse(input, out price);
+			bool check = int.TryParse(input, out int price);
 			if (check)
 			{
 				if (price < 0)
 				{
-					return 1;
+					return (uint)CheckEnum.Error1;
 				}
-				return 0; // если все ок
+				return (uint)CheckEnum.Ok;
 			}
 			else
 			{
-				return 2;
+				return (uint)CheckEnum.Error2;
 			}
 		}
 
 		public static uint CheckPhone(string input)
-		{
+		{			
 			bool check = long.TryParse(input, out long phone);
 			if (check)
 			{
 				if (phone < 0)
 				{
-					return 1;
+					return (uint)CheckEnum.Error1;
 				}
-				return 0; // если все ок
+				return (uint)CheckEnum.Ok;
 			}
 			else
 			{
-				return 2;
+				return (uint)CheckEnum.Error2;
 			}
 		}
 	}

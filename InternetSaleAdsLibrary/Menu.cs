@@ -35,14 +35,15 @@ namespace InternetSaleAdsLibrary
 			}
 			else
 			{
-				int i = 0;
-				foreach (Ad elem in adsList)
-				{
-					i++;
-					Console.WriteLine($"{i}\n{elem}\n");
-				}
 				while (true)
 				{
+
+					int i = 0;
+					foreach (Ad elem in adsList)
+					{
+						i++;
+						Console.WriteLine($"{i}\n{elem}\n");
+					}
 					ulong action = Helpers.AskPositiveNumber("Отсортировать:\n" +
 															 "1 - по цене\n" +
 															 "2 - по имени\n" +
@@ -290,15 +291,15 @@ namespace InternetSaleAdsLibrary
 			}
 			else
 			{
-				int i = 0;
-				foreach (Ad elem in moderAdsList)
-				{
-					i++;
-					Console.WriteLine($"{i}\n{elem}");
-					Console.WriteLine();
-				}
 				while (true)
 				{
+					int i = 0;
+					foreach (Ad elem in moderAdsList)
+					{
+						i++;
+						Console.WriteLine($"{i}\n{elem}");
+						Console.WriteLine();
+					}
 					int adNumber = (int)Helpers.AskPositiveNumber("Введите номер объявления для изменения статуса или 0 для выхода");
 					if (adNumber == 0)
 					{
