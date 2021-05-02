@@ -300,6 +300,7 @@ namespace InternetSaleAdsLibrary
 						Console.WriteLine($"{i}\n{elem}");
 						Console.WriteLine();
 					}
+
 					int adNumber = (int)Helpers.AskPositiveNumber("Введите номер объявления для изменения статуса или 0 для выхода");
 					if (adNumber == 0)
 					{
