@@ -35,15 +35,15 @@ namespace InternetSaleAdsLibrary
 			}
 			else
 			{
+				int i = 0;
+				foreach (Ad elem in adsList)
+				{
+					i++;
+					Console.WriteLine($"{i}\n{elem}\n");
+				}
+
 				while (true)
 				{
-
-					int i = 0;
-					foreach (Ad elem in adsList)
-					{
-						i++;
-						Console.WriteLine($"{i}\n{elem}\n");
-					}
 					ulong action = Helpers.AskPositiveNumber("Отсортировать:\n" +
 															 "1 - по цене\n" +
 															 "2 - по имени\n" +
