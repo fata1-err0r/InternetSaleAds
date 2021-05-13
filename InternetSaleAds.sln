@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetSaleAds", "InternetSaleAds\InternetSaleAds.csproj", "{7D728CA6-923D-4A67-8BAD-A8E1816AB94F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetSaleAdsLibrary", "InternetSaleAdsLibrary\InternetSaleAdsLibrary.csproj", "{301C0A77-55FC-4CB1-A504-07EBEE6B43E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetSaleAdsLibrary", "InternetSaleAdsLibrary\InternetSaleAdsLibrary.csproj", "{301C0A77-55FC-4CB1-A504-07EBEE6B43E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormAds", "WinFormAds\WinFormAds.csproj", "{9B4FFE92-C5D4-4C11-8CA8-EE9776BF6488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormAdsLibrary", "WinFormAdsLibrary\WinFormAdsLibrary.csproj", "{CF079062-5DB3-4688-92AF-BBC98396DAB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{301C0A77-55FC-4CB1-A504-07EBEE6B43E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{301C0A77-55FC-4CB1-A504-07EBEE6B43E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{301C0A77-55FC-4CB1-A504-07EBEE6B43E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B4FFE92-C5D4-4C11-8CA8-EE9776BF6488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4FFE92-C5D4-4C11-8CA8-EE9776BF6488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4FFE92-C5D4-4C11-8CA8-EE9776BF6488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4FFE92-C5D4-4C11-8CA8-EE9776BF6488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF079062-5DB3-4688-92AF-BBC98396DAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF079062-5DB3-4688-92AF-BBC98396DAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF079062-5DB3-4688-92AF-BBC98396DAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF079062-5DB3-4688-92AF-BBC98396DAB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
