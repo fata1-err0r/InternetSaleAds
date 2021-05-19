@@ -8,7 +8,7 @@ namespace WinFormAds
 		public FormISA()
 		{
 			InitializeComponent();
-			ListBoxAdsUpdate();
+			DataGridViewAdsUpdate();
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -63,9 +63,7 @@ namespace WinFormAds
 
 		private void buttonPrintAdsList_Click(object sender, EventArgs e)
 		{
-			listBoxAdsList.Items.Clear();
-			foreach (var ads in Ad.adsList)
-				listBoxAdsList.Items.Add(ads);
+
 		}
 
 		private void dataGridViewAdsList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,11 +82,11 @@ namespace WinFormAds
 			string adDescription = textBoxAdDescriptionAdd.Text.Trim();
 			string sellerName = textBoxSellerNameAdd.Text.Trim();
 
-			if (textBoxAdNameAdd.Text.Trim() == "" || 
+			if (textBoxAdNameAdd.Text.Trim() == "" ||
 				textBoxAdDescriptionAdd.Text.Trim() == "" ||
 				textBoxAdPriceAdd.Text.Trim() == "" ||
 				textBoxSellerNumberAdd.Text.Trim() == "" ||
-				textBoxSellerNameAdd.Text.Trim() == "" )
+				textBoxSellerNameAdd.Text.Trim() == "")
 			{
 				MessageBox.Show("Не все поля заполнены!", "Ошибка!");
 				return;
@@ -108,24 +106,59 @@ namespace WinFormAds
 			}
 			DateTime adDate = DateTime.Now;
 			Ad.adsList.Add(new Ad(adName, adDescription, adPrice, sellerNumber, sellerName, adDate));
-			ListBoxAdsUpdate();
+			DataGridViewAdsUpdate();
 		}
-		private void ListBoxAdsUpdate()
+		private void DataGridViewAdsUpdate()
 		{
-			listBoxAdsList.Items.Clear();
-			foreach (var ads in Ad.adsList)
-				listBoxAdsList.Items.Add(ads);
+			dataGridViewAdsList.RowCount = Ad.adsList.Count;
+			for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+			{
+				dataGridViewAdsList.Rows[i].Cells[0].Value = Ad.adsList[i].adName;
+				dataGridViewAdsList.Rows[i].Cells[1].Value = Ad.adsList[i].adDescription;
+				dataGridViewAdsList.Rows[i].Cells[2].Value = Ad.adsList[i].adPrice;
+				dataGridViewAdsList.Rows[i].Cells[3].Value = Ad.adsList[i].sellerNumber;
+				dataGridViewAdsList.Rows[i].Cells[4].Value = Ad.adsList[i].sellerName;
+				dataGridViewAdsList.Rows[i].Cells[5].Value = Ad.adsList[i].adDate;
+			}
+
+			dataGridViewModerAdsList.RowCount = Ad.moderList.Count;
+			for (int i = 0; i < dataGridViewModerAdsList.Rows.Count; i++)
+			{
+				dataGridViewModerAdsList.Rows[i].Cells[0].Value = Ad.moderList[i].adName;
+				dataGridViewModerAdsList.Rows[i].Cells[1].Value = Ad.moderList[i].adDescription;
+				dataGridViewModerAdsList.Rows[i].Cells[2].Value = Ad.moderList[i].adPrice;
+				dataGridViewModerAdsList.Rows[i].Cells[3].Value = Ad.moderList[i].sellerNumber;
+				dataGridViewModerAdsList.Rows[i].Cells[4].Value = Ad.moderList[i].sellerName;
+				dataGridViewModerAdsList.Rows[i].Cells[5].Value = Ad.moderList[i].adDate;
+			}
 		}
 
 		private void buttonDelAd_Click(object sender, EventArgs e)
 		{
-			if ((Ad)listBoxAdsList.SelectedItem == null)
+			if (dataGridViewAdsList.SelectedRows == null)
 			{
 				MessageBox.Show("Выберите объявление для удаления!", "Ошибка выбора!");
 				return;
 			}
-			Ad.adsList.Remove((Ad)listBoxAdsList.SelectedItem);
-			ListBoxAdsUpdate();
+			int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
+			dataGridViewAdsList.Rows.RemoveAt(delet); 
+			Ad.adsList.RemoveAt(delet);
+			DataGridViewAdsUpdate();
+		}
+
+		private void labelAdName_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label3_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label2_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
