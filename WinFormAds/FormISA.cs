@@ -141,7 +141,7 @@ namespace WinFormAds
 				return;
 			}
 			int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
-			dataGridViewAdsList.Rows.RemoveAt(delet); 
+			dataGridViewAdsList.Rows.RemoveAt(delet);
 			Ad.adsList.RemoveAt(delet);
 			DataGridViewAdsUpdate();
 		}
@@ -157,6 +157,21 @@ namespace WinFormAds
 		}
 
 		private void label2_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBoxAdPriceAdd_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBoxAdDescriptionAdd_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBoxAdNameAdd_TextChanged(object sender, EventArgs e)
 		{
 
 		}
