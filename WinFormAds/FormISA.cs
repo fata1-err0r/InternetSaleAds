@@ -1,13 +1,99 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormAdsLibrary;
 
 namespace WinFormAds
 {
 	public partial class FormISA : Form
 	{
+		public AdPresenter adPresenter;
+		public AdPresenter adModerPresenter;
+		public int n = 0;
+
 		public FormISA()
 		{
 			InitializeComponent();
+			AdModel adModel = new AdModel("AdsListDataBase.txt");
+			AdModel adModerModel = new AdModel("ModerAdsListDataBase.txt");
+			adPresenter = new AdPresenter(this, adModel);
+			adModerPresenter = new AdPresenter(this, adModerModel);
+			DataGridViewAdsUpdate();
+		}
+
+		public void DataGridViewAdsUpdate()
+		{
+			dataGridViewAdsList.RowCount = AdModel.adsList.Count;
+			for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+			{
+				dataGridViewAdsList.Rows[i].Cells[0].Value = AdModel.adsList[i].adName;
+				dataGridViewAdsList.Rows[i].Cells[1].Value = AdModel.adsList[i].adDescription;
+				dataGridViewAdsList.Rows[i].Cells[2].Value = AdModel.adsList[i].adPrice;
+				dataGridViewAdsList.Rows[i].Cells[3].Value = AdModel.adsList[i].sellerNumber;
+				dataGridViewAdsList.Rows[i].Cells[4].Value = AdModel.adsList[i].sellerName;
+				dataGridViewAdsList.Rows[i].Cells[5].Value = AdModel.adsList[i].adDate;
+			}
+
+			dataGridViewModerAdsList.RowCount = AdModel.moderList.Count;
+			for (int i = 0; i < dataGridViewModerAdsList.Rows.Count; i++)
+			{
+				dataGridViewModerAdsList.Rows[i].Cells[0].Value = AdModel.moderList[i].adName;
+				dataGridViewModerAdsList.Rows[i].Cells[1].Value = AdModel.moderList[i].adDescription;
+				dataGridViewModerAdsList.Rows[i].Cells[2].Value = AdModel.moderList[i].adPrice;
+				dataGridViewModerAdsList.Rows[i].Cells[3].Value = AdModel.moderList[i].sellerNumber;
+				dataGridViewModerAdsList.Rows[i].Cells[4].Value = AdModel.moderList[i].sellerName;
+				dataGridViewModerAdsList.Rows[i].Cells[5].Value = AdModel.moderList[i].adDate;
+			}
+		}
+
+		private void buttonAddAd_Click(object sender, EventArgs e)
+		{
+			adPresenter.AddAd(textBoxAdNameAdd, textBoxAdDescriptionAdd, textBoxAdPriceAdd, textBoxSellerNumberAdd, textBoxSellerNameAdd);
+		}
+
+		private void buttonAllowAd_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewModerAdsList.RowCount == 0)
+			{
+				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
+				return;
+			}
+			var selectedAd = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
+			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
+			AdModel.moderList.RemoveAt(selectedAd);
+// 			AdModel.adsList.Add(moderList);
+			DataGridViewAdsUpdate();
+		}
+
+		private void buttonDelAd_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewAdsList.RowCount == 0)
+			{
+				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
+				return;
+			}
+			int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
+			dataGridViewAdsList.Rows.RemoveAt(delet);
+			AdModel.adsList.RemoveAt(delet);
+			DataGridViewAdsUpdate();
+		}
+
+		private void buttonCancelAd_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewModerAdsList.RowCount == 0)
+			{
+				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
+				return;
+			}
+			int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
+			dataGridViewModerAdsList.Rows.RemoveAt(delet);
+			AdModel.moderList.RemoveAt(delet);
 			DataGridViewAdsUpdate();
 		}
 
@@ -20,15 +106,86 @@ namespace WinFormAds
 		{
 
 		}
+		private void buttonAdmin_Click(object sender, EventArgs e)
+		{
+			labelChooseProfile.Hide();
+			tabControlAds.Show();
+			tabControlAds.TabPages.Clear();
+			tabControlAds.TabPages.Add(tabPageAdsList);
+			tabControlAds.TabPages.Add(tabPageModerAdsList);
+			labelAdmin.Show();
+			labelUser.Hide();
+			buttonAdmin.Hide();
+			buttonUser.Hide();
+			buttonExitToMain.Show();
+			dataGridViewAdsList.Show();
+			buttonDelAd.Show();
+			dataGridViewModerAdsList.Show();
+			buttonAllowAd.Show();
+			buttonCancelAd.Show();
+			labelFilteringAds.Show();
+			textBoxFilterBySellerNumber.Show();
+			buttonFilterBySellerNumber.Show();
+			textBoxAdNameAdd.Show();
+			textBoxAdDescriptionAdd.Show();
+			textBoxAdPriceAdd.Show();
+			textBoxSellerNumberAdd.Show();
+			textBoxSellerNameAdd.Show();
+			buttonAddAd.Show();
+		}
 
 		private void buttonUser_Click(object sender, EventArgs e)
 		{
-
+			labelChooseProfile.Hide();
+			tabControlAds.Show();
+			tabControlAds.TabPages.Remove(tabPageModerAdsList); 
+			labelAdmin.Hide();
+			labelUser.Show();
+			buttonAdmin.Hide();
+			buttonUser.Hide();
+			buttonExitToMain.Show();
+			dataGridViewAdsList.Show();
+			buttonDelAd.Hide();
+			dataGridViewModerAdsList.Hide();
+			buttonAllowAd.Hide();
+			buttonCancelAd.Hide();
+			labelFilteringAds.Show();
+			textBoxFilterBySellerNumber.Show();
+			buttonFilterBySellerNumber.Show();
+			textBoxAdNameAdd.Show();
+			textBoxAdDescriptionAdd.Show();
+			textBoxAdPriceAdd.Show();
+			textBoxSellerNumberAdd.Show();
+			textBoxSellerNameAdd.Show();
+			buttonAddAd.Show();
 		}
 
-		private void buttonAdmin_Click(object sender, EventArgs e)
+		private void buttonExitToMain_Click(object sender, EventArgs e)
 		{
+			labelChooseProfile.Show();
+			tabControlAds.Hide();
+			labelAdmin.Hide();
+			labelUser.Hide();
+			buttonAdmin.Show();
+			buttonUser.Show();
+			buttonExitToMain.Hide();
+			dataGridViewAdsList.Hide();
+			buttonDelAd.Hide();
+			dataGridViewModerAdsList.Hide();
+			buttonAllowAd.Hide();
+			buttonCancelAd.Hide();
+			labelFilteringAds.Hide();
+			textBoxFilterBySellerNumber.Hide();
+			buttonFilterBySellerNumber.Hide();
+			textBoxAdNameAdd.Hide();
+			textBoxAdDescriptionAdd.Hide();
+			textBoxAdPriceAdd.Hide();
+			textBoxSellerNumberAdd.Hide();
+			textBoxSellerNameAdd.Hide();
+			buttonAddAd.Hide();
 
+			AdModel.adsDataBase.Save(AdModel.adsList);
+			AdModel.moderAdsDataBase.Save(AdModel.moderList);
 		}
 
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,11 +218,6 @@ namespace WinFormAds
 
 		}
 
-		private void buttonPrintAdsList_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void dataGridViewAdsList_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
@@ -74,76 +226,6 @@ namespace WinFormAds
 		private void buttonPrintAdsList_MouseClick(object sender, MouseEventArgs e)
 		{
 
-		}
-
-		private void buttonAddAd_Click(object sender, EventArgs e)
-		{
-			string adName = textBoxAdNameAdd.Text.Trim();
-			string adDescription = textBoxAdDescriptionAdd.Text.Trim();
-			string sellerName = textBoxSellerNameAdd.Text.Trim();
-
-			if (textBoxAdNameAdd.Text.Trim() == "" ||
-				textBoxAdDescriptionAdd.Text.Trim() == "" ||
-				textBoxAdPriceAdd.Text.Trim() == "" ||
-				textBoxSellerNumberAdd.Text.Trim() == "" ||
-				textBoxSellerNameAdd.Text.Trim() == "")
-			{
-				MessageBox.Show("Не все поля заполнены!", "Ошибка!");
-				return;
-			}
-
-			uint adPrice;
-			if (!uint.TryParse(textBoxAdPriceAdd.Text, out adPrice))
-			{
-				MessageBox.Show("Не получилось прочесть цену!", "Ошибка!");
-				return;
-			}
-			ulong sellerNumber;
-			if (!ulong.TryParse(textBoxSellerNumberAdd.Text, out sellerNumber))
-			{
-				MessageBox.Show("Не получилось прочесть номер!", "Ошибка!");
-				return;
-			}
-			DateTime adDate = DateTime.Now;
-			Ad.adsList.Add(new Ad(adName, adDescription, adPrice, sellerNumber, sellerName, adDate));
-			DataGridViewAdsUpdate();
-		}
-		private void DataGridViewAdsUpdate()
-		{
-			dataGridViewAdsList.RowCount = Ad.adsList.Count;
-			for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
-			{
-				dataGridViewAdsList.Rows[i].Cells[0].Value = Ad.adsList[i].adName;
-				dataGridViewAdsList.Rows[i].Cells[1].Value = Ad.adsList[i].adDescription;
-				dataGridViewAdsList.Rows[i].Cells[2].Value = Ad.adsList[i].adPrice;
-				dataGridViewAdsList.Rows[i].Cells[3].Value = Ad.adsList[i].sellerNumber;
-				dataGridViewAdsList.Rows[i].Cells[4].Value = Ad.adsList[i].sellerName;
-				dataGridViewAdsList.Rows[i].Cells[5].Value = Ad.adsList[i].adDate;
-			}
-
-			dataGridViewModerAdsList.RowCount = Ad.moderList.Count;
-			for (int i = 0; i < dataGridViewModerAdsList.Rows.Count; i++)
-			{
-				dataGridViewModerAdsList.Rows[i].Cells[0].Value = Ad.moderList[i].adName;
-				dataGridViewModerAdsList.Rows[i].Cells[1].Value = Ad.moderList[i].adDescription;
-				dataGridViewModerAdsList.Rows[i].Cells[2].Value = Ad.moderList[i].adPrice;
-				dataGridViewModerAdsList.Rows[i].Cells[3].Value = Ad.moderList[i].sellerNumber;
-				dataGridViewModerAdsList.Rows[i].Cells[4].Value = Ad.moderList[i].sellerName;
-				dataGridViewModerAdsList.Rows[i].Cells[5].Value = Ad.moderList[i].adDate;
-			}
-		}
-
-		private void buttonDelAd_Click(object sender, EventArgs e)
-		{
-			if (dataGridViewAdsList.SelectedRows == null)
-			{
-				MessageBox.Show("Выберите объявление для удаления!", "Ошибка выбора!");
-				return;
-			}
-			int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
-			dataGridViewAdsList.Rows.RemoveAt(delet);
-			Ad.adsList.RemoveAt(delet);
-			DataGridViewAdsUpdate();
 		}
 
 		private void labelAdName_Click(object sender, EventArgs e)
@@ -172,6 +254,11 @@ namespace WinFormAds
 		}
 
 		private void textBoxAdNameAdd_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void labelChooseProfile_Click(object sender, EventArgs e)
 		{
 
 		}

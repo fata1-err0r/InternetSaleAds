@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace WinFormAds
 {
@@ -16,8 +17,8 @@ namespace WinFormAds
 // 			{ new Ad("Кактус", "Колючий", 5, 89000005555, "Женя") }
 // 		};
 
-		public static List<Ad> adsList = AdsDataBase.adsDataBase.Load();
-		public static List<Ad> moderList = AdsDataBase.moderAdsDataBase.Load();
+// 		public static List<Ad> adsList = AdsDataBase.adsDataBase.Load();
+// 		public static List<Ad> moderList = AdsDataBase.moderAdsDataBase.Load();
 
 		/*название товара, описание, цена, номер телефона продавца,
 		 * фио продавца, дата-время создания*/
@@ -96,13 +97,15 @@ namespace WinFormAds
 		}
 	}
 
-	public class AdsDataBase
+	public class AdModel
 	{
-		public static AdsDataBase adsDataBase = new("AdsListDataBase.txt");
-		public static AdsDataBase moderAdsDataBase = new("ModerAdsListDataBase.txt");
+		public static AdModel adsDataBase = new("AdsListDataBase.txt");
+		public static AdModel moderAdsDataBase = new("ModerAdsListDataBase.txt");
+		public static List<Ad> adsList = adsDataBase.Load();
+		public static List<Ad> moderList = moderAdsDataBase.Load();
 
 		protected string fileName;
-		public AdsDataBase(string fileName)
+		public AdModel(string fileName)
 		{
 			this.fileName = fileName;
 		}
@@ -162,6 +165,26 @@ namespace WinFormAds
 				return null;
 			}
 			return ads;
+		}
+
+		public void AddAd(string adName, string adDescription, uint adPrice, ulong sellerNumber, string sellerName, DateTime adDate)
+		{
+			if (adsList.Any(ad => ad.adName == adName && ad.adDescription == adDescription && ad.adPrice == adPrice && ad.sellerNumber == sellerNumber && ad.sellerName == sellerName))
+				throw new Exception("Такое объявление уже существует!");
+			if (moderList.Any(ad => ad.adName == adName && ad.adDescription == adDescription && ad.adPrice == adPrice && ad.sellerNumber == sellerNumber && ad.sellerName == sellerName))
+				throw new Exception("Такое объявление уже существует!");
+
+			Ad ad = new(adName, adDescription, adPrice, sellerNumber, sellerName, adDate);
+
+			if (adPrice >= 10000)
+			{
+				moderList.Add(ad);
+				throw new Exception("Объявление отправлено на модерацию!");
+			}
+			else
+			{
+				adsList.Add(ad);
+			}
 		}
 	}
 }
