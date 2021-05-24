@@ -59,15 +59,23 @@ namespace WinFormAds
 
 		private void buttonAllowAd_Click(object sender, EventArgs e)
 		{
+			int selectedAd = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
+			string adName = dataGridViewModerAdsList.Rows[selectedAd].Cells[0].Value.ToString();
+			string adDescription = dataGridViewModerAdsList.Rows[selectedAd].Cells[1].Value.ToString();
+			uint adPrice = (uint)dataGridViewModerAdsList.Rows[selectedAd].Cells[2].Value;
+			ulong sellerNumber = (ulong)dataGridViewModerAdsList.Rows[selectedAd].Cells[3].Value;
+			string sellerName = dataGridViewModerAdsList.Rows[selectedAd].Cells[4].Value.ToString();
+			DateTime adDate = (DateTime)dataGridViewModerAdsList.Rows[selectedAd].Cells[5].Value;
+
+			Ad tempAd = new( adName,  adDescription,  adPrice,  sellerNumber,  sellerName,  adDate);
 			if (dataGridViewModerAdsList.RowCount == 0)
 			{
 				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
 				return;
 			}
-			var selectedAd = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
 			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
 			AdModel.moderList.RemoveAt(selectedAd);
-// 			AdModel.adsList.Add(moderList);
+			AdModel.adsList.Add(tempAd);
 			DataGridViewAdsUpdate();
 		}
 
