@@ -147,7 +147,26 @@ namespace WinFormAds
 
 		private void buttonFilteringAdsByNumber_Click(object sender, EventArgs e)
 		{
+			ulong filterAdsByPhone;
+			if (!ulong.TryParse(textBoxFilterBySellerNumber.Text, out filterAdsByPhone))
+			{
+				MessageBox.Show("Не получилось прочитать номер!", "Ошибка!");
+				return;
+			}
 
+			var filteredAdsByPhone = from query in AdModel.adsList
+									 where query.sellerNumber.Equals(filterAdsByPhone)
+									 select query;
+
+			if (filteredAdsByPhone.Count() == 0)
+			{
+				MessageBox.Show("Объявлений не найдено!", "Ошибка!");
+				return;
+			}
+			else
+			{
+				DataGridViewAdsUpdate();
+			}
 		}
 	}
 }
