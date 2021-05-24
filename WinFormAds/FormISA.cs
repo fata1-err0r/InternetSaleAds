@@ -117,6 +117,9 @@ namespace WinFormAds
 		private void buttonAdmin_Click(object sender, EventArgs e)
 		{
 			labelChooseProfile.Hide();
+			labelAdFields.Show();
+			labelStarsShitAdm.Show();
+			labelStarsShitUsr.Hide();
 			tabControlAds.Show();
 			tabControlAds.TabPages.Clear();
 			tabControlAds.TabPages.Add(tabPageAdsList);
@@ -145,6 +148,9 @@ namespace WinFormAds
 		private void buttonUser_Click(object sender, EventArgs e)
 		{
 			labelChooseProfile.Hide();
+			labelAdFields.Show();
+			labelStarsShitAdm.Hide();
+			labelStarsShitUsr.Show();
 			tabControlAds.Show();
 			tabControlAds.TabPages.Remove(tabPageModerAdsList); 
 			labelAdmin.Hide();
@@ -171,6 +177,9 @@ namespace WinFormAds
 		private void buttonExitToMain_Click(object sender, EventArgs e)
 		{
 			labelChooseProfile.Show();
+			labelAdFields.Hide();
+			labelStarsShitAdm.Hide();
+			labelStarsShitUsr.Hide();
 			tabControlAds.Hide();
 			labelAdmin.Hide();
 			labelUser.Hide();

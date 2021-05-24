@@ -35,18 +35,18 @@ namespace WinFormAds
 			this.buttonAdmin = new System.Windows.Forms.Button();
 			this.buttonUser = new System.Windows.Forms.Button();
 			this.dataGridViewAdsList = new System.Windows.Forms.DataGridView();
+			this.ColumnAdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColumnAdDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColumnAdPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColumnSellerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColumnSellerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColumnAdDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabControlAds = new System.Windows.Forms.TabControl();
 			this.tabPageAdsList = new System.Windows.Forms.TabPage();
 			this.buttonFilterBySellerNumber = new System.Windows.Forms.Button();
 			this.textBoxFilterBySellerNumber = new System.Windows.Forms.TextBox();
-			this.buttonAddAd = new System.Windows.Forms.Button();
 			this.labelFilteringAds = new System.Windows.Forms.Label();
 			this.buttonDelAd = new System.Windows.Forms.Button();
-			this.textBoxSellerNameAdd = new System.Windows.Forms.TextBox();
-			this.textBoxAdNameAdd = new System.Windows.Forms.TextBox();
-			this.textBoxSellerNumberAdd = new System.Windows.Forms.TextBox();
-			this.textBoxAdDescriptionAdd = new System.Windows.Forms.TextBox();
-			this.textBoxAdPriceAdd = new System.Windows.Forms.TextBox();
 			this.tabPageModerAdsList = new System.Windows.Forms.TabPage();
 			this.buttonCancelAd = new System.Windows.Forms.Button();
 			this.buttonAllowAd = new System.Windows.Forms.Button();
@@ -57,16 +57,19 @@ namespace WinFormAds
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.buttonAddAd = new System.Windows.Forms.Button();
+			this.textBoxSellerNameAdd = new System.Windows.Forms.TextBox();
+			this.textBoxAdNameAdd = new System.Windows.Forms.TextBox();
+			this.textBoxSellerNumberAdd = new System.Windows.Forms.TextBox();
+			this.textBoxAdDescriptionAdd = new System.Windows.Forms.TextBox();
+			this.textBoxAdPriceAdd = new System.Windows.Forms.TextBox();
 			this.labelChooseProfile = new System.Windows.Forms.Label();
 			this.buttonExitToMain = new System.Windows.Forms.Button();
 			this.labelAdmin = new System.Windows.Forms.Label();
 			this.labelUser = new System.Windows.Forms.Label();
-			this.ColumnAdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColumnAdDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColumnAdPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColumnSellerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColumnSellerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColumnAdDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.labelAdFields = new System.Windows.Forms.Label();
+			this.labelStarsShitAdm = new System.Windows.Forms.Label();
+			this.labelStarsShitUsr = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdsList)).BeginInit();
 			this.tabControlAds.SuspendLayout();
 			this.tabPageAdsList.SuspendLayout();
@@ -76,7 +79,7 @@ namespace WinFormAds
 			// 
 			// buttonAdmin
 			// 
-			this.buttonAdmin.Location = new System.Drawing.Point(278, 137);
+			this.buttonAdmin.Location = new System.Drawing.Point(324, 162);
 			this.buttonAdmin.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAdmin.Name = "buttonAdmin";
 			this.buttonAdmin.Size = new System.Drawing.Size(93, 36);
@@ -87,7 +90,7 @@ namespace WinFormAds
 			// 
 			// buttonUser
 			// 
-			this.buttonUser.Location = new System.Drawing.Point(390, 137);
+			this.buttonUser.Location = new System.Drawing.Point(436, 162);
 			this.buttonUser.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonUser.Name = "buttonUser";
 			this.buttonUser.Size = new System.Drawing.Size(93, 36);
@@ -109,27 +112,69 @@ namespace WinFormAds
             this.ColumnSellerNumber,
             this.ColumnSellerName,
             this.ColumnAdDate});
-			this.dataGridViewAdsList.Location = new System.Drawing.Point(1, 0);
+			this.dataGridViewAdsList.Location = new System.Drawing.Point(0, 0);
 			this.dataGridViewAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.dataGridViewAdsList.Name = "dataGridViewAdsList";
 			this.dataGridViewAdsList.RowHeadersVisible = false;
 			this.dataGridViewAdsList.RowHeadersWidth = 123;
 			this.dataGridViewAdsList.RowTemplate.Height = 57;
-			this.dataGridViewAdsList.Size = new System.Drawing.Size(674, 303);
+			this.dataGridViewAdsList.Size = new System.Drawing.Size(674, 397);
 			this.dataGridViewAdsList.TabIndex = 2;
 			this.dataGridViewAdsList.Visible = false;
 			this.dataGridViewAdsList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAdsList_CellContentClick);
+			// 
+			// ColumnAdName
+			// 
+			this.ColumnAdName.HeaderText = "Название";
+			this.ColumnAdName.MinimumWidth = 15;
+			this.ColumnAdName.Name = "ColumnAdName";
+			this.ColumnAdName.ReadOnly = true;
+			// 
+			// ColumnAdDescription
+			// 
+			this.ColumnAdDescription.HeaderText = "Описание";
+			this.ColumnAdDescription.MinimumWidth = 15;
+			this.ColumnAdDescription.Name = "ColumnAdDescription";
+			this.ColumnAdDescription.ReadOnly = true;
+			// 
+			// ColumnAdPrice
+			// 
+			this.ColumnAdPrice.HeaderText = "Цена";
+			this.ColumnAdPrice.MinimumWidth = 15;
+			this.ColumnAdPrice.Name = "ColumnAdPrice";
+			this.ColumnAdPrice.ReadOnly = true;
+			// 
+			// ColumnSellerNumber
+			// 
+			this.ColumnSellerNumber.HeaderText = "Телефон";
+			this.ColumnSellerNumber.MinimumWidth = 15;
+			this.ColumnSellerNumber.Name = "ColumnSellerNumber";
+			this.ColumnSellerNumber.ReadOnly = true;
+			// 
+			// ColumnSellerName
+			// 
+			this.ColumnSellerName.HeaderText = "Продавец";
+			this.ColumnSellerName.MinimumWidth = 15;
+			this.ColumnSellerName.Name = "ColumnSellerName";
+			this.ColumnSellerName.ReadOnly = true;
+			// 
+			// ColumnAdDate
+			// 
+			this.ColumnAdDate.HeaderText = "Размещено";
+			this.ColumnAdDate.MinimumWidth = 15;
+			this.ColumnAdDate.Name = "ColumnAdDate";
+			this.ColumnAdDate.ReadOnly = true;
 			// 
 			// tabControlAds
 			// 
 			this.tabControlAds.Controls.Add(this.tabPageAdsList);
 			this.tabControlAds.Controls.Add(this.tabPageModerAdsList);
 			this.tabControlAds.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.tabControlAds.Location = new System.Drawing.Point(0, 60);
+			this.tabControlAds.Location = new System.Drawing.Point(0, 175);
 			this.tabControlAds.Margin = new System.Windows.Forms.Padding(1);
 			this.tabControlAds.Name = "tabControlAds";
 			this.tabControlAds.SelectedIndex = 0;
-			this.tabControlAds.Size = new System.Drawing.Size(873, 373);
+			this.tabControlAds.Size = new System.Drawing.Size(873, 426);
 			this.tabControlAds.TabIndex = 3;
 			this.tabControlAds.Visible = false;
 			// 
@@ -138,26 +183,20 @@ namespace WinFormAds
 			this.tabPageAdsList.Controls.Add(this.dataGridViewAdsList);
 			this.tabPageAdsList.Controls.Add(this.buttonFilterBySellerNumber);
 			this.tabPageAdsList.Controls.Add(this.textBoxFilterBySellerNumber);
-			this.tabPageAdsList.Controls.Add(this.buttonAddAd);
 			this.tabPageAdsList.Controls.Add(this.labelFilteringAds);
 			this.tabPageAdsList.Controls.Add(this.buttonDelAd);
-			this.tabPageAdsList.Controls.Add(this.textBoxSellerNameAdd);
-			this.tabPageAdsList.Controls.Add(this.textBoxAdNameAdd);
-			this.tabPageAdsList.Controls.Add(this.textBoxSellerNumberAdd);
-			this.tabPageAdsList.Controls.Add(this.textBoxAdDescriptionAdd);
-			this.tabPageAdsList.Controls.Add(this.textBoxAdPriceAdd);
 			this.tabPageAdsList.Location = new System.Drawing.Point(4, 24);
 			this.tabPageAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.tabPageAdsList.Name = "tabPageAdsList";
 			this.tabPageAdsList.Padding = new System.Windows.Forms.Padding(1);
-			this.tabPageAdsList.Size = new System.Drawing.Size(865, 345);
+			this.tabPageAdsList.Size = new System.Drawing.Size(865, 398);
 			this.tabPageAdsList.TabIndex = 0;
 			this.tabPageAdsList.Text = "Объявления";
 			this.tabPageAdsList.UseVisualStyleBackColor = true;
 			// 
 			// buttonFilterBySellerNumber
 			// 
-			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 111);
+			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 126);
 			this.buttonFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonFilterBySellerNumber.Name = "buttonFilterBySellerNumber";
 			this.buttonFilterBySellerNumber.Size = new System.Drawing.Size(166, 22);
@@ -169,30 +208,18 @@ namespace WinFormAds
 			// 
 			// textBoxFilterBySellerNumber
 			// 
-			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 84);
+			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 99);
 			this.textBoxFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxFilterBySellerNumber.Name = "textBoxFilterBySellerNumber";
-			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(168, 23);
+			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(166, 23);
 			this.textBoxFilterBySellerNumber.TabIndex = 7;
 			this.textBoxFilterBySellerNumber.Text = "Введите номер телефона";
 			this.textBoxFilterBySellerNumber.Visible = false;
 			// 
-			// buttonAddAd
-			// 
-			this.buttonAddAd.Location = new System.Drawing.Point(687, 312);
-			this.buttonAddAd.Margin = new System.Windows.Forms.Padding(1);
-			this.buttonAddAd.Name = "buttonAddAd";
-			this.buttonAddAd.Size = new System.Drawing.Size(166, 22);
-			this.buttonAddAd.TabIndex = 4;
-			this.buttonAddAd.Text = "Добавить объявление";
-			this.buttonAddAd.UseVisualStyleBackColor = true;
-			this.buttonAddAd.Visible = false;
-			this.buttonAddAd.Click += new System.EventHandler(this.buttonAddAd_Click);
-			// 
 			// labelFilteringAds
 			// 
 			this.labelFilteringAds.AutoSize = true;
-			this.labelFilteringAds.Location = new System.Drawing.Point(687, 42);
+			this.labelFilteringAds.Location = new System.Drawing.Point(697, 58);
 			this.labelFilteringAds.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelFilteringAds.Name = "labelFilteringAds";
 			this.labelFilteringAds.Size = new System.Drawing.Size(147, 30);
@@ -204,73 +231,15 @@ namespace WinFormAds
 			// 
 			// buttonDelAd
 			// 
-			this.buttonDelAd.Location = new System.Drawing.Point(687, 9);
+			this.buttonDelAd.Location = new System.Drawing.Point(687, 1);
 			this.buttonDelAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonDelAd.Name = "buttonDelAd";
-			this.buttonDelAd.Size = new System.Drawing.Size(166, 22);
+			this.buttonDelAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonDelAd.TabIndex = 5;
 			this.buttonDelAd.Text = "Удалить объявление";
 			this.buttonDelAd.UseVisualStyleBackColor = true;
 			this.buttonDelAd.Visible = false;
 			this.buttonDelAd.Click += new System.EventHandler(this.buttonDelAd_Click);
-			// 
-			// textBoxSellerNameAdd
-			// 
-			this.textBoxSellerNameAdd.Location = new System.Drawing.Point(482, 314);
-			this.textBoxSellerNameAdd.Margin = new System.Windows.Forms.Padding(1);
-			this.textBoxSellerNameAdd.Name = "textBoxSellerNameAdd";
-			this.textBoxSellerNameAdd.Size = new System.Drawing.Size(106, 23);
-			this.textBoxSellerNameAdd.TabIndex = 18;
-			this.textBoxSellerNameAdd.Text = "ваше имя";
-			this.textBoxSellerNameAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBoxSellerNameAdd.Visible = false;
-			// 
-			// textBoxAdNameAdd
-			// 
-			this.textBoxAdNameAdd.Location = new System.Drawing.Point(65, 314);
-			this.textBoxAdNameAdd.Margin = new System.Windows.Forms.Padding(1);
-			this.textBoxAdNameAdd.Name = "textBoxAdNameAdd";
-			this.textBoxAdNameAdd.Size = new System.Drawing.Size(102, 23);
-			this.textBoxAdNameAdd.TabIndex = 14;
-			this.textBoxAdNameAdd.Text = "название";
-			this.textBoxAdNameAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBoxAdNameAdd.Visible = false;
-			this.textBoxAdNameAdd.TextChanged += new System.EventHandler(this.textBoxAdNameAdd_TextChanged);
-			// 
-			// textBoxSellerNumberAdd
-			// 
-			this.textBoxSellerNumberAdd.Location = new System.Drawing.Point(377, 314);
-			this.textBoxSellerNumberAdd.Margin = new System.Windows.Forms.Padding(1);
-			this.textBoxSellerNumberAdd.Name = "textBoxSellerNumberAdd";
-			this.textBoxSellerNumberAdd.Size = new System.Drawing.Size(106, 23);
-			this.textBoxSellerNumberAdd.TabIndex = 17;
-			this.textBoxSellerNumberAdd.Text = "телефон";
-			this.textBoxSellerNumberAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBoxSellerNumberAdd.Visible = false;
-			// 
-			// textBoxAdDescriptionAdd
-			// 
-			this.textBoxAdDescriptionAdd.Location = new System.Drawing.Point(167, 314);
-			this.textBoxAdDescriptionAdd.Margin = new System.Windows.Forms.Padding(1);
-			this.textBoxAdDescriptionAdd.Name = "textBoxAdDescriptionAdd";
-			this.textBoxAdDescriptionAdd.Size = new System.Drawing.Size(108, 23);
-			this.textBoxAdDescriptionAdd.TabIndex = 15;
-			this.textBoxAdDescriptionAdd.Text = "описание";
-			this.textBoxAdDescriptionAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBoxAdDescriptionAdd.Visible = false;
-			this.textBoxAdDescriptionAdd.TextChanged += new System.EventHandler(this.textBoxAdDescriptionAdd_TextChanged);
-			// 
-			// textBoxAdPriceAdd
-			// 
-			this.textBoxAdPriceAdd.Location = new System.Drawing.Point(274, 314);
-			this.textBoxAdPriceAdd.Margin = new System.Windows.Forms.Padding(1);
-			this.textBoxAdPriceAdd.Name = "textBoxAdPriceAdd";
-			this.textBoxAdPriceAdd.Size = new System.Drawing.Size(103, 23);
-			this.textBoxAdPriceAdd.TabIndex = 16;
-			this.textBoxAdPriceAdd.Text = "цена";
-			this.textBoxAdPriceAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textBoxAdPriceAdd.Visible = false;
-			this.textBoxAdPriceAdd.TextChanged += new System.EventHandler(this.textBoxAdPriceAdd_TextChanged);
 			// 
 			// tabPageModerAdsList
 			// 
@@ -281,17 +250,17 @@ namespace WinFormAds
 			this.tabPageModerAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.tabPageModerAdsList.Name = "tabPageModerAdsList";
 			this.tabPageModerAdsList.Padding = new System.Windows.Forms.Padding(1);
-			this.tabPageModerAdsList.Size = new System.Drawing.Size(865, 345);
+			this.tabPageModerAdsList.Size = new System.Drawing.Size(865, 398);
 			this.tabPageModerAdsList.TabIndex = 1;
 			this.tabPageModerAdsList.Text = "На модерации";
 			this.tabPageModerAdsList.UseVisualStyleBackColor = true;
 			// 
 			// buttonCancelAd
 			// 
-			this.buttonCancelAd.Location = new System.Drawing.Point(687, 40);
+			this.buttonCancelAd.Location = new System.Drawing.Point(687, 1);
 			this.buttonCancelAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonCancelAd.Name = "buttonCancelAd";
-			this.buttonCancelAd.Size = new System.Drawing.Size(166, 22);
+			this.buttonCancelAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonCancelAd.TabIndex = 7;
 			this.buttonCancelAd.Text = "Удалить объявление";
 			this.buttonCancelAd.UseVisualStyleBackColor = true;
@@ -299,10 +268,10 @@ namespace WinFormAds
 			// 
 			// buttonAllowAd
 			// 
-			this.buttonAllowAd.Location = new System.Drawing.Point(687, 12);
+			this.buttonAllowAd.Location = new System.Drawing.Point(687, 58);
 			this.buttonAllowAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAllowAd.Name = "buttonAllowAd";
-			this.buttonAllowAd.Size = new System.Drawing.Size(166, 22);
+			this.buttonAllowAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonAllowAd.TabIndex = 6;
 			this.buttonAllowAd.Text = "Разрешить объявление";
 			this.buttonAllowAd.UseVisualStyleBackColor = true;
@@ -351,7 +320,7 @@ namespace WinFormAds
 			this.dataGridViewModerAdsList.RowHeadersVisible = false;
 			this.dataGridViewModerAdsList.RowHeadersWidth = 123;
 			this.dataGridViewModerAdsList.RowTemplate.Height = 57;
-			this.dataGridViewModerAdsList.Size = new System.Drawing.Size(674, 354);
+			this.dataGridViewModerAdsList.Size = new System.Drawing.Size(674, 397);
 			this.dataGridViewModerAdsList.TabIndex = 3;
 			this.dataGridViewModerAdsList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModerAdsList_CellContentClick);
 			// 
@@ -397,12 +366,82 @@ namespace WinFormAds
 			this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
 			this.dataGridViewTextBoxColumn6.ReadOnly = true;
 			// 
+			// buttonAddAd
+			// 
+			this.buttonAddAd.Location = new System.Drawing.Point(691, 130);
+			this.buttonAddAd.Margin = new System.Windows.Forms.Padding(1);
+			this.buttonAddAd.Name = "buttonAddAd";
+			this.buttonAddAd.Size = new System.Drawing.Size(166, 43);
+			this.buttonAddAd.TabIndex = 4;
+			this.buttonAddAd.Text = "Добавить объявление";
+			this.buttonAddAd.UseVisualStyleBackColor = true;
+			this.buttonAddAd.Visible = false;
+			this.buttonAddAd.Click += new System.EventHandler(this.buttonAddAd_Click);
+			// 
+			// textBoxSellerNameAdd
+			// 
+			this.textBoxSellerNameAdd.Location = new System.Drawing.Point(533, 141);
+			this.textBoxSellerNameAdd.Margin = new System.Windows.Forms.Padding(1);
+			this.textBoxSellerNameAdd.Name = "textBoxSellerNameAdd";
+			this.textBoxSellerNameAdd.Size = new System.Drawing.Size(106, 23);
+			this.textBoxSellerNameAdd.TabIndex = 18;
+			this.textBoxSellerNameAdd.Text = "ваше имя";
+			this.textBoxSellerNameAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBoxSellerNameAdd.Visible = false;
+			// 
+			// textBoxAdNameAdd
+			// 
+			this.textBoxAdNameAdd.Location = new System.Drawing.Point(22, 141);
+			this.textBoxAdNameAdd.Margin = new System.Windows.Forms.Padding(1);
+			this.textBoxAdNameAdd.Name = "textBoxAdNameAdd";
+			this.textBoxAdNameAdd.Size = new System.Drawing.Size(102, 23);
+			this.textBoxAdNameAdd.TabIndex = 14;
+			this.textBoxAdNameAdd.Text = "название";
+			this.textBoxAdNameAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBoxAdNameAdd.Visible = false;
+			this.textBoxAdNameAdd.TextChanged += new System.EventHandler(this.textBoxAdNameAdd_TextChanged);
+			// 
+			// textBoxSellerNumberAdd
+			// 
+			this.textBoxSellerNumberAdd.Location = new System.Drawing.Point(405, 141);
+			this.textBoxSellerNumberAdd.Margin = new System.Windows.Forms.Padding(1);
+			this.textBoxSellerNumberAdd.Name = "textBoxSellerNumberAdd";
+			this.textBoxSellerNumberAdd.Size = new System.Drawing.Size(106, 23);
+			this.textBoxSellerNumberAdd.TabIndex = 17;
+			this.textBoxSellerNumberAdd.Text = "телефон";
+			this.textBoxSellerNumberAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBoxSellerNumberAdd.Visible = false;
+			// 
+			// textBoxAdDescriptionAdd
+			// 
+			this.textBoxAdDescriptionAdd.Location = new System.Drawing.Point(148, 141);
+			this.textBoxAdDescriptionAdd.Margin = new System.Windows.Forms.Padding(1);
+			this.textBoxAdDescriptionAdd.Name = "textBoxAdDescriptionAdd";
+			this.textBoxAdDescriptionAdd.Size = new System.Drawing.Size(108, 23);
+			this.textBoxAdDescriptionAdd.TabIndex = 15;
+			this.textBoxAdDescriptionAdd.Text = "описание";
+			this.textBoxAdDescriptionAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBoxAdDescriptionAdd.Visible = false;
+			this.textBoxAdDescriptionAdd.TextChanged += new System.EventHandler(this.textBoxAdDescriptionAdd_TextChanged);
+			// 
+			// textBoxAdPriceAdd
+			// 
+			this.textBoxAdPriceAdd.Location = new System.Drawing.Point(281, 141);
+			this.textBoxAdPriceAdd.Margin = new System.Windows.Forms.Padding(1);
+			this.textBoxAdPriceAdd.Name = "textBoxAdPriceAdd";
+			this.textBoxAdPriceAdd.Size = new System.Drawing.Size(103, 23);
+			this.textBoxAdPriceAdd.TabIndex = 16;
+			this.textBoxAdPriceAdd.Text = "цена";
+			this.textBoxAdPriceAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBoxAdPriceAdd.Visible = false;
+			this.textBoxAdPriceAdd.TextChanged += new System.EventHandler(this.textBoxAdPriceAdd_TextChanged);
+			// 
 			// labelChooseProfile
 			// 
 			this.labelChooseProfile.AutoSize = true;
 			this.labelChooseProfile.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.labelChooseProfile.ForeColor = System.Drawing.Color.ForestGreen;
-			this.labelChooseProfile.Location = new System.Drawing.Point(235, 197);
+			this.labelChooseProfile.Location = new System.Drawing.Point(290, 199);
 			this.labelChooseProfile.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelChooseProfile.Name = "labelChooseProfile";
 			this.labelChooseProfile.Size = new System.Drawing.Size(275, 37);
@@ -427,85 +466,88 @@ namespace WinFormAds
 			// labelAdmin
 			// 
 			this.labelAdmin.AutoSize = true;
-			this.labelAdmin.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.labelAdmin.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.labelAdmin.ForeColor = System.Drawing.Color.Crimson;
-			this.labelAdmin.Location = new System.Drawing.Point(211, 9);
+			this.labelAdmin.Location = new System.Drawing.Point(10, 9);
 			this.labelAdmin.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelAdmin.Name = "labelAdmin";
-			this.labelAdmin.Size = new System.Drawing.Size(343, 37);
+			this.labelAdmin.Size = new System.Drawing.Size(177, 30);
 			this.labelAdmin.TabIndex = 4;
-			this.labelAdmin.Text = "Режим Администратора";
+			this.labelAdmin.Text = "Администратор";
 			this.labelAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.labelAdmin.Visible = false;
 			// 
 			// labelUser
 			// 
 			this.labelUser.AutoSize = true;
-			this.labelUser.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.labelUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.labelUser.ForeColor = System.Drawing.Color.MediumBlue;
-			this.labelUser.Location = new System.Drawing.Point(231, 9);
+			this.labelUser.Location = new System.Drawing.Point(10, 9);
 			this.labelUser.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelUser.Name = "labelUser";
-			this.labelUser.Size = new System.Drawing.Size(304, 37);
+			this.labelUser.Size = new System.Drawing.Size(159, 30);
 			this.labelUser.TabIndex = 5;
-			this.labelUser.Text = "Режим Пользователя";
+			this.labelUser.Text = "Пользователь";
 			this.labelUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.labelUser.Visible = false;
 			// 
-			// ColumnAdName
+			// labelAdFields
 			// 
-			this.ColumnAdName.HeaderText = "Название";
-			this.ColumnAdName.MinimumWidth = 15;
-			this.ColumnAdName.Name = "ColumnAdName";
-			this.ColumnAdName.ReadOnly = true;
+			this.labelAdFields.AutoSize = true;
+			this.labelAdFields.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+			this.labelAdFields.ForeColor = System.Drawing.Color.DarkGreen;
+			this.labelAdFields.Location = new System.Drawing.Point(119, 107);
+			this.labelAdFields.Name = "labelAdFields";
+			this.labelAdFields.Size = new System.Drawing.Size(422, 21);
+			this.labelAdFields.TabIndex = 20;
+			this.labelAdFields.Text = "Заполните поля, что бы добавить новое объявление:";
+			this.labelAdFields.Visible = false;
 			// 
-			// ColumnAdDescription
+			// labelStarsShitAdm
 			// 
-			this.ColumnAdDescription.HeaderText = "Описание";
-			this.ColumnAdDescription.MinimumWidth = 15;
-			this.ColumnAdDescription.Name = "ColumnAdDescription";
-			this.ColumnAdDescription.ReadOnly = true;
+			this.labelStarsShitAdm.AutoSize = true;
+			this.labelStarsShitAdm.ForeColor = System.Drawing.Color.Crimson;
+			this.labelStarsShitAdm.Location = new System.Drawing.Point(10, 74);
+			this.labelStarsShitAdm.Name = "labelStarsShitAdm";
+			this.labelStarsShitAdm.Size = new System.Drawing.Size(853, 15);
+			this.labelStarsShitAdm.TabIndex = 22;
+			this.labelStarsShitAdm.Text = "…:::★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★" +
+    "☆★☆★:::…";
+			this.labelStarsShitAdm.Visible = false;
 			// 
-			// ColumnAdPrice
+			// labelStarsShitUsr
 			// 
-			this.ColumnAdPrice.HeaderText = "Цена";
-			this.ColumnAdPrice.MinimumWidth = 15;
-			this.ColumnAdPrice.Name = "ColumnAdPrice";
-			this.ColumnAdPrice.ReadOnly = true;
-			// 
-			// ColumnSellerNumber
-			// 
-			this.ColumnSellerNumber.HeaderText = "Телефон";
-			this.ColumnSellerNumber.MinimumWidth = 15;
-			this.ColumnSellerNumber.Name = "ColumnSellerNumber";
-			this.ColumnSellerNumber.ReadOnly = true;
-			// 
-			// ColumnSellerName
-			// 
-			this.ColumnSellerName.HeaderText = "Продавец";
-			this.ColumnSellerName.MinimumWidth = 15;
-			this.ColumnSellerName.Name = "ColumnSellerName";
-			this.ColumnSellerName.ReadOnly = true;
-			// 
-			// ColumnAdDate
-			// 
-			this.ColumnAdDate.HeaderText = "Размещено";
-			this.ColumnAdDate.MinimumWidth = 15;
-			this.ColumnAdDate.Name = "ColumnAdDate";
-			this.ColumnAdDate.ReadOnly = true;
+			this.labelStarsShitUsr.AutoSize = true;
+			this.labelStarsShitUsr.ForeColor = System.Drawing.Color.MediumBlue;
+			this.labelStarsShitUsr.Location = new System.Drawing.Point(10, 74);
+			this.labelStarsShitUsr.Name = "labelStarsShitUsr";
+			this.labelStarsShitUsr.Size = new System.Drawing.Size(853, 15);
+			this.labelStarsShitUsr.TabIndex = 23;
+			this.labelStarsShitUsr.Text = "…:::★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★" +
+    "☆★☆★:::…";
+			this.labelStarsShitUsr.Visible = false;
 			// 
 			// FormISA
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(872, 433);
+			this.ClientSize = new System.Drawing.Size(872, 601);
+			this.Controls.Add(this.labelStarsShitUsr);
+			this.Controls.Add(this.labelStarsShitAdm);
+			this.Controls.Add(this.labelAdFields);
 			this.Controls.Add(this.labelChooseProfile);
 			this.Controls.Add(this.tabControlAds);
 			this.Controls.Add(this.buttonUser);
+			this.Controls.Add(this.buttonAddAd);
 			this.Controls.Add(this.buttonExitToMain);
 			this.Controls.Add(this.buttonAdmin);
+			this.Controls.Add(this.textBoxSellerNameAdd);
 			this.Controls.Add(this.labelUser);
+			this.Controls.Add(this.textBoxAdNameAdd);
 			this.Controls.Add(this.labelAdmin);
+			this.Controls.Add(this.textBoxSellerNumberAdd);
+			this.Controls.Add(this.textBoxAdPriceAdd);
+			this.Controls.Add(this.textBoxAdDescriptionAdd);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(1);
 			this.Name = "FormISA";
@@ -559,6 +601,9 @@ namespace WinFormAds
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSellerNumber;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSellerName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAdDate;
+		private System.Windows.Forms.Label labelAdFields;
+		private System.Windows.Forms.Label labelStarsShitAdm;
+		private System.Windows.Forms.Label labelStarsShitUsr;
 	}
 }
 
