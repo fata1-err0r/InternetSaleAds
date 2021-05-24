@@ -17,11 +17,6 @@ namespace WinFormAds
 // 			{ new Ad("Кактус", "Колючий", 5, 89000005555, "Женя") }
 // 		};
 
-// 		public static List<Ad> adsList = AdsDataBase.adsDataBase.Load();
-// 		public static List<Ad> moderList = AdsDataBase.moderAdsDataBase.Load();
-
-		/*название товара, описание, цена, номер телефона продавца,
-		 * фио продавца, дата-время создания*/
 		public string adName;
 		public string adDescription;
 		public uint adPrice;
@@ -53,47 +48,6 @@ namespace WinFormAds
 			sellerNumber = 89009990099;
 			sellerName = "NAME_TEST";
 			adDate = DateTime.Now;
-		}
-
-		enum CheckEnum
-		{
-			Ok = 0,
-			Error1 = 1,
-			Error2 = 2,
-		}
-
-		public static uint CheckPrice(string input)
-		{
-			bool check = int.TryParse(input, out int price);
-			if (check)
-			{
-				if (price < 0)
-				{
-					return (uint)CheckEnum.Error1;
-				}
-				return (uint)CheckEnum.Ok;
-			}
-			else
-			{
-				return (uint)CheckEnum.Error2;
-			}
-		}
-
-		public static uint CheckPhone(string input)
-		{
-			bool check = long.TryParse(input, out long phone);
-			if (check)
-			{
-				if (phone < 0)
-				{
-					return (uint)CheckEnum.Error1;
-				}
-				return (uint)CheckEnum.Ok;
-			}
-			else
-			{
-				return (uint)CheckEnum.Error2;
-			}
 		}
 	}
 
