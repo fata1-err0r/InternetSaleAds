@@ -39,6 +39,12 @@ namespace WinFormAdsLibrary
 				dataGridViewModerAdsList.Rows[i].Cells[4].Value = AdModel.moderList[i].sellerName;
 				dataGridViewModerAdsList.Rows[i].Cells[5].Value = AdModel.moderList[i].adDate;
 			}
+
+			if (dataGridViewAdsList.RowCount == 0)
+			{
+				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
+				return;
+			}
 		}
 
 		public void AddAd(TextBox textBoxAdNameAdd, TextBox textBoxAdDescriptionAdd, TextBox textBoxAdPriceAdd, TextBox textBoxSellerNumberAdd, TextBox textBoxSellerNameAdd)
