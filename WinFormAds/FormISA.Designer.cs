@@ -220,7 +220,7 @@ namespace WinFormAds
 			// buttonSearchByAdName
 			// 
 			this.buttonSearchByAdName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.buttonSearchByAdName.Location = new System.Drawing.Point(687, 128);
+			this.buttonSearchByAdName.Location = new System.Drawing.Point(687, 137);
 			this.buttonSearchByAdName.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonSearchByAdName.Name = "buttonSearchByAdName";
 			this.buttonSearchByAdName.Size = new System.Drawing.Size(166, 22);
@@ -232,7 +232,7 @@ namespace WinFormAds
 			// 
 			// textBoxSearchByAdName
 			// 
-			this.textBoxSearchByAdName.Location = new System.Drawing.Point(687, 101);
+			this.textBoxSearchByAdName.Location = new System.Drawing.Point(687, 110);
 			this.textBoxSearchByAdName.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxSearchByAdName.Name = "textBoxSearchByAdName";
 			this.textBoxSearchByAdName.Size = new System.Drawing.Size(166, 23);
@@ -244,7 +244,7 @@ namespace WinFormAds
 			// labelSearchByAdName
 			// 
 			this.labelSearchByAdName.AutoSize = true;
-			this.labelSearchByAdName.Location = new System.Drawing.Point(719, 62);
+			this.labelSearchByAdName.Location = new System.Drawing.Point(719, 71);
 			this.labelSearchByAdName.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelSearchByAdName.Name = "labelSearchByAdName";
 			this.labelSearchByAdName.Size = new System.Drawing.Size(110, 30);
@@ -255,7 +255,7 @@ namespace WinFormAds
 			// 
 			// buttonFilterBySellerNumber
 			// 
-			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 263);
+			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 249);
 			this.buttonFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonFilterBySellerNumber.Name = "buttonFilterBySellerNumber";
 			this.buttonFilterBySellerNumber.Size = new System.Drawing.Size(166, 22);
@@ -267,7 +267,7 @@ namespace WinFormAds
 			// 
 			// textBoxFilterBySellerNumber
 			// 
-			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 236);
+			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 222);
 			this.textBoxFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxFilterBySellerNumber.Name = "textBoxFilterBySellerNumber";
 			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(166, 23);
@@ -279,7 +279,7 @@ namespace WinFormAds
 			// labelFilterBySellerNumber
 			// 
 			this.labelFilterBySellerNumber.AutoSize = true;
-			this.labelFilterBySellerNumber.Location = new System.Drawing.Point(697, 195);
+			this.labelFilterBySellerNumber.Location = new System.Drawing.Point(697, 181);
 			this.labelFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelFilterBySellerNumber.Name = "labelFilterBySellerNumber";
 			this.labelFilterBySellerNumber.Size = new System.Drawing.Size(147, 30);
