@@ -58,6 +58,7 @@ namespace WinFormAds
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.pictureBoxOligarkhMain = new System.Windows.Forms.PictureBox();
 			this.buttonAddAd = new System.Windows.Forms.Button();
 			this.textBoxSellerNameAdd = new System.Windows.Forms.TextBox();
 			this.textBoxAdNameAdd = new System.Windows.Forms.TextBox();
@@ -71,20 +72,22 @@ namespace WinFormAds
 			this.labelAdFields = new System.Windows.Forms.Label();
 			this.labelStarsShitAdm = new System.Windows.Forms.Label();
 			this.labelStarsShitUsr = new System.Windows.Forms.Label();
-			this.pictureBoxOligarkhMain = new System.Windows.Forms.PictureBox();
+			this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdsList)).BeginInit();
 			this.tabControlAds.SuspendLayout();
 			this.tabPageAdsList.SuspendLayout();
 			this.tabPageModerAdsList.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewModerAdsList)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxOligarkhMain)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonAdmin
 			// 
-			this.buttonAdmin.Location = new System.Drawing.Point(926, 518);
+			this.buttonAdmin.Location = new System.Drawing.Point(334, 383);
+			this.buttonAdmin.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAdmin.Name = "buttonAdmin";
-			this.buttonAdmin.Size = new System.Drawing.Size(266, 115);
+			this.buttonAdmin.Size = new System.Drawing.Size(93, 36);
 			this.buttonAdmin.TabIndex = 0;
 			this.buttonAdmin.Text = "Admin";
 			this.buttonAdmin.UseVisualStyleBackColor = true;
@@ -92,9 +95,10 @@ namespace WinFormAds
 			// 
 			// buttonUser
 			// 
-			this.buttonUser.Location = new System.Drawing.Point(1246, 518);
+			this.buttonUser.Location = new System.Drawing.Point(446, 383);
+			this.buttonUser.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonUser.Name = "buttonUser";
-			this.buttonUser.Size = new System.Drawing.Size(266, 115);
+			this.buttonUser.Size = new System.Drawing.Size(93, 36);
 			this.buttonUser.TabIndex = 1;
 			this.buttonUser.Text = "User";
 			this.buttonUser.UseVisualStyleBackColor = true;
@@ -114,11 +118,12 @@ namespace WinFormAds
             this.ColumnSellerName,
             this.ColumnAdDate});
 			this.dataGridViewAdsList.Location = new System.Drawing.Point(0, 0);
+			this.dataGridViewAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.dataGridViewAdsList.Name = "dataGridViewAdsList";
 			this.dataGridViewAdsList.RowHeadersVisible = false;
 			this.dataGridViewAdsList.RowHeadersWidth = 123;
 			this.dataGridViewAdsList.RowTemplate.Height = 57;
-			this.dataGridViewAdsList.Size = new System.Drawing.Size(1926, 1270);
+			this.dataGridViewAdsList.Size = new System.Drawing.Size(674, 397);
 			this.dataGridViewAdsList.TabIndex = 2;
 			this.dataGridViewAdsList.Visible = false;
 			// 
@@ -169,33 +174,36 @@ namespace WinFormAds
 			this.tabControlAds.Controls.Add(this.tabPageAdsList);
 			this.tabControlAds.Controls.Add(this.tabPageModerAdsList);
 			this.tabControlAds.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.tabControlAds.Location = new System.Drawing.Point(0, 560);
+			this.tabControlAds.Location = new System.Drawing.Point(0, 175);
+			this.tabControlAds.Margin = new System.Windows.Forms.Padding(1);
 			this.tabControlAds.Name = "tabControlAds";
 			this.tabControlAds.SelectedIndex = 0;
-			this.tabControlAds.Size = new System.Drawing.Size(2494, 1363);
+			this.tabControlAds.Size = new System.Drawing.Size(873, 426);
 			this.tabControlAds.TabIndex = 3;
 			this.tabControlAds.Visible = false;
 			// 
 			// tabPageAdsList
 			// 
-			this.tabPageAdsList.Controls.Add(this.dataGridViewAdsList);
 			this.tabPageAdsList.Controls.Add(this.buttonFilterBySellerNumber);
 			this.tabPageAdsList.Controls.Add(this.textBoxFilterBySellerNumber);
 			this.tabPageAdsList.Controls.Add(this.labelFilteringAds);
 			this.tabPageAdsList.Controls.Add(this.buttonDelAd);
-			this.tabPageAdsList.Location = new System.Drawing.Point(12, 69);
+			this.tabPageAdsList.Controls.Add(this.dataGridViewAdsList);
+			this.tabPageAdsList.Location = new System.Drawing.Point(4, 24);
+			this.tabPageAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.tabPageAdsList.Name = "tabPageAdsList";
-			this.tabPageAdsList.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageAdsList.Size = new System.Drawing.Size(2470, 1282);
+			this.tabPageAdsList.Padding = new System.Windows.Forms.Padding(1);
+			this.tabPageAdsList.Size = new System.Drawing.Size(865, 398);
 			this.tabPageAdsList.TabIndex = 0;
 			this.tabPageAdsList.Text = "Объявления";
 			this.tabPageAdsList.UseVisualStyleBackColor = true;
 			// 
 			// buttonFilterBySellerNumber
 			// 
-			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(1963, 403);
+			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 126);
+			this.buttonFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonFilterBySellerNumber.Name = "buttonFilterBySellerNumber";
-			this.buttonFilterBySellerNumber.Size = new System.Drawing.Size(474, 70);
+			this.buttonFilterBySellerNumber.Size = new System.Drawing.Size(166, 22);
 			this.buttonFilterBySellerNumber.TabIndex = 8;
 			this.buttonFilterBySellerNumber.Text = "Отфильтровать";
 			this.buttonFilterBySellerNumber.UseVisualStyleBackColor = true;
@@ -204,9 +212,10 @@ namespace WinFormAds
 			// 
 			// textBoxFilterBySellerNumber
 			// 
-			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(1963, 317);
+			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 99);
+			this.textBoxFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxFilterBySellerNumber.Name = "textBoxFilterBySellerNumber";
-			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(467, 55);
+			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(166, 23);
 			this.textBoxFilterBySellerNumber.TabIndex = 7;
 			this.textBoxFilterBySellerNumber.Text = "Введите номер телефона";
 			this.textBoxFilterBySellerNumber.Visible = false;
@@ -214,9 +223,10 @@ namespace WinFormAds
 			// labelFilteringAds
 			// 
 			this.labelFilteringAds.AutoSize = true;
-			this.labelFilteringAds.Location = new System.Drawing.Point(1991, 186);
+			this.labelFilteringAds.Location = new System.Drawing.Point(697, 58);
+			this.labelFilteringAds.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelFilteringAds.Name = "labelFilteringAds";
-			this.labelFilteringAds.Size = new System.Drawing.Size(439, 96);
+			this.labelFilteringAds.Size = new System.Drawing.Size(147, 30);
 			this.labelFilteringAds.TabIndex = 6;
 			this.labelFilteringAds.Text = "Фильтровать объявления\r\nпо номеру телефона:";
 			this.labelFilteringAds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -224,9 +234,10 @@ namespace WinFormAds
 			// 
 			// buttonDelAd
 			// 
-			this.buttonDelAd.Location = new System.Drawing.Point(1963, 3);
+			this.buttonDelAd.Location = new System.Drawing.Point(687, 1);
+			this.buttonDelAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonDelAd.Name = "buttonDelAd";
-			this.buttonDelAd.Size = new System.Drawing.Size(474, 138);
+			this.buttonDelAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonDelAd.TabIndex = 5;
 			this.buttonDelAd.Text = "Удалить объявление";
 			this.buttonDelAd.UseVisualStyleBackColor = true;
@@ -238,19 +249,21 @@ namespace WinFormAds
 			this.tabPageModerAdsList.Controls.Add(this.buttonCancelAd);
 			this.tabPageModerAdsList.Controls.Add(this.buttonAllowAd);
 			this.tabPageModerAdsList.Controls.Add(this.dataGridViewModerAdsList);
-			this.tabPageModerAdsList.Location = new System.Drawing.Point(12, 69);
+			this.tabPageModerAdsList.Location = new System.Drawing.Point(4, 24);
+			this.tabPageModerAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.tabPageModerAdsList.Name = "tabPageModerAdsList";
-			this.tabPageModerAdsList.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageModerAdsList.Size = new System.Drawing.Size(2470, 1282);
+			this.tabPageModerAdsList.Padding = new System.Windows.Forms.Padding(1);
+			this.tabPageModerAdsList.Size = new System.Drawing.Size(865, 398);
 			this.tabPageModerAdsList.TabIndex = 1;
 			this.tabPageModerAdsList.Text = "На модерации";
 			this.tabPageModerAdsList.UseVisualStyleBackColor = true;
 			// 
 			// buttonCancelAd
 			// 
-			this.buttonCancelAd.Location = new System.Drawing.Point(1963, 3);
+			this.buttonCancelAd.Location = new System.Drawing.Point(687, 1);
+			this.buttonCancelAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonCancelAd.Name = "buttonCancelAd";
-			this.buttonCancelAd.Size = new System.Drawing.Size(474, 138);
+			this.buttonCancelAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonCancelAd.TabIndex = 7;
 			this.buttonCancelAd.Text = "Удалить объявление";
 			this.buttonCancelAd.UseVisualStyleBackColor = true;
@@ -258,9 +271,10 @@ namespace WinFormAds
 			// 
 			// buttonAllowAd
 			// 
-			this.buttonAllowAd.Location = new System.Drawing.Point(1963, 186);
+			this.buttonAllowAd.Location = new System.Drawing.Point(687, 58);
+			this.buttonAllowAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAllowAd.Name = "buttonAllowAd";
-			this.buttonAllowAd.Size = new System.Drawing.Size(474, 138);
+			this.buttonAllowAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonAllowAd.TabIndex = 6;
 			this.buttonAllowAd.Text = "Разрешить объявление";
 			this.buttonAllowAd.UseVisualStyleBackColor = true;
@@ -296,6 +310,7 @@ namespace WinFormAds
 			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
 			this.dataGridViewModerAdsList.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewModerAdsList.Location = new System.Drawing.Point(0, 0);
+			this.dataGridViewModerAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.dataGridViewModerAdsList.Name = "dataGridViewModerAdsList";
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -308,7 +323,7 @@ namespace WinFormAds
 			this.dataGridViewModerAdsList.RowHeadersVisible = false;
 			this.dataGridViewModerAdsList.RowHeadersWidth = 123;
 			this.dataGridViewModerAdsList.RowTemplate.Height = 57;
-			this.dataGridViewModerAdsList.Size = new System.Drawing.Size(1926, 1270);
+			this.dataGridViewModerAdsList.Size = new System.Drawing.Size(674, 397);
 			this.dataGridViewModerAdsList.TabIndex = 3;
 			// 
 			// dataGridViewTextBoxColumn1
@@ -353,11 +368,22 @@ namespace WinFormAds
 			this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
 			this.dataGridViewTextBoxColumn6.ReadOnly = true;
 			// 
+			// pictureBoxOligarkhMain
+			// 
+			this.pictureBoxOligarkhMain.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxOligarkhMain.Image")));
+			this.pictureBoxOligarkhMain.Location = new System.Drawing.Point(177, 99);
+			this.pictureBoxOligarkhMain.Margin = new System.Windows.Forms.Padding(1);
+			this.pictureBoxOligarkhMain.Name = "pictureBoxOligarkhMain";
+			this.pictureBoxOligarkhMain.Size = new System.Drawing.Size(512, 262);
+			this.pictureBoxOligarkhMain.TabIndex = 24;
+			this.pictureBoxOligarkhMain.TabStop = false;
+			// 
 			// buttonAddAd
 			// 
-			this.buttonAddAd.Location = new System.Drawing.Point(1974, 416);
+			this.buttonAddAd.Location = new System.Drawing.Point(691, 130);
+			this.buttonAddAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAddAd.Name = "buttonAddAd";
-			this.buttonAddAd.Size = new System.Drawing.Size(474, 138);
+			this.buttonAddAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonAddAd.TabIndex = 4;
 			this.buttonAddAd.Text = "Добавить объявление";
 			this.buttonAddAd.UseVisualStyleBackColor = true;
@@ -366,9 +392,10 @@ namespace WinFormAds
 			// 
 			// textBoxSellerNameAdd
 			// 
-			this.textBoxSellerNameAdd.Location = new System.Drawing.Point(1523, 451);
+			this.textBoxSellerNameAdd.Location = new System.Drawing.Point(533, 141);
+			this.textBoxSellerNameAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxSellerNameAdd.Name = "textBoxSellerNameAdd";
-			this.textBoxSellerNameAdd.Size = new System.Drawing.Size(295, 55);
+			this.textBoxSellerNameAdd.Size = new System.Drawing.Size(106, 23);
 			this.textBoxSellerNameAdd.TabIndex = 18;
 			this.textBoxSellerNameAdd.Text = "ваше имя";
 			this.textBoxSellerNameAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -376,9 +403,10 @@ namespace WinFormAds
 			// 
 			// textBoxAdNameAdd
 			// 
-			this.textBoxAdNameAdd.Location = new System.Drawing.Point(63, 451);
+			this.textBoxAdNameAdd.Location = new System.Drawing.Point(22, 141);
+			this.textBoxAdNameAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxAdNameAdd.Name = "textBoxAdNameAdd";
-			this.textBoxAdNameAdd.Size = new System.Drawing.Size(284, 55);
+			this.textBoxAdNameAdd.Size = new System.Drawing.Size(102, 23);
 			this.textBoxAdNameAdd.TabIndex = 14;
 			this.textBoxAdNameAdd.Text = "название";
 			this.textBoxAdNameAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -386,9 +414,10 @@ namespace WinFormAds
 			// 
 			// textBoxSellerNumberAdd
 			// 
-			this.textBoxSellerNumberAdd.Location = new System.Drawing.Point(1157, 451);
+			this.textBoxSellerNumberAdd.Location = new System.Drawing.Point(405, 141);
+			this.textBoxSellerNumberAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxSellerNumberAdd.Name = "textBoxSellerNumberAdd";
-			this.textBoxSellerNumberAdd.Size = new System.Drawing.Size(295, 55);
+			this.textBoxSellerNumberAdd.Size = new System.Drawing.Size(106, 23);
 			this.textBoxSellerNumberAdd.TabIndex = 17;
 			this.textBoxSellerNumberAdd.Text = "телефон";
 			this.textBoxSellerNumberAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -396,9 +425,10 @@ namespace WinFormAds
 			// 
 			// textBoxAdDescriptionAdd
 			// 
-			this.textBoxAdDescriptionAdd.Location = new System.Drawing.Point(423, 451);
+			this.textBoxAdDescriptionAdd.Location = new System.Drawing.Point(148, 141);
+			this.textBoxAdDescriptionAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxAdDescriptionAdd.Name = "textBoxAdDescriptionAdd";
-			this.textBoxAdDescriptionAdd.Size = new System.Drawing.Size(301, 55);
+			this.textBoxAdDescriptionAdd.Size = new System.Drawing.Size(108, 23);
 			this.textBoxAdDescriptionAdd.TabIndex = 15;
 			this.textBoxAdDescriptionAdd.Text = "описание";
 			this.textBoxAdDescriptionAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -406,9 +436,10 @@ namespace WinFormAds
 			// 
 			// textBoxAdPriceAdd
 			// 
-			this.textBoxAdPriceAdd.Location = new System.Drawing.Point(803, 451);
+			this.textBoxAdPriceAdd.Location = new System.Drawing.Point(281, 141);
+			this.textBoxAdPriceAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxAdPriceAdd.Name = "textBoxAdPriceAdd";
-			this.textBoxAdPriceAdd.Size = new System.Drawing.Size(287, 55);
+			this.textBoxAdPriceAdd.Size = new System.Drawing.Size(103, 23);
 			this.textBoxAdPriceAdd.TabIndex = 16;
 			this.textBoxAdPriceAdd.Text = "цена";
 			this.textBoxAdPriceAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -419,18 +450,20 @@ namespace WinFormAds
 			this.labelChooseProfile.AutoSize = true;
 			this.labelChooseProfile.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.labelChooseProfile.ForeColor = System.Drawing.Color.ForestGreen;
-			this.labelChooseProfile.Location = new System.Drawing.Point(829, 637);
+			this.labelChooseProfile.Location = new System.Drawing.Point(303, 437);
+			this.labelChooseProfile.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelChooseProfile.Name = "labelChooseProfile";
-			this.labelChooseProfile.Size = new System.Drawing.Size(807, 106);
+			this.labelChooseProfile.Size = new System.Drawing.Size(275, 37);
 			this.labelChooseProfile.TabIndex = 19;
 			this.labelChooseProfile.Text = "Выберите профиль";
 			this.labelChooseProfile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// buttonExitToMain
 			// 
-			this.buttonExitToMain.Location = new System.Drawing.Point(1974, 32);
+			this.buttonExitToMain.Location = new System.Drawing.Point(691, 10);
+			this.buttonExitToMain.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonExitToMain.Name = "buttonExitToMain";
-			this.buttonExitToMain.Size = new System.Drawing.Size(474, 138);
+			this.buttonExitToMain.Size = new System.Drawing.Size(166, 43);
 			this.buttonExitToMain.TabIndex = 3;
 			this.buttonExitToMain.Text = "ВЫХОД";
 			this.buttonExitToMain.UseVisualStyleBackColor = true;
@@ -440,11 +473,12 @@ namespace WinFormAds
 			// labelAdmin
 			// 
 			this.labelAdmin.AutoSize = true;
-			this.labelAdmin.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.labelAdmin.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
 			this.labelAdmin.ForeColor = System.Drawing.Color.Crimson;
-			this.labelAdmin.Location = new System.Drawing.Point(29, 29);
+			this.labelAdmin.Location = new System.Drawing.Point(10, 9);
+			this.labelAdmin.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelAdmin.Name = "labelAdmin";
-			this.labelAdmin.Size = new System.Drawing.Size(527, 85);
+			this.labelAdmin.Size = new System.Drawing.Size(185, 30);
 			this.labelAdmin.TabIndex = 4;
 			this.labelAdmin.Text = "Администратор";
 			this.labelAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -453,11 +487,12 @@ namespace WinFormAds
 			// labelUser
 			// 
 			this.labelUser.AutoSize = true;
-			this.labelUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.labelUser.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
 			this.labelUser.ForeColor = System.Drawing.Color.MediumBlue;
-			this.labelUser.Location = new System.Drawing.Point(29, 29);
+			this.labelUser.Location = new System.Drawing.Point(10, 9);
+			this.labelUser.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.labelUser.Name = "labelUser";
-			this.labelUser.Size = new System.Drawing.Size(472, 85);
+			this.labelUser.Size = new System.Drawing.Size(161, 30);
 			this.labelUser.TabIndex = 5;
 			this.labelUser.Text = "Пользователь";
 			this.labelUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -468,10 +503,9 @@ namespace WinFormAds
 			this.labelAdFields.AutoSize = true;
 			this.labelAdFields.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
 			this.labelAdFields.ForeColor = System.Drawing.Color.DarkGreen;
-			this.labelAdFields.Location = new System.Drawing.Point(340, 342);
-			this.labelAdFields.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+			this.labelAdFields.Location = new System.Drawing.Point(119, 107);
 			this.labelAdFields.Name = "labelAdFields";
-			this.labelAdFields.Size = new System.Drawing.Size(1279, 65);
+			this.labelAdFields.Size = new System.Drawing.Size(422, 21);
 			this.labelAdFields.TabIndex = 20;
 			this.labelAdFields.Text = "Заполните поля, что бы добавить новое объявление:";
 			this.labelAdFields.Visible = false;
@@ -480,10 +514,9 @@ namespace WinFormAds
 			// 
 			this.labelStarsShitAdm.AutoSize = true;
 			this.labelStarsShitAdm.ForeColor = System.Drawing.Color.Crimson;
-			this.labelStarsShitAdm.Location = new System.Drawing.Point(29, 285);
-			this.labelStarsShitAdm.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+			this.labelStarsShitAdm.Location = new System.Drawing.Point(10, 83);
 			this.labelStarsShitAdm.Name = "labelStarsShitAdm";
-			this.labelStarsShitAdm.Size = new System.Drawing.Size(2550, 48);
+			this.labelStarsShitAdm.Size = new System.Drawing.Size(853, 15);
 			this.labelStarsShitAdm.TabIndex = 22;
 			this.labelStarsShitAdm.Text = "…:::★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★" +
     "☆★☆★:::…";
@@ -493,38 +526,35 @@ namespace WinFormAds
 			// 
 			this.labelStarsShitUsr.AutoSize = true;
 			this.labelStarsShitUsr.ForeColor = System.Drawing.Color.MediumBlue;
-			this.labelStarsShitUsr.Location = new System.Drawing.Point(29, 285);
-			this.labelStarsShitUsr.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+			this.labelStarsShitUsr.Location = new System.Drawing.Point(10, 83);
 			this.labelStarsShitUsr.Name = "labelStarsShitUsr";
-			this.labelStarsShitUsr.Size = new System.Drawing.Size(2550, 48);
+			this.labelStarsShitUsr.Size = new System.Drawing.Size(853, 15);
 			this.labelStarsShitUsr.TabIndex = 23;
 			this.labelStarsShitUsr.Text = "…:::★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★" +
     "☆★☆★:::…";
 			this.labelStarsShitUsr.Visible = false;
 			// 
-			// pictureBoxOligarkhMain
+			// pictureBoxIcon
 			// 
-			this.pictureBoxOligarkhMain.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxOligarkhMain.Image")));
-			this.pictureBoxOligarkhMain.Location = new System.Drawing.Point(978, 12);
-			this.pictureBoxOligarkhMain.Name = "pictureBoxOligarkhMain";
-			this.pictureBoxOligarkhMain.Size = new System.Drawing.Size(534, 273);
-			this.pictureBoxOligarkhMain.TabIndex = 24;
-			this.pictureBoxOligarkhMain.TabStop = false;
+			this.pictureBoxIcon.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxIcon.Image")));
+			this.pictureBoxIcon.Location = new System.Drawing.Point(363, 9);
+			this.pictureBoxIcon.Name = "pictureBoxIcon";
+			this.pictureBoxIcon.Size = new System.Drawing.Size(130, 67);
+			this.pictureBoxIcon.TabIndex = 25;
+			this.pictureBoxIcon.TabStop = false;
+			this.pictureBoxIcon.Visible = false;
 			// 
 			// FormISA
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(2491, 1923);
+			this.ClientSize = new System.Drawing.Size(872, 601);
 			this.Controls.Add(this.labelStarsShitUsr);
 			this.Controls.Add(this.labelStarsShitAdm);
 			this.Controls.Add(this.labelAdFields);
-			this.Controls.Add(this.labelChooseProfile);
 			this.Controls.Add(this.tabControlAds);
-			this.Controls.Add(this.buttonUser);
 			this.Controls.Add(this.buttonAddAd);
 			this.Controls.Add(this.buttonExitToMain);
-			this.Controls.Add(this.buttonAdmin);
 			this.Controls.Add(this.textBoxSellerNameAdd);
 			this.Controls.Add(this.labelUser);
 			this.Controls.Add(this.textBoxAdNameAdd);
@@ -533,7 +563,12 @@ namespace WinFormAds
 			this.Controls.Add(this.textBoxAdPriceAdd);
 			this.Controls.Add(this.textBoxAdDescriptionAdd);
 			this.Controls.Add(this.pictureBoxOligarkhMain);
+			this.Controls.Add(this.labelChooseProfile);
+			this.Controls.Add(this.buttonAdmin);
+			this.Controls.Add(this.buttonUser);
+			this.Controls.Add(this.pictureBoxIcon);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Margin = new System.Windows.Forms.Padding(1);
 			this.Name = "FormISA";
 			this.Text = "InternetSaleAds";
 			this.Load += new System.EventHandler(this.ISA_Load);
@@ -544,6 +579,7 @@ namespace WinFormAds
 			this.tabPageModerAdsList.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewModerAdsList)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxOligarkhMain)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -590,6 +626,7 @@ namespace WinFormAds
 		private System.Windows.Forms.Label labelStarsShitAdm;
 		private System.Windows.Forms.Label labelStarsShitUsr;
 		private System.Windows.Forms.PictureBox pictureBoxOligarkhMain;
+		private System.Windows.Forms.PictureBox pictureBoxIcon;
 	}
 }
 

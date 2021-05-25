@@ -56,6 +56,8 @@ namespace WinFormAds
 
 		private void buttonAdmin_Click(object sender, EventArgs e)
 		{
+			pictureBoxOligarkhMain.Hide();
+			pictureBoxIcon.Show();
 			labelChooseProfile.Hide();
 			labelAdFields.Show();
 			labelStarsShitAdm.Show();
@@ -87,6 +89,8 @@ namespace WinFormAds
 
 		private void buttonUser_Click(object sender, EventArgs e)
 		{
+			pictureBoxOligarkhMain.Hide();
+			pictureBoxIcon.Show();
 			labelChooseProfile.Hide();
 			labelAdFields.Show();
 			labelStarsShitAdm.Hide();
@@ -116,6 +120,8 @@ namespace WinFormAds
 
 		private void buttonExitToMain_Click(object sender, EventArgs e)
 		{
+			pictureBoxOligarkhMain.Show();
+			pictureBoxIcon.Hide();
 			labelChooseProfile.Show();
 			labelAdFields.Hide();
 			labelStarsShitAdm.Hide();
