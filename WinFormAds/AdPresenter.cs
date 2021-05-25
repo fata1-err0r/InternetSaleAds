@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using WinFormAds;
 using System.Linq;
-
+using System.Collections.Generic;
 
 namespace WinFormAdsLibrary
 {
@@ -16,7 +16,7 @@ namespace WinFormAdsLibrary
 			model = adModel;
 		}
 
-		public void UpdateAdList(DataGridView dataGridViewAdsList, DataGridView dataGridViewModerAdsList)
+		public void UpdateAdsList(DataGridView dataGridViewAdsList, DataGridView dataGridViewModerAdsList)
 		{
 			dataGridViewAdsList.RowCount = AdModel.adsList.Count;
 			for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
@@ -78,7 +78,7 @@ namespace WinFormAdsLibrary
 			{
 				MessageBox.Show(ex.Message, "Внимание!");
 			}
-			View.DataGridViewAdsUpdate();
+			View.DataGridViewUpdateAdsList();
 		}
 
 		public void DelAd(DataGridView dataGridViewAdsList)
@@ -91,7 +91,7 @@ namespace WinFormAdsLibrary
 			int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
 			dataGridViewAdsList.Rows.RemoveAt(delet);
 			AdModel.adsList.RemoveAt(delet);
-			View.DataGridViewAdsUpdate();
+			View.DataGridViewUpdateAdsList();
 		}
 
 		public void AllowAd(DataGridView dataGridViewAdsList, DataGridView dataGridViewModerAdsList)
@@ -114,7 +114,7 @@ namespace WinFormAdsLibrary
 			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
 			AdModel.moderList.RemoveAt(selectedAd);
 			AdModel.adsList.Add(tempAd);
-			View.DataGridViewAdsUpdate();
+			View.DataGridViewUpdateAdsList();
 		}
 
 		public void CancelAd(DataGridView dataGridViewModerAdsList)
@@ -127,7 +127,80 @@ namespace WinFormAdsLibrary
 			int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
 			dataGridViewModerAdsList.Rows.RemoveAt(delet);
 			AdModel.moderList.RemoveAt(delet);
-			View.DataGridViewAdsUpdate();
+			View.DataGridViewUpdateAdsList();
+		}
+
+		public void SearchByAdName(TextBox textBoxSearchByAdName, DataGridView dataGridViewAdsList)
+		{
+			string searchByAdName = textBoxSearchByAdName.Text.Trim();
+
+			var foundAds = from query in AdModel.adsList
+						   where query.adName.Equals(searchByAdName)
+						   select query;
+
+			if (foundAds.Count() == 0)
+			{
+				MessageBox.Show("Объявлений не найдено!", "Ошибка!");
+				return;
+			}
+			else
+			{
+				List<Ad> foundAdsByAdNameList = new();
+				foreach (Ad elem in foundAds)
+				{
+					foundAdsByAdNameList.Add(elem);
+				}
+
+				dataGridViewAdsList.RowCount = foundAds.Count();
+				for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+				{
+					dataGridViewAdsList.Rows[i].Cells[0].Value = foundAdsByAdNameList[i].adName;
+					dataGridViewAdsList.Rows[i].Cells[1].Value = foundAdsByAdNameList[i].adDescription;
+					dataGridViewAdsList.Rows[i].Cells[2].Value = foundAdsByAdNameList[i].adPrice;
+					dataGridViewAdsList.Rows[i].Cells[3].Value = foundAdsByAdNameList[i].sellerNumber;
+					dataGridViewAdsList.Rows[i].Cells[4].Value = foundAdsByAdNameList[i].sellerName;
+					dataGridViewAdsList.Rows[i].Cells[5].Value = foundAdsByAdNameList[i].adDate;
+				}
+			}
+		}
+
+		public void FilteringAdsByNumber(TextBox textBoxFilterBySellerNumber, DataGridView dataGridViewAdsList)
+		{
+			ulong filterAdsByPhone;
+			if (!ulong.TryParse(textBoxFilterBySellerNumber.Text, out filterAdsByPhone))
+			{
+				MessageBox.Show("Не получилось прочитать номер!", "Ошибка!");
+				return;
+			}
+
+			var filteredAds = from query in AdModel.adsList
+							  where query.sellerNumber.Equals(filterAdsByPhone)
+							  select query;
+
+			if (filteredAds.Count() == 0)
+			{
+				MessageBox.Show("Объявлений не найдено!", "Ошибка!");
+				return;
+			}
+			else
+			{
+				List<Ad> foundAdsByPhoneList = new();
+				foreach (Ad elem in filteredAds)
+				{
+					foundAdsByPhoneList.Add(elem);
+				}
+
+				dataGridViewAdsList.RowCount = filteredAds.Count();
+				for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+				{
+					dataGridViewAdsList.Rows[i].Cells[0].Value = foundAdsByPhoneList[i].adName;
+					dataGridViewAdsList.Rows[i].Cells[1].Value = foundAdsByPhoneList[i].adDescription;
+					dataGridViewAdsList.Rows[i].Cells[2].Value = foundAdsByPhoneList[i].adPrice;
+					dataGridViewAdsList.Rows[i].Cells[3].Value = foundAdsByPhoneList[i].sellerNumber;
+					dataGridViewAdsList.Rows[i].Cells[4].Value = foundAdsByPhoneList[i].sellerName;
+					dataGridViewAdsList.Rows[i].Cells[5].Value = foundAdsByPhoneList[i].adDate;
+				}
+			}
 		}
 	}
 }

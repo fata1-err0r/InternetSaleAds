@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormAdsLibrary;
 
@@ -21,12 +17,17 @@ namespace WinFormAds
 			InitializeComponent();
 			AdModel adModel = new("Ads.txt");
 			adPresenter = new AdPresenter(this, adModel);
-			DataGridViewAdsUpdate();
+			DataGridViewUpdateAdsList();
 		}
 
-		public void DataGridViewAdsUpdate()
+		public void DataGridViewUpdateAdsList()
 		{
-			adPresenter.UpdateAdList(dataGridViewAdsList, dataGridViewModerAdsList);
+			adPresenter.UpdateAdsList(dataGridViewAdsList, dataGridViewModerAdsList);
+		}
+
+		private void buttonUpdateAdsList_Click(object sender, EventArgs e)
+		{
+			adPresenter.UpdateAdsList(dataGridViewAdsList, dataGridViewModerAdsList);
 		}
 
 		private void buttonAddAd_Click(object sender, EventArgs e)
@@ -47,6 +48,15 @@ namespace WinFormAds
 		private void buttonCancelAd_Click(object sender, EventArgs e)
 		{
 			adPresenter.CancelAd(dataGridViewModerAdsList);
+		}
+		private void buttonSearchByAdName_Click(object sender, EventArgs e)
+		{
+			adPresenter.SearchByAdName(textBoxSearchByAdName, dataGridViewAdsList);
+		}
+
+		private void buttonFilteringAdsByNumber_Click(object sender, EventArgs e)
+		{
+			adPresenter.FilteringAdsByNumber(textBoxFilterBySellerNumber, dataGridViewAdsList);
 		}
 
 		private void ISA_Load(object sender, EventArgs e)
@@ -76,9 +86,12 @@ namespace WinFormAds
 			dataGridViewModerAdsList.Show();
 			buttonAllowAd.Show();
 			buttonCancelAd.Show();
-			labelFilteringAds.Show();
+			labelFilterBySellerNumber.Show();
 			textBoxFilterBySellerNumber.Show();
 			buttonFilterBySellerNumber.Show();
+			labelSearchByAdName.Show();
+			textBoxSearchByAdName.Show();
+			buttonSearchByAdName.Show();
 			textBoxAdNameAdd.Show();
 			textBoxAdDescriptionAdd.Show();
 			textBoxAdPriceAdd.Show();
@@ -96,7 +109,7 @@ namespace WinFormAds
 			labelStarsShitAdm.Hide();
 			labelStarsShitUsr.Show();
 			tabControlAds.Show();
-			tabControlAds.TabPages.Remove(tabPageModerAdsList); 
+			tabControlAds.TabPages.Remove(tabPageModerAdsList);
 			labelAdmin.Hide();
 			labelUser.Show();
 			buttonAdmin.Hide();
@@ -107,9 +120,12 @@ namespace WinFormAds
 			dataGridViewModerAdsList.Hide();
 			buttonAllowAd.Hide();
 			buttonCancelAd.Hide();
-			labelFilteringAds.Show();
+			labelFilterBySellerNumber.Show();
 			textBoxFilterBySellerNumber.Show();
 			buttonFilterBySellerNumber.Show();
+			labelSearchByAdName.Show();
+			textBoxSearchByAdName.Show();
+			buttonSearchByAdName.Show();
 			textBoxAdNameAdd.Show();
 			textBoxAdDescriptionAdd.Show();
 			textBoxAdPriceAdd.Show();
@@ -137,9 +153,12 @@ namespace WinFormAds
 			dataGridViewModerAdsList.Hide();
 			buttonAllowAd.Hide();
 			buttonCancelAd.Hide();
-			labelFilteringAds.Hide();
+			labelFilterBySellerNumber.Hide();
 			textBoxFilterBySellerNumber.Hide();
 			buttonFilterBySellerNumber.Hide();
+			labelSearchByAdName.Hide();
+			textBoxSearchByAdName.Hide();
+			buttonSearchByAdName.Hide();
 			textBoxAdNameAdd.Hide();
 			textBoxAdDescriptionAdd.Hide();
 			textBoxAdPriceAdd.Hide();
@@ -149,30 +168,6 @@ namespace WinFormAds
 
 			AdModel.adsDataBase.Save(AdModel.adsList);
 			AdModel.moderAdsDataBase.Save(AdModel.moderList);
-		}
-
-		private void buttonFilteringAdsByNumber_Click(object sender, EventArgs e)
-		{
-			ulong filterAdsByPhone;
-			if (!ulong.TryParse(textBoxFilterBySellerNumber.Text, out filterAdsByPhone))
-			{
-				MessageBox.Show("Не получилось прочитать номер!", "Ошибка!");
-				return;
-			}
-
-			var filteredAdsByPhone = from query in AdModel.adsList
-									 where query.sellerNumber.Equals(filterAdsByPhone)
-									 select query;
-
-			if (filteredAdsByPhone.Count() == 0)
-			{
-				MessageBox.Show("Объявлений не найдено!", "Ошибка!");
-				return;
-			}
-			else
-			{
-				DataGridViewAdsUpdate();
-			}
 		}
 	}
 }

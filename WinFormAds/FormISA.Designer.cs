@@ -44,9 +44,13 @@ namespace WinFormAds
 			this.ColumnAdDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabControlAds = new System.Windows.Forms.TabControl();
 			this.tabPageAdsList = new System.Windows.Forms.TabPage();
+			this.buttonUpdateAdsList = new System.Windows.Forms.Button();
+			this.buttonSearchByAdName = new System.Windows.Forms.Button();
+			this.textBoxSearchByAdName = new System.Windows.Forms.TextBox();
+			this.labelSearchByAdName = new System.Windows.Forms.Label();
 			this.buttonFilterBySellerNumber = new System.Windows.Forms.Button();
 			this.textBoxFilterBySellerNumber = new System.Windows.Forms.TextBox();
-			this.labelFilteringAds = new System.Windows.Forms.Label();
+			this.labelFilterBySellerNumber = new System.Windows.Forms.Label();
 			this.buttonDelAd = new System.Windows.Forms.Button();
 			this.tabPageModerAdsList = new System.Windows.Forms.TabPage();
 			this.buttonCancelAd = new System.Windows.Forms.Button();
@@ -184,9 +188,13 @@ namespace WinFormAds
 			// 
 			// tabPageAdsList
 			// 
+			this.tabPageAdsList.Controls.Add(this.buttonUpdateAdsList);
+			this.tabPageAdsList.Controls.Add(this.buttonSearchByAdName);
+			this.tabPageAdsList.Controls.Add(this.textBoxSearchByAdName);
+			this.tabPageAdsList.Controls.Add(this.labelSearchByAdName);
 			this.tabPageAdsList.Controls.Add(this.buttonFilterBySellerNumber);
 			this.tabPageAdsList.Controls.Add(this.textBoxFilterBySellerNumber);
-			this.tabPageAdsList.Controls.Add(this.labelFilteringAds);
+			this.tabPageAdsList.Controls.Add(this.labelFilterBySellerNumber);
 			this.tabPageAdsList.Controls.Add(this.buttonDelAd);
 			this.tabPageAdsList.Controls.Add(this.dataGridViewAdsList);
 			this.tabPageAdsList.Location = new System.Drawing.Point(4, 24);
@@ -198,9 +206,56 @@ namespace WinFormAds
 			this.tabPageAdsList.Text = "Объявления";
 			this.tabPageAdsList.UseVisualStyleBackColor = true;
 			// 
+			// buttonUpdateAdsList
+			// 
+			this.buttonUpdateAdsList.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.buttonUpdateAdsList.Location = new System.Drawing.Point(687, 306);
+			this.buttonUpdateAdsList.Name = "buttonUpdateAdsList";
+			this.buttonUpdateAdsList.Size = new System.Drawing.Size(166, 75);
+			this.buttonUpdateAdsList.TabIndex = 12;
+			this.buttonUpdateAdsList.Text = "Обновить список\r\nобъявлений";
+			this.buttonUpdateAdsList.UseVisualStyleBackColor = true;
+			this.buttonUpdateAdsList.Click += new System.EventHandler(this.buttonUpdateAdsList_Click);
+			// 
+			// buttonSearchByAdName
+			// 
+			this.buttonSearchByAdName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.buttonSearchByAdName.Location = new System.Drawing.Point(687, 128);
+			this.buttonSearchByAdName.Margin = new System.Windows.Forms.Padding(1);
+			this.buttonSearchByAdName.Name = "buttonSearchByAdName";
+			this.buttonSearchByAdName.Size = new System.Drawing.Size(166, 22);
+			this.buttonSearchByAdName.TabIndex = 11;
+			this.buttonSearchByAdName.Text = "НАЙТИ";
+			this.buttonSearchByAdName.UseVisualStyleBackColor = true;
+			this.buttonSearchByAdName.Visible = false;
+			this.buttonSearchByAdName.Click += new System.EventHandler(this.buttonSearchByAdName_Click);
+			// 
+			// textBoxSearchByAdName
+			// 
+			this.textBoxSearchByAdName.Location = new System.Drawing.Point(687, 101);
+			this.textBoxSearchByAdName.Margin = new System.Windows.Forms.Padding(1);
+			this.textBoxSearchByAdName.Name = "textBoxSearchByAdName";
+			this.textBoxSearchByAdName.Size = new System.Drawing.Size(166, 23);
+			this.textBoxSearchByAdName.TabIndex = 10;
+			this.textBoxSearchByAdName.Text = "Введите название";
+			this.textBoxSearchByAdName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBoxSearchByAdName.Visible = false;
+			// 
+			// labelSearchByAdName
+			// 
+			this.labelSearchByAdName.AutoSize = true;
+			this.labelSearchByAdName.Location = new System.Drawing.Point(719, 62);
+			this.labelSearchByAdName.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+			this.labelSearchByAdName.Name = "labelSearchByAdName";
+			this.labelSearchByAdName.Size = new System.Drawing.Size(110, 30);
+			this.labelSearchByAdName.TabIndex = 9;
+			this.labelSearchByAdName.Text = "Найти объявление\r\nпо названию:";
+			this.labelSearchByAdName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelSearchByAdName.Visible = false;
+			// 
 			// buttonFilterBySellerNumber
 			// 
-			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 126);
+			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 263);
 			this.buttonFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonFilterBySellerNumber.Name = "buttonFilterBySellerNumber";
 			this.buttonFilterBySellerNumber.Size = new System.Drawing.Size(166, 22);
@@ -212,25 +267,26 @@ namespace WinFormAds
 			// 
 			// textBoxFilterBySellerNumber
 			// 
-			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 99);
+			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 236);
 			this.textBoxFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxFilterBySellerNumber.Name = "textBoxFilterBySellerNumber";
 			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(166, 23);
 			this.textBoxFilterBySellerNumber.TabIndex = 7;
 			this.textBoxFilterBySellerNumber.Text = "Введите номер телефона";
+			this.textBoxFilterBySellerNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.textBoxFilterBySellerNumber.Visible = false;
 			// 
-			// labelFilteringAds
+			// labelFilterBySellerNumber
 			// 
-			this.labelFilteringAds.AutoSize = true;
-			this.labelFilteringAds.Location = new System.Drawing.Point(697, 58);
-			this.labelFilteringAds.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-			this.labelFilteringAds.Name = "labelFilteringAds";
-			this.labelFilteringAds.Size = new System.Drawing.Size(147, 30);
-			this.labelFilteringAds.TabIndex = 6;
-			this.labelFilteringAds.Text = "Фильтровать объявления\r\nпо номеру телефона:";
-			this.labelFilteringAds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.labelFilteringAds.Visible = false;
+			this.labelFilterBySellerNumber.AutoSize = true;
+			this.labelFilterBySellerNumber.Location = new System.Drawing.Point(697, 195);
+			this.labelFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+			this.labelFilterBySellerNumber.Name = "labelFilterBySellerNumber";
+			this.labelFilterBySellerNumber.Size = new System.Drawing.Size(147, 30);
+			this.labelFilterBySellerNumber.TabIndex = 6;
+			this.labelFilterBySellerNumber.Text = "Фильтровать объявления\r\nпо номеру телефона:";
+			this.labelFilterBySellerNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelFilterBySellerNumber.Visible = false;
 			// 
 			// buttonDelAd
 			// 
@@ -605,7 +661,7 @@ namespace WinFormAds
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
 		private System.Windows.Forms.Button buttonCancelAd;
-		private System.Windows.Forms.Label labelFilteringAds;
+		private System.Windows.Forms.Label labelFilterBySellerNumber;
 		private System.Windows.Forms.Button buttonFilterBySellerNumber;
 		private System.Windows.Forms.TextBox textBoxFilterBySellerNumber;
 		private System.Windows.Forms.TextBox textBoxSellerNameAdd;
@@ -627,6 +683,10 @@ namespace WinFormAds
 		private System.Windows.Forms.Label labelStarsShitUsr;
 		private System.Windows.Forms.PictureBox pictureBoxOligarkhMain;
 		private System.Windows.Forms.PictureBox pictureBoxIcon;
+		private System.Windows.Forms.Button buttonSearchByAdName;
+		private System.Windows.Forms.TextBox textBoxSearchByAdName;
+		private System.Windows.Forms.Label labelSearchByAdName;
+		private System.Windows.Forms.Button buttonUpdateAdsList;
 	}
 }
 
