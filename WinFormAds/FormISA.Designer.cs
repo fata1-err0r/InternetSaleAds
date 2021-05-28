@@ -626,6 +626,7 @@ namespace WinFormAds
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(1);
 			this.Name = "FormISA";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "InternetSaleAds";
 			this.Load += new System.EventHandler(this.ISA_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdsList)).EndInit();
