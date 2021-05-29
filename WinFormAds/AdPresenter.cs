@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using WinFormAds;
 using System.Linq;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace WinFormAdsLibrary
 {
@@ -19,25 +20,31 @@ namespace WinFormAdsLibrary
 		public void UpdateAdsList(DataGridView dataGridViewAdsList, DataGridView dataGridViewModerAdsList)
 		{
 			dataGridViewAdsList.RowCount = AdModel.adsList.Count;
-			for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+			for (int i = 0; i < AdModel.adsList.Count; i++)
 			{
-				dataGridViewAdsList.Rows[i].Cells[0].Value = AdModel.adsList[i].adName;
-				dataGridViewAdsList.Rows[i].Cells[1].Value = AdModel.adsList[i].adDescription;
-				dataGridViewAdsList.Rows[i].Cells[2].Value = AdModel.adsList[i].adPrice;
-				dataGridViewAdsList.Rows[i].Cells[3].Value = AdModel.adsList[i].sellerNumber;
-				dataGridViewAdsList.Rows[i].Cells[4].Value = AdModel.adsList[i].sellerName;
-				dataGridViewAdsList.Rows[i].Cells[5].Value = AdModel.adsList[i].adDate;
+				var row = dataGridViewAdsList.Rows[i];
+				row.Tag = i;
+
+				row.Cells[0].Value = AdModel.adsList[i].adName;
+				row.Cells[1].Value = AdModel.adsList[i].adDescription;
+				row.Cells[2].Value = AdModel.adsList[i].adPrice;
+				row.Cells[3].Value = AdModel.adsList[i].sellerNumber;
+				row.Cells[4].Value = AdModel.adsList[i].sellerName;
+				row.Cells[5].Value = AdModel.adsList[i].adDate;
 			}
 
 			dataGridViewModerAdsList.RowCount = AdModel.moderList.Count;
-			for (int i = 0; i < dataGridViewModerAdsList.Rows.Count; i++)
+			for (int i = 0; i < AdModel.moderList.Count; i++)
 			{
-				dataGridViewModerAdsList.Rows[i].Cells[0].Value = AdModel.moderList[i].adName;
-				dataGridViewModerAdsList.Rows[i].Cells[1].Value = AdModel.moderList[i].adDescription;
-				dataGridViewModerAdsList.Rows[i].Cells[2].Value = AdModel.moderList[i].adPrice;
-				dataGridViewModerAdsList.Rows[i].Cells[3].Value = AdModel.moderList[i].sellerNumber;
-				dataGridViewModerAdsList.Rows[i].Cells[4].Value = AdModel.moderList[i].sellerName;
-				dataGridViewModerAdsList.Rows[i].Cells[5].Value = AdModel.moderList[i].adDate;
+				var row = dataGridViewModerAdsList.Rows[i];
+				row.Tag = i;
+
+				row.Cells[0].Value = AdModel.moderList[i].adName;
+				row.Cells[1].Value = AdModel.moderList[i].adDescription;
+				row.Cells[2].Value = AdModel.moderList[i].adPrice;
+				row.Cells[3].Value = AdModel.moderList[i].sellerNumber;
+				row.Cells[4].Value = AdModel.moderList[i].sellerName;
+				row.Cells[5].Value = AdModel.moderList[i].adDate;
 			}
 
 			if (dataGridViewAdsList.RowCount == 0)
@@ -94,10 +101,17 @@ namespace WinFormAdsLibrary
 				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
 				return;
 			}
-			int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
-			dataGridViewAdsList.Rows.RemoveAt(delet);
-			AdModel.adsList.RemoveAt(delet);
-			View.DataGridViewUpdateAdsList();
+
+			FormQustion question = new FormQustion();
+			question.ShowDialog();
+			if (question.DialogResult == DialogResult.OK)
+			{
+				int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
+				int indexFromBase = (int)dataGridViewAdsList.Rows[delet].Tag;
+				model.DelAd(indexFromBase);
+				dataGridViewAdsList.Rows.RemoveAt(delet);
+				View.DataGridViewUpdateAdsList();
+			}
 		}
 
 		public void AllowAd(DataGridView dataGridViewAdsList, DataGridView dataGridViewModerAdsList)
@@ -109,17 +123,13 @@ namespace WinFormAdsLibrary
 			}
 
 			int selectedAd = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
-			string adName = dataGridViewModerAdsList.Rows[selectedAd].Cells[0].Value.ToString();
-			string adDescription = dataGridViewModerAdsList.Rows[selectedAd].Cells[1].Value.ToString();
-			uint adPrice = (uint)dataGridViewModerAdsList.Rows[selectedAd].Cells[2].Value;
-			ulong sellerNumber = (ulong)dataGridViewModerAdsList.Rows[selectedAd].Cells[3].Value;
-			string sellerName = dataGridViewModerAdsList.Rows[selectedAd].Cells[4].Value.ToString();
-			DateTime adDate = (DateTime)dataGridViewModerAdsList.Rows[selectedAd].Cells[5].Value;
+			int indexFromBase = (int)dataGridViewModerAdsList.Rows[selectedAd].Tag;
 
-			Ad tempAd = new(adName, adDescription, adPrice, sellerNumber, sellerName, adDate);
-			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
-			AdModel.moderList.RemoveAt(selectedAd);
+			Ad tempAd = AdModel.moderList[indexFromBase];
+			AdModel.moderList.RemoveAt(indexFromBase);
 			AdModel.adsList.Add(tempAd);
+
+			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
 			View.DataGridViewUpdateAdsList();
 		}
 
@@ -131,8 +141,10 @@ namespace WinFormAdsLibrary
 				return;
 			}
 			int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
+			int indexFromBase = (int)dataGridViewModerAdsList.Rows[delet].Tag;
+
+			model.CancelAd(indexFromBase);
 			dataGridViewModerAdsList.Rows.RemoveAt(delet);
-			AdModel.moderList.RemoveAt(delet);
 			View.DataGridViewUpdateAdsList();
 		}
 
@@ -158,14 +170,17 @@ namespace WinFormAdsLibrary
 				}
 
 				dataGridViewAdsList.RowCount = foundAds.Count();
-				for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+				for (int i = 0; i < foundAds.Count(); i++)
 				{
-					dataGridViewAdsList.Rows[i].Cells[0].Value = foundAdsByAdNameList[i].adName;
-					dataGridViewAdsList.Rows[i].Cells[1].Value = foundAdsByAdNameList[i].adDescription;
-					dataGridViewAdsList.Rows[i].Cells[2].Value = foundAdsByAdNameList[i].adPrice;
-					dataGridViewAdsList.Rows[i].Cells[3].Value = foundAdsByAdNameList[i].sellerNumber;
-					dataGridViewAdsList.Rows[i].Cells[4].Value = foundAdsByAdNameList[i].sellerName;
-					dataGridViewAdsList.Rows[i].Cells[5].Value = foundAdsByAdNameList[i].adDate;
+					var row = dataGridViewAdsList.Rows[i];
+					row.Tag = i;
+
+					row.Cells[0].Value = foundAdsByAdNameList[i].adName;
+					row.Cells[1].Value = foundAdsByAdNameList[i].adDescription;
+					row.Cells[2].Value = foundAdsByAdNameList[i].adPrice;
+					row.Cells[3].Value = foundAdsByAdNameList[i].sellerNumber;
+					row.Cells[4].Value = foundAdsByAdNameList[i].sellerName;
+					row.Cells[5].Value = foundAdsByAdNameList[i].adDate;
 				}
 			}
 		}
@@ -197,14 +212,17 @@ namespace WinFormAdsLibrary
 				}
 
 				dataGridViewAdsList.RowCount = filteredAds.Count();
-				for (int i = 0; i < dataGridViewAdsList.Rows.Count; i++)
+				for (int i = 0; i < filteredAds.Count(); i++)
 				{
-					dataGridViewAdsList.Rows[i].Cells[0].Value = foundAdsByPhoneList[i].adName;
-					dataGridViewAdsList.Rows[i].Cells[1].Value = foundAdsByPhoneList[i].adDescription;
-					dataGridViewAdsList.Rows[i].Cells[2].Value = foundAdsByPhoneList[i].adPrice;
-					dataGridViewAdsList.Rows[i].Cells[3].Value = foundAdsByPhoneList[i].sellerNumber;
-					dataGridViewAdsList.Rows[i].Cells[4].Value = foundAdsByPhoneList[i].sellerName;
-					dataGridViewAdsList.Rows[i].Cells[5].Value = foundAdsByPhoneList[i].adDate;
+					var row = dataGridViewAdsList.Rows[i];
+					row.Tag = i;
+
+					row.Cells[0].Value = foundAdsByPhoneList[i].adName;
+					row.Cells[1].Value = foundAdsByPhoneList[i].adDescription;
+					row.Cells[2].Value = foundAdsByPhoneList[i].adPrice;
+					row.Cells[3].Value = foundAdsByPhoneList[i].sellerNumber;
+					row.Cells[4].Value = foundAdsByPhoneList[i].sellerName;
+					row.Cells[5].Value = foundAdsByPhoneList[i].adDate;
 				}
 			}
 		}

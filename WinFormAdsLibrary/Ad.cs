@@ -140,5 +140,15 @@ namespace WinFormAds
 				adsList.Add(ad);
 			}
 		}
+
+		public void DelAd(int index)
+		{
+			adsList.RemoveAt(index);
+		}
+
+		public void CancelAd(int index)
+		{
+			moderList.RemoveAt(index);
+		}
 	}
 }

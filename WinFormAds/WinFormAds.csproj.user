@@ -4,5 +4,8 @@
     <Compile Update="FormISA.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormQustion.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
