@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+
+namespace WinFormAdsLibrary
+{
+	public class AdDB
+	{
+		public static SqlConnection sqlConnection = new SqlConnection(
+		"Data Source=VIPER\\SQLEXPRESS;Initial Catalog=Ads;Integrated Security=True");
+
+		public static List<Ad> DatabaseLoad()
+		{
+			List<Ad> ads = new List<Ad>();
+			string sql = "SELECT * FROM ads";
+			SqlCommand command = new SqlCommand(sql, sqlConnection);
+			sqlConnection.Open();
+			using (SqlDataReader reader = command.ExecuteReader())
+			{
+				while (reader.Read())
+				{
+					string ad_name = reader.GetString(1);
+					string ad_description = reader.GetString(2);
+					uint ad_price = (uint)reader.GetInt64(3);
+					ulong seller_number = (ulong)reader.GetInt64(4);
+					string seller_name = reader.GetString(5);
+					DateTime ad_date = reader.GetDateTime(6);
+					ads.Add(new Ad(ad_name, ad_description, ad_price, seller_number, seller_name, ad_date));
+				}
+			}
+			sqlConnection.Close();
+			return ads;
+		}
+
+		public static void DatabaseSave(List<Ad> ads)
+		{
+			string sql = "DELETE FROM ads";
+			SqlCommand command = new SqlCommand(sql, sqlConnection);
+			sqlConnection.Open();
+			try
+			{
+				command.ExecuteNonQuery();
+				sql = "INSERT ads VALUES";
+				foreach (var ad in ads)
+				{
+					if (sql[sql.Length - 1] == ')')
+						sql += ",";
+					sql += $" ('{ad.adName}', '{ad.adDescription}', {ad.adPrice}, {ad.sellerNumber}, '{ad.sellerName}', {ad.adDate})";
+				}
+				command = new SqlCommand(sql, sqlConnection);
+				command.ExecuteNonQuery();
+			}
+			catch (SqlException)
+			{
+				throw (new Exception("Ошибка при сохранении!"));
+			}
+
+			sqlConnection.Close();
+		}
+
+		public static void DatabaseDelete(Ad ad)
+		{
+			string sql = $"DELETE FROM ads WHERE ad_name = '{ad.adName}' AND ad_description = '{ad.adDescription}' AND ad_price = {ad.adPrice} AND seller_number = {ad.sellerNumber} AND seller_name = '{ad.sellerName}' AND ad_date = {ad.adDate}";
+			SqlCommand command = new SqlCommand(sql, sqlConnection);
+			sqlConnection.Open();
+			int DeletedCount = command.ExecuteNonQuery();
+			sqlConnection.Close();
+			if (DeletedCount > 1)
+				throw (new Exception("Удалили больше 1 объявления!"));
+			else if (DeletedCount == 0)
+				throw (new Exception("Объявления нет в базе данных!"));
+		}
+	}
+}

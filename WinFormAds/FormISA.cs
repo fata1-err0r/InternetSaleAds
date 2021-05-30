@@ -15,7 +15,7 @@ namespace WinFormAds
 		public FormISA()
 		{
 			InitializeComponent();
-			AdModel adModel = new("Ads.txt");
+			AdModel adModel = new();
 			adPresenter = new AdPresenter(this, adModel);
 			DataGridViewUpdateAdsList();
 		}
@@ -166,8 +166,11 @@ namespace WinFormAds
 			textBoxSellerNameAdd.Hide();
 			buttonAddAd.Hide();
 
-			AdModel.adsDataBase.Save(AdModel.adsList);
-			AdModel.moderAdsDataBase.Save(AdModel.moderList);
+// 			AdModel.adsDataBase.Save(AdModel.adsList);
+// 			AdModel.moderAdsDataBase.Save(AdModel.moderList);
+
+			AdDB.DatabaseSave(AdModel.adsList);
+			AdDB.DatabaseSave(AdModel.moderList);
 		}
 	}
 }

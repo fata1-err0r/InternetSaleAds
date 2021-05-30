@@ -11,6 +11,7 @@ namespace WinFormAdsLibrary
 	{
 		public AdModel model;
 		public FormISA View;
+
 		public AdPresenter(FormISA view, AdModel adModel)
 		{
 			View = view;
