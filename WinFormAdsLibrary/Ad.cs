@@ -128,8 +128,8 @@ namespace WinFormAdsLibrary
 
 		public AdModel()
 		{
-			adsList = AdDB.DatabaseLoad();
-			moderList = AdDB.DatabaseLoad();
+			adsList = AdDB.DatabaseLoad("ads");
+// 			moderList = AdDB.DatabaseLoad();
 		}
 
 

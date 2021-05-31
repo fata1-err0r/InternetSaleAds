@@ -18,21 +18,22 @@ namespace WinFormAdsLibrary
 
 			lblQuestion.AutoSize = true;
 			lblQuestion.Text = "Вы действительно хотите удалить объявление?";
+			lblQuestion.Location = new Point(70, 30);
 
-			Size = new Size(900, 600);
+			Size = new Size(400, 200);
 			MaximizeBox = false;
 			StartPosition = FormStartPosition.CenterScreen;
 			Controls.Add(lblQuestion);
 			Controls.Add(btnOk);
 			Controls.Add(btnNo);
 
-			btnOk.Size = new Size(300, 150);
+			btnOk.Size = new Size(100, 50);
 			btnOk.Text = "Да";
-			btnOk.Location = new Point(50, 300);
+			btnOk.Location = new Point(50, 70);
 
-			btnNo.Size = new Size(300, 150);
+			btnNo.Size = new Size(100, 50);
 			btnNo.Text = "Нет";
-			btnNo.Location = new Point(500, 300);
+			btnNo.Location = new Point(250, 70);
 
 			btnOk.Click += new EventHandler(OkBtnClk);
 			btnNo.Click += new EventHandler(NoBtnClk);

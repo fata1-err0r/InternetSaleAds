@@ -169,8 +169,8 @@ namespace WinFormAds
 // 			AdModel.adsDataBase.Save(AdModel.adsList);
 // 			AdModel.moderAdsDataBase.Save(AdModel.moderList);
 
-			AdDB.DatabaseSave(AdModel.adsList);
-			AdDB.DatabaseSave(AdModel.moderList);
+			AdDB.DatabaseSave(AdModel.adsList, "ads");
+// 			AdDB.DatabaseSave(AdModel.moderList);
 		}
 	}
 }

@@ -10,12 +10,12 @@ namespace WinFormAdsLibrary
 	public class AdDB
 	{
 		public static SqlConnection sqlConnection = new SqlConnection(
-		"Data Source=VIPER\\SQLEXPRESS;Initial Catalog=Ads;Integrated Security=True");
+		"Data Source=KMR-HD-VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True");
 
-		public static List<Ad> DatabaseLoad()
+		public static List<Ad> DatabaseLoad(string nameTable)
 		{
 			List<Ad> ads = new List<Ad>();
-			string sql = "SELECT * FROM ads";
+			string sql = $"SELECT * FROM {nameTable}";
 			SqlCommand command = new SqlCommand(sql, sqlConnection);
 			sqlConnection.Open();
 			using (SqlDataReader reader = command.ExecuteReader())
@@ -24,7 +24,7 @@ namespace WinFormAdsLibrary
 				{
 					string ad_name = reader.GetString(1);
 					string ad_description = reader.GetString(2);
-					uint ad_price = (uint)reader.GetInt64(3);
+					uint ad_price = (uint)reader.GetInt32(3);
 					ulong seller_number = (ulong)reader.GetInt64(4);
 					string seller_name = reader.GetString(5);
 					DateTime ad_date = reader.GetDateTime(6);
@@ -35,27 +35,26 @@ namespace WinFormAdsLibrary
 			return ads;
 		}
 
-		public static void DatabaseSave(List<Ad> ads)
+		public static void DatabaseSave(List<Ad> ads, string nameTable)
 		{
-			string sql = "DELETE FROM ads";
+			string sql = $"TRUNCATE TABLE {nameTable}";
 			SqlCommand command = new SqlCommand(sql, sqlConnection);
 			sqlConnection.Open();
-			try
+			if (ads.Count == 0)
 			{
+				sqlConnection.Close();
+			}
+			else {
 				command.ExecuteNonQuery();
-				sql = "INSERT ads VALUES";
+				sql = $"INSERT {nameTable} VALUES";
 				foreach (var ad in ads)
 				{
 					if (sql[sql.Length - 1] == ')')
 						sql += ",";
-					sql += $" ('{ad.adName}', '{ad.adDescription}', {ad.adPrice}, {ad.sellerNumber}, '{ad.sellerName}', {ad.adDate})";
+					sql += $" ('{ad.adName}', '{ad.adDescription}', {ad.adPrice}, {ad.sellerNumber}, '{ad.sellerName}', '{ad.adDate}')";
 				}
 				command = new SqlCommand(sql, sqlConnection);
 				command.ExecuteNonQuery();
-			}
-			catch (SqlException)
-			{
-				throw (new Exception("Ошибка при сохранении!"));
 			}
 
 			sqlConnection.Close();
@@ -63,7 +62,7 @@ namespace WinFormAdsLibrary
 
 		public static void DatabaseDelete(Ad ad)
 		{
-			string sql = $"DELETE FROM ads WHERE ad_name = '{ad.adName}' AND ad_description = '{ad.adDescription}' AND ad_price = {ad.adPrice} AND seller_number = {ad.sellerNumber} AND seller_name = '{ad.sellerName}' AND ad_date = {ad.adDate}";
+			string sql = $"DELETE FROM ads WHERE ad_name = '{ad.adName}' AND ad_description = '{ad.adDescription}' AND ad_price = {ad.adPrice} AND seller_number = {ad.sellerNumber} AND seller_name = '{ad.sellerName}' AND ad_date = '{ad.adDate}'";
 			SqlCommand command = new SqlCommand(sql, sqlConnection);
 			sqlConnection.Open();
 			int DeletedCount = command.ExecuteNonQuery();
