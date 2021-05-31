@@ -60,17 +60,17 @@ namespace WinFormAdsLibrary
 			sqlConnection.Close();
 		}
 
-		public static void DatabaseDelete(Ad ad)
+		public static void DatabaseDelete(Ad ad, string nameTable)
 		{
-			string sql = $"DELETE FROM ads WHERE ad_name = '{ad.adName}' AND ad_description = '{ad.adDescription}' AND ad_price = {ad.adPrice} AND seller_number = {ad.sellerNumber} AND seller_name = '{ad.sellerName}' AND ad_date = '{ad.adDate}'";
+			string sql = $"DELETE FROM {nameTable} WHERE ad_name = '{ad.adName}' AND ad_description = '{ad.adDescription}' AND ad_price = {ad.adPrice} AND seller_number = {ad.sellerNumber} AND seller_name = '{ad.sellerName}' AND ad_date = '{ad.adDate}'";
 			SqlCommand command = new SqlCommand(sql, sqlConnection);
 			sqlConnection.Open();
 			int DeletedCount = command.ExecuteNonQuery();
 			sqlConnection.Close();
-			if (DeletedCount > 1)
-				throw (new Exception("Удалили больше 1 объявления!"));
-			else if (DeletedCount == 0)
-				throw (new Exception("Объявления нет в базе данных!"));
+// 			if (DeletedCount > 1)
+// 				throw (new Exception("Удалили больше 1 объявления!"));
+// 			else if (DeletedCount == 0)
+// 				throw (new Exception("Объявления нет в базе данных!"));
 		}
 	}
 }

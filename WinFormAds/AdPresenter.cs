@@ -93,6 +93,11 @@ namespace WinFormAdsLibrary
 				MessageBox.Show(ex.Message, "Внимание!");
 			}
 			View.DataGridViewUpdateAdsList();
+			textBoxAdNameAdd.Clear();
+			textBoxAdDescriptionAdd.Clear();
+			textBoxAdPriceAdd.Clear();
+			textBoxSellerNumberAdd.Clear();
+			textBoxSellerNameAdd.Clear();
 		}
 
 		public void DelAd(DataGridView dataGridViewAdsList)
@@ -109,9 +114,10 @@ namespace WinFormAdsLibrary
 			{
 				int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
 				int indexFromBase = (int)dataGridViewAdsList.Rows[delet].Tag;
+
+				AdDB.DatabaseDelete(AdModel.adsList[indexFromBase], "general_ads");
 				model.DelAd(indexFromBase);
 				dataGridViewAdsList.Rows.RemoveAt(delet);
-				View.DataGridViewUpdateAdsList();
 			}
 		}
 
@@ -144,6 +150,7 @@ namespace WinFormAdsLibrary
 			int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
 			int indexFromBase = (int)dataGridViewModerAdsList.Rows[delet].Tag;
 
+			AdDB.DatabaseDelete(AdModel.moderList[indexFromBase], "moder_ads");
 			model.CancelAd(indexFromBase);
 			dataGridViewModerAdsList.Rows.RemoveAt(delet);
 			View.DataGridViewUpdateAdsList();

@@ -17,7 +17,6 @@ namespace WinFormAds
 			InitializeComponent();
 			AdModel adModel = new();
 			adPresenter = new AdPresenter(this, adModel);
-			DataGridViewUpdateAdsList();
 		}
 
 		public void DataGridViewUpdateAdsList()
@@ -98,6 +97,7 @@ namespace WinFormAds
 			textBoxSellerNumberAdd.Show();
 			textBoxSellerNameAdd.Show();
 			buttonAddAd.Show();
+			DataGridViewUpdateAdsList();
 		}
 
 		private void buttonUser_Click(object sender, EventArgs e)
@@ -132,6 +132,7 @@ namespace WinFormAds
 			textBoxSellerNumberAdd.Show();
 			textBoxSellerNameAdd.Show();
 			buttonAddAd.Show();
+			DataGridViewUpdateAdsList();
 		}
 
 		private void buttonExitToMain_Click(object sender, EventArgs e)
@@ -169,8 +170,8 @@ namespace WinFormAds
 // 			AdModel.adsDataBase.Save(AdModel.adsList);
 // 			AdModel.moderAdsDataBase.Save(AdModel.moderList);
 
-			AdDB.DatabaseSave(AdModel.adsList, "ads");
-// 			AdDB.DatabaseSave(AdModel.moderList);
+			AdDB.DatabaseSave(AdModel.adsList, "general_ads");
+			AdDB.DatabaseSave(AdModel.moderList, "moder_ads");
 		}
 	}
 }
