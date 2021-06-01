@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using WinFormAds;
 using System.Linq;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace WinFormAdsLibrary
 {
