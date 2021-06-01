@@ -67,10 +67,6 @@ namespace WinFormAdsLibrary
 			sqlConnection.Open();
 			int DeletedCount = command.ExecuteNonQuery();
 			sqlConnection.Close();
-// 			if (DeletedCount > 1)
-// 				throw (new Exception("Удалили больше 1 объявления!"));
-// 			else if (DeletedCount == 0)
-// 				throw (new Exception("Объявления нет в базе данных!"));
 		}
 	}
 }

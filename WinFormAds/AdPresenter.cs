@@ -47,12 +47,6 @@ namespace WinFormAdsLibrary
 				row.Cells[4].Value = AdModel.moderList[i].sellerName;
 				row.Cells[5].Value = AdModel.moderList[i].adDate;
 			}
-
-			if (dataGridViewAdsList.RowCount == 0)
-			{
-				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
-				return;
-			}
 		}
 
 		public void AddAd(TextBox textBoxAdNameAdd, TextBox textBoxAdDescriptionAdd, TextBox textBoxAdPriceAdd, TextBox textBoxSellerNumberAdd, TextBox textBoxSellerNameAdd)
@@ -92,12 +86,12 @@ namespace WinFormAdsLibrary
 			{
 				MessageBox.Show(ex.Message, "Внимание!");
 			}
-			View.DataGridViewUpdateAdsList();
 			textBoxAdNameAdd.Clear();
 			textBoxAdDescriptionAdd.Clear();
 			textBoxAdPriceAdd.Clear();
 			textBoxSellerNumberAdd.Clear();
 			textBoxSellerNameAdd.Clear();
+			View.DataGridViewUpdateAdsList();
 		}
 
 		public void DelAd(DataGridView dataGridViewAdsList)
@@ -118,6 +112,7 @@ namespace WinFormAdsLibrary
 				AdDB.DatabaseDelete(AdModel.adsList[indexFromBase], "general_ads");
 				model.DelAd(indexFromBase);
 				dataGridViewAdsList.Rows.RemoveAt(delet);
+				View.DataGridViewUpdateAdsList();
 			}
 		}
 
@@ -133,9 +128,10 @@ namespace WinFormAdsLibrary
 			int indexFromBase = (int)dataGridViewModerAdsList.Rows[selectedAd].Tag;
 
 			Ad tempAd = AdModel.moderList[indexFromBase];
-			AdModel.moderList.RemoveAt(indexFromBase);
 			AdModel.adsList.Add(tempAd);
 
+			AdDB.DatabaseDelete(AdModel.moderList[indexFromBase], "moder_ads");
+			model.CancelAd(indexFromBase);
 			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
 			View.DataGridViewUpdateAdsList();
 		}
@@ -147,6 +143,7 @@ namespace WinFormAdsLibrary
 				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
 				return;
 			}
+
 			int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
 			int indexFromBase = (int)dataGridViewModerAdsList.Rows[delet].Tag;
 

@@ -27,6 +27,11 @@ namespace WinFormAds
 		private void buttonUpdateAdsList_Click(object sender, EventArgs e)
 		{
 			adPresenter.UpdateAdsList(dataGridViewAdsList, dataGridViewModerAdsList);
+			if (dataGridViewAdsList.RowCount == 0)
+			{
+				MessageBox.Show("Список объявлений пуст!", "Ошибка!");
+				return;
+			}
 		}
 
 		private void buttonAddAd_Click(object sender, EventArgs e)
