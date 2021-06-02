@@ -145,13 +145,19 @@ namespace WinFormAdsLibrary
 				return;
 			}
 
-			int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
-			int indexFromBase = (int)dataGridViewModerAdsList.Rows[delet].Tag;
+			FormQustion question = new FormQustion();
+			question.ShowDialog();
+			if (question.DialogResult == DialogResult.OK)
+			{
+				int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
+				int indexFromBase = (int)dataGridViewModerAdsList.Rows[delet].Tag;
 
-			AdDB.DatabaseDelete(AdModel.moderList[indexFromBase], "moder_ads");
-			model.CancelAd(indexFromBase);
-			dataGridViewModerAdsList.Rows.RemoveAt(delet);
-			View.DataGridViewUpdateAdsList();
+				AdDB.DatabaseDelete(AdModel.moderList[indexFromBase], "moder_ads");
+				model.CancelAd(indexFromBase);
+				dataGridViewModerAdsList.Rows.RemoveAt(delet);
+				View.DataGridViewUpdateAdsList();
+			}
+
 		}
 
 		public void SearchByAdName(TextBox textBoxSearchByAdName, DataGridView dataGridViewAdsList)
