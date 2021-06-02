@@ -168,9 +168,14 @@ namespace WinFormAds
 			textBoxSellerNumberAdd.Hide();
 			textBoxSellerNameAdd.Hide();
 			buttonAddAd.Hide();
+			textBoxAdNameAdd.Clear();
+			textBoxAdDescriptionAdd.Clear();
+			textBoxAdPriceAdd.Clear();
+			textBoxSellerNumberAdd.Clear();
+			textBoxSellerNameAdd.Clear();
 
-// 			AdModel.adsDataBase.Save(AdModel.adsList);
-// 			AdModel.moderAdsDataBase.Save(AdModel.moderList);
+			// 			AdModel.adsDataBase.Save(AdModel.adsList);
+			// 			AdModel.moderAdsDataBase.Save(AdModel.moderList);
 
 			AdDB.DatabaseSave(AdModel.adsList, "general_ads");
 			AdDB.DatabaseSave(AdModel.moderList, "moder_ads");
