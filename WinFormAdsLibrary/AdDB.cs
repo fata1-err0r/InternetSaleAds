@@ -7,7 +7,8 @@ namespace WinFormAdsLibrary
 	public class AdDB
 	{
 		public static SqlConnection sqlConnection = new SqlConnection(
-		"Data Source=KMR-HD-VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True");
+// 		"Data Source=KMR-HD-VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True"); // WORK
+		"Data Source=VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True"); // HOME
 
 		public static List<Ad> DatabaseLoad(string nameTable)
 		{

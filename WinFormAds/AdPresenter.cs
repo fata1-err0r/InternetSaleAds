@@ -19,32 +19,32 @@ namespace WinFormAdsLibrary
 
 		public void UpdateAdsList(DataGridView dataGridViewAdsList, DataGridView dataGridViewModerAdsList)
 		{
-			dataGridViewAdsList.RowCount = AdModel.adsList.Count;
-			for (int i = 0; i < AdModel.adsList.Count; i++)
+			dataGridViewAdsList.RowCount = model.adsList.Count;
+			for (int i = 0; i < model.adsList.Count; i++)
 			{
 				var row = dataGridViewAdsList.Rows[i];
 				row.Tag = i;
 
-				row.Cells[0].Value = AdModel.adsList[i].adName;
-				row.Cells[1].Value = AdModel.adsList[i].adDescription;
-				row.Cells[2].Value = AdModel.adsList[i].adPrice;
-				row.Cells[3].Value = AdModel.adsList[i].sellerNumber;
-				row.Cells[4].Value = AdModel.adsList[i].sellerName;
-				row.Cells[5].Value = AdModel.adsList[i].adDate;
+				row.Cells[0].Value = model.adsList[i].adName;
+				row.Cells[1].Value = model.adsList[i].adDescription;
+				row.Cells[2].Value = model.adsList[i].adPrice;
+				row.Cells[3].Value = model.adsList[i].sellerNumber;
+				row.Cells[4].Value = model.adsList[i].sellerName;
+				row.Cells[5].Value = model.adsList[i].adDate;
 			}
 
-			dataGridViewModerAdsList.RowCount = AdModel.moderList.Count;
-			for (int i = 0; i < AdModel.moderList.Count; i++)
+			dataGridViewModerAdsList.RowCount = model.moderList.Count;
+			for (int i = 0; i < model.moderList.Count; i++)
 			{
 				var row = dataGridViewModerAdsList.Rows[i];
 				row.Tag = i;
 
-				row.Cells[0].Value = AdModel.moderList[i].adName;
-				row.Cells[1].Value = AdModel.moderList[i].adDescription;
-				row.Cells[2].Value = AdModel.moderList[i].adPrice;
-				row.Cells[3].Value = AdModel.moderList[i].sellerNumber;
-				row.Cells[4].Value = AdModel.moderList[i].sellerName;
-				row.Cells[5].Value = AdModel.moderList[i].adDate;
+				row.Cells[0].Value = model.moderList[i].adName;
+				row.Cells[1].Value = model.moderList[i].adDescription;
+				row.Cells[2].Value = model.moderList[i].adPrice;
+				row.Cells[3].Value = model.moderList[i].sellerNumber;
+				row.Cells[4].Value = model.moderList[i].sellerName;
+				row.Cells[5].Value = model.moderList[i].adDate;
 			}
 		}
 
@@ -110,7 +110,7 @@ namespace WinFormAdsLibrary
 				int delet = dataGridViewAdsList.SelectedCells[0].RowIndex;
 				int indexFromBase = (int)dataGridViewAdsList.Rows[delet].Tag;
 
-				AdDB.DatabaseDelete(AdModel.adsList[indexFromBase], "general_ads");
+				AdDB.DatabaseDelete(model.adsList[indexFromBase], "general_ads");
 				model.DelAd(indexFromBase);
 				dataGridViewAdsList.Rows.RemoveAt(delet);
 				View.DataGridViewUpdateAdsList();
@@ -128,10 +128,10 @@ namespace WinFormAdsLibrary
 			int selectedAd = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
 			int indexFromBase = (int)dataGridViewModerAdsList.Rows[selectedAd].Tag;
 
-			Ad tempAd = AdModel.moderList[indexFromBase];
-			AdModel.adsList.Add(tempAd);
+			Ad tempAd = model.moderList[indexFromBase];
+			model.adsList.Add(tempAd);
 
-			AdDB.DatabaseDelete(AdModel.moderList[indexFromBase], "moder_ads");
+			AdDB.DatabaseDelete(model.moderList[indexFromBase], "moder_ads");
 			model.CancelAd(indexFromBase);
 			dataGridViewModerAdsList.Rows.RemoveAt(selectedAd);
 			View.DataGridViewUpdateAdsList();
@@ -152,7 +152,7 @@ namespace WinFormAdsLibrary
 				int delet = dataGridViewModerAdsList.SelectedCells[0].RowIndex;
 				int indexFromBase = (int)dataGridViewModerAdsList.Rows[delet].Tag;
 
-				AdDB.DatabaseDelete(AdModel.moderList[indexFromBase], "moder_ads");
+				AdDB.DatabaseDelete(model.moderList[indexFromBase], "moder_ads");
 				model.CancelAd(indexFromBase);
 				dataGridViewModerAdsList.Rows.RemoveAt(delet);
 				View.DataGridViewUpdateAdsList();
@@ -164,7 +164,7 @@ namespace WinFormAdsLibrary
 		{
 			string searchByAdName = textBoxSearchByAdName.Text.Trim();
 
-			var foundAds = from query in AdModel.adsList
+			var foundAds = from query in model.adsList
 						   where query.adName.Equals(searchByAdName)
 						   select query;
 
@@ -206,7 +206,7 @@ namespace WinFormAdsLibrary
 				return;
 			}
 
-			var filteredAds = from query in AdModel.adsList
+			var filteredAds = from query in model.adsList
 							  where query.sellerNumber.Equals(filterAdsByPhone)
 							  select query;
 
@@ -237,6 +237,11 @@ namespace WinFormAdsLibrary
 					row.Cells[5].Value = foundAdsByPhoneList[i].adDate;
 				}
 			}
+		}
+
+		public void SaveAds(Button buttonExitToMain)
+		{
+			model.SaveAds(model.adsList, model.moderList);
 		}
 	}
 }
