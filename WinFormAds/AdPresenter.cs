@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using WinFormAds;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace WinFormAdsLibrary
 {
@@ -53,6 +53,17 @@ namespace WinFormAdsLibrary
 			string adName = textBoxAdNameAdd.Text.Trim();
 			string adDescription = textBoxAdDescriptionAdd.Text.Trim();
 			uint adPrice;
+
+			if (textBoxAdNameAdd.Text.Trim() == "" ||
+				textBoxAdDescriptionAdd.Text.Trim() == "" ||
+				textBoxAdPriceAdd.Text.Trim() == "" ||
+				textBoxSellerNumberAdd.Text.Trim() == "" ||
+				textBoxSellerNameAdd.Text.Trim() == "")
+			{
+				MessageBox.Show("Не все поля заполнены!", "Ошибка!");
+				return;
+			}
+
 			if (!uint.TryParse(textBoxAdPriceAdd.Text, out adPrice))
 			{
 				MessageBox.Show("Не получилось прочитать цену!", "Ошибка!");
@@ -67,15 +78,6 @@ namespace WinFormAdsLibrary
 			string sellerName = textBoxSellerNameAdd.Text.Trim();
 			DateTime adDate = DateTime.Now;
 
-			if (textBoxAdNameAdd.Text.Trim() == "" ||
-				textBoxAdDescriptionAdd.Text.Trim() == "" ||
-				textBoxAdPriceAdd.Text.Trim() == "" ||
-				textBoxSellerNumberAdd.Text.Trim() == "" ||
-				textBoxSellerNameAdd.Text.Trim() == "")
-			{
-				MessageBox.Show("Не все поля заполнены!", "Ошибка!");
-				return;
-			}
 			try
 			{
 				model.AddAd(adName, adDescription, adPrice, sellerNumber, sellerName, adDate);
