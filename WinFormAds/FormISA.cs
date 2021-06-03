@@ -175,7 +175,7 @@ namespace WinFormAds
 			textBoxSellerNameAdd.Clear();
 			textBoxSearchByAdName.Clear();
 			textBoxFilterBySellerNumber.Clear();
-			adPresenter.SaveAds(buttonExitToMain);
+			adPresenter.SaveAds();
 		}
 	}
 }

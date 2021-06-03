@@ -81,6 +81,22 @@ namespace WinFormAdsLibrary
 			moderList.RemoveAt(index);
 		}
 
+		public IEnumerable<Ad> SearchByAdName(string searchByAdName)
+		{
+			var foundAds = from query in adsList
+						   where query.adName.Equals(searchByAdName)
+						   select query;
+			return foundAds;
+		}
+
+		public IEnumerable<Ad> FilteringAdsByNumber(ulong filterAdsByPhone)
+		{
+			var filteredAds = from query in adsList
+							  where query.sellerNumber.Equals(filterAdsByPhone)
+							  select query;
+			return filteredAds;
+		}
+
 		public void SaveAds(List<Ad> adsList, List<Ad> moderList)
 		{
 			AdDB.DatabaseSave(adsList, "general_ads");

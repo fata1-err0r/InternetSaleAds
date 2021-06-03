@@ -164,9 +164,7 @@ namespace WinFormAdsLibrary
 		{
 			string searchByAdName = textBoxSearchByAdName.Text.Trim();
 
-			var foundAds = from query in model.adsList
-						   where query.adName.Equals(searchByAdName)
-						   select query;
+			var foundAds = model.SearchByAdName(searchByAdName);
 
 			if (foundAds.Count() == 0)
 			{
@@ -206,9 +204,7 @@ namespace WinFormAdsLibrary
 				return;
 			}
 
-			var filteredAds = from query in model.adsList
-							  where query.sellerNumber.Equals(filterAdsByPhone)
-							  select query;
+			var filteredAds = model.FilteringAdsByNumber(filterAdsByPhone);
 
 			if (filteredAds.Count() == 0)
 			{
@@ -239,7 +235,7 @@ namespace WinFormAdsLibrary
 			}
 		}
 
-		public void SaveAds(Button buttonExitToMain)
+		public void SaveAds()
 		{
 			model.SaveAds(model.adsList, model.moderList);
 		}

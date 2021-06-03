@@ -7,8 +7,8 @@ namespace WinFormAdsLibrary
 	public class AdDB
 	{
 		public static SqlConnection sqlConnection = new SqlConnection(
-// 		"Data Source=KMR-HD-VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True"); // WORK
-		"Data Source=VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True"); // HOME
+		"Data Source=KMR-HD-VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True"); // WORK
+// 		"Data Source=VIPER\\SQLEXPRESS;Initial Catalog=AdDB;Integrated Security=True"); // HOME
 
 		public static List<Ad> DatabaseLoad(string nameTable)
 		{
@@ -63,7 +63,7 @@ namespace WinFormAdsLibrary
 			string sql = $"DELETE FROM {nameTable} WHERE ad_name = '{ad.adName}' AND ad_description = '{ad.adDescription}' AND ad_price = {ad.adPrice} AND seller_number = {ad.sellerNumber} AND seller_name = '{ad.sellerName}' AND ad_date = '{ad.adDate}'";
 			SqlCommand command = new SqlCommand(sql, sqlConnection);
 			sqlConnection.Open();
-			int DeletedCount = command.ExecuteNonQuery();
+			command.ExecuteNonQuery();
 			sqlConnection.Close();
 		}
 	}

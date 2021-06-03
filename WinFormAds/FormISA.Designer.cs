@@ -91,7 +91,7 @@ namespace WinFormAds
 			// buttonAdmin
 			// 
 			this.buttonAdmin.Location = new System.Drawing.Point(334, 383);
-			this.buttonAdmin.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonAdmin.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAdmin.Name = "buttonAdmin";
 			this.buttonAdmin.Size = new System.Drawing.Size(93, 36);
 			this.buttonAdmin.TabIndex = 0;
@@ -102,7 +102,7 @@ namespace WinFormAds
 			// buttonUser
 			// 
 			this.buttonUser.Location = new System.Drawing.Point(446, 383);
-			this.buttonUser.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonUser.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonUser.Name = "buttonUser";
 			this.buttonUser.Size = new System.Drawing.Size(93, 36);
 			this.buttonUser.TabIndex = 1;
@@ -140,11 +140,13 @@ namespace WinFormAds
 			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
 			this.dataGridViewAdsList.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewAdsList.Location = new System.Drawing.Point(0, 0);
-			this.dataGridViewAdsList.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.dataGridViewAdsList.Margin = new System.Windows.Forms.Padding(1);
+			this.dataGridViewAdsList.MultiSelect = false;
 			this.dataGridViewAdsList.Name = "dataGridViewAdsList";
 			this.dataGridViewAdsList.RowHeadersVisible = false;
 			this.dataGridViewAdsList.RowHeadersWidth = 123;
 			this.dataGridViewAdsList.RowTemplate.Height = 57;
+			this.dataGridViewAdsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewAdsList.Size = new System.Drawing.Size(674, 397);
 			this.dataGridViewAdsList.TabIndex = 2;
 			this.dataGridViewAdsList.Visible = false;
@@ -197,7 +199,7 @@ namespace WinFormAds
 			this.tabControlAds.Controls.Add(this.tabPageModerAdsList);
 			this.tabControlAds.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.tabControlAds.Location = new System.Drawing.Point(0, 175);
-			this.tabControlAds.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.tabControlAds.Margin = new System.Windows.Forms.Padding(1);
 			this.tabControlAds.Name = "tabControlAds";
 			this.tabControlAds.SelectedIndex = 0;
 			this.tabControlAds.Size = new System.Drawing.Size(873, 426);
@@ -216,9 +218,9 @@ namespace WinFormAds
 			this.tabPageAdsList.Controls.Add(this.buttonDelAd);
 			this.tabPageAdsList.Controls.Add(this.dataGridViewAdsList);
 			this.tabPageAdsList.Location = new System.Drawing.Point(4, 24);
-			this.tabPageAdsList.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.tabPageAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.tabPageAdsList.Name = "tabPageAdsList";
-			this.tabPageAdsList.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.tabPageAdsList.Padding = new System.Windows.Forms.Padding(1);
 			this.tabPageAdsList.Size = new System.Drawing.Size(865, 398);
 			this.tabPageAdsList.TabIndex = 0;
 			this.tabPageAdsList.Text = "Объявления";
@@ -239,7 +241,7 @@ namespace WinFormAds
 			// 
 			this.buttonSearchByAdName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.buttonSearchByAdName.Location = new System.Drawing.Point(687, 137);
-			this.buttonSearchByAdName.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonSearchByAdName.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonSearchByAdName.Name = "buttonSearchByAdName";
 			this.buttonSearchByAdName.Size = new System.Drawing.Size(166, 22);
 			this.buttonSearchByAdName.TabIndex = 11;
@@ -251,7 +253,7 @@ namespace WinFormAds
 			// textBoxSearchByAdName
 			// 
 			this.textBoxSearchByAdName.Location = new System.Drawing.Point(687, 110);
-			this.textBoxSearchByAdName.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxSearchByAdName.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxSearchByAdName.Name = "textBoxSearchByAdName";
 			this.textBoxSearchByAdName.PlaceholderText = "Введите название";
 			this.textBoxSearchByAdName.Size = new System.Drawing.Size(166, 23);
@@ -274,7 +276,7 @@ namespace WinFormAds
 			// buttonFilterBySellerNumber
 			// 
 			this.buttonFilterBySellerNumber.Location = new System.Drawing.Point(687, 249);
-			this.buttonFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonFilterBySellerNumber.Name = "buttonFilterBySellerNumber";
 			this.buttonFilterBySellerNumber.Size = new System.Drawing.Size(166, 22);
 			this.buttonFilterBySellerNumber.TabIndex = 8;
@@ -286,7 +288,7 @@ namespace WinFormAds
 			// textBoxFilterBySellerNumber
 			// 
 			this.textBoxFilterBySellerNumber.Location = new System.Drawing.Point(687, 222);
-			this.textBoxFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxFilterBySellerNumber.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxFilterBySellerNumber.Name = "textBoxFilterBySellerNumber";
 			this.textBoxFilterBySellerNumber.PlaceholderText = "Введите номер телефона";
 			this.textBoxFilterBySellerNumber.Size = new System.Drawing.Size(166, 23);
@@ -309,7 +311,7 @@ namespace WinFormAds
 			// buttonDelAd
 			// 
 			this.buttonDelAd.Location = new System.Drawing.Point(687, 1);
-			this.buttonDelAd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonDelAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonDelAd.Name = "buttonDelAd";
 			this.buttonDelAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonDelAd.TabIndex = 5;
@@ -324,9 +326,9 @@ namespace WinFormAds
 			this.tabPageModerAdsList.Controls.Add(this.buttonAllowAd);
 			this.tabPageModerAdsList.Controls.Add(this.dataGridViewModerAdsList);
 			this.tabPageModerAdsList.Location = new System.Drawing.Point(4, 24);
-			this.tabPageModerAdsList.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.tabPageModerAdsList.Margin = new System.Windows.Forms.Padding(1);
 			this.tabPageModerAdsList.Name = "tabPageModerAdsList";
-			this.tabPageModerAdsList.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.tabPageModerAdsList.Padding = new System.Windows.Forms.Padding(1);
 			this.tabPageModerAdsList.Size = new System.Drawing.Size(865, 398);
 			this.tabPageModerAdsList.TabIndex = 1;
 			this.tabPageModerAdsList.Text = "На модерации";
@@ -335,7 +337,7 @@ namespace WinFormAds
 			// buttonCancelAd
 			// 
 			this.buttonCancelAd.Location = new System.Drawing.Point(687, 1);
-			this.buttonCancelAd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonCancelAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonCancelAd.Name = "buttonCancelAd";
 			this.buttonCancelAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonCancelAd.TabIndex = 7;
@@ -346,7 +348,7 @@ namespace WinFormAds
 			// buttonAllowAd
 			// 
 			this.buttonAllowAd.Location = new System.Drawing.Point(687, 58);
-			this.buttonAllowAd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonAllowAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAllowAd.Name = "buttonAllowAd";
 			this.buttonAllowAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonAllowAd.TabIndex = 6;
@@ -384,7 +386,8 @@ namespace WinFormAds
 			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
 			this.dataGridViewModerAdsList.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewModerAdsList.Location = new System.Drawing.Point(0, 0);
-			this.dataGridViewModerAdsList.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.dataGridViewModerAdsList.Margin = new System.Windows.Forms.Padding(1);
+			this.dataGridViewModerAdsList.MultiSelect = false;
 			this.dataGridViewModerAdsList.Name = "dataGridViewModerAdsList";
 			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
@@ -397,6 +400,7 @@ namespace WinFormAds
 			this.dataGridViewModerAdsList.RowHeadersVisible = false;
 			this.dataGridViewModerAdsList.RowHeadersWidth = 123;
 			this.dataGridViewModerAdsList.RowTemplate.Height = 57;
+			this.dataGridViewModerAdsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridViewModerAdsList.Size = new System.Drawing.Size(674, 397);
 			this.dataGridViewModerAdsList.TabIndex = 3;
 			// 
@@ -446,7 +450,7 @@ namespace WinFormAds
 			// 
 			this.pictureBoxOligarkhMain.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxOligarkhMain.Image")));
 			this.pictureBoxOligarkhMain.Location = new System.Drawing.Point(177, 99);
-			this.pictureBoxOligarkhMain.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.pictureBoxOligarkhMain.Margin = new System.Windows.Forms.Padding(1);
 			this.pictureBoxOligarkhMain.Name = "pictureBoxOligarkhMain";
 			this.pictureBoxOligarkhMain.Size = new System.Drawing.Size(512, 262);
 			this.pictureBoxOligarkhMain.TabIndex = 24;
@@ -455,7 +459,7 @@ namespace WinFormAds
 			// buttonAddAd
 			// 
 			this.buttonAddAd.Location = new System.Drawing.Point(691, 130);
-			this.buttonAddAd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonAddAd.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonAddAd.Name = "buttonAddAd";
 			this.buttonAddAd.Size = new System.Drawing.Size(166, 43);
 			this.buttonAddAd.TabIndex = 4;
@@ -467,7 +471,7 @@ namespace WinFormAds
 			// textBoxSellerNameAdd
 			// 
 			this.textBoxSellerNameAdd.Location = new System.Drawing.Point(533, 141);
-			this.textBoxSellerNameAdd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxSellerNameAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxSellerNameAdd.Name = "textBoxSellerNameAdd";
 			this.textBoxSellerNameAdd.PlaceholderText = "ваше имя";
 			this.textBoxSellerNameAdd.Size = new System.Drawing.Size(106, 23);
@@ -478,7 +482,7 @@ namespace WinFormAds
 			// textBoxAdNameAdd
 			// 
 			this.textBoxAdNameAdd.Location = new System.Drawing.Point(22, 141);
-			this.textBoxAdNameAdd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxAdNameAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxAdNameAdd.Name = "textBoxAdNameAdd";
 			this.textBoxAdNameAdd.PlaceholderText = "название";
 			this.textBoxAdNameAdd.Size = new System.Drawing.Size(102, 23);
@@ -489,7 +493,7 @@ namespace WinFormAds
 			// textBoxSellerNumberAdd
 			// 
 			this.textBoxSellerNumberAdd.Location = new System.Drawing.Point(405, 141);
-			this.textBoxSellerNumberAdd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxSellerNumberAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxSellerNumberAdd.Name = "textBoxSellerNumberAdd";
 			this.textBoxSellerNumberAdd.PlaceholderText = "телефон";
 			this.textBoxSellerNumberAdd.Size = new System.Drawing.Size(106, 23);
@@ -500,7 +504,7 @@ namespace WinFormAds
 			// textBoxAdDescriptionAdd
 			// 
 			this.textBoxAdDescriptionAdd.Location = new System.Drawing.Point(148, 141);
-			this.textBoxAdDescriptionAdd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxAdDescriptionAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxAdDescriptionAdd.Name = "textBoxAdDescriptionAdd";
 			this.textBoxAdDescriptionAdd.PlaceholderText = "описание";
 			this.textBoxAdDescriptionAdd.Size = new System.Drawing.Size(108, 23);
@@ -511,7 +515,7 @@ namespace WinFormAds
 			// textBoxAdPriceAdd
 			// 
 			this.textBoxAdPriceAdd.Location = new System.Drawing.Point(281, 141);
-			this.textBoxAdPriceAdd.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.textBoxAdPriceAdd.Margin = new System.Windows.Forms.Padding(1);
 			this.textBoxAdPriceAdd.Name = "textBoxAdPriceAdd";
 			this.textBoxAdPriceAdd.PlaceholderText = "цена";
 			this.textBoxAdPriceAdd.Size = new System.Drawing.Size(103, 23);
@@ -535,7 +539,7 @@ namespace WinFormAds
 			// buttonExitToMain
 			// 
 			this.buttonExitToMain.Location = new System.Drawing.Point(691, 10);
-			this.buttonExitToMain.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.buttonExitToMain.Margin = new System.Windows.Forms.Padding(1);
 			this.buttonExitToMain.Name = "buttonExitToMain";
 			this.buttonExitToMain.Size = new System.Drawing.Size(166, 43);
 			this.buttonExitToMain.TabIndex = 3;
@@ -642,7 +646,7 @@ namespace WinFormAds
 			this.Controls.Add(this.buttonUser);
 			this.Controls.Add(this.pictureBoxIcon);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+			this.Margin = new System.Windows.Forms.Padding(1);
 			this.MaximizeBox = false;
 			this.Name = "FormISA";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
